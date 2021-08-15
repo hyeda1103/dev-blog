@@ -5,6 +5,7 @@ export const Container = styled.header`
   width: 100%;
   padding: 0.5rem 0;
   background: ${({ theme }) => theme.text};
+  z-index: 9;
 `
 
 export const Inner = styled.div`

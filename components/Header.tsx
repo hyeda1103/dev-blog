@@ -14,8 +14,8 @@ export default function Navbar() {
         </Logo>
         <Nav>
           <Item>
-            <Link href="/post">
-              <a>포스트</a>
+            <Link href="/blog">
+              <a>블로그</a>
             </Link>
           </Item>
           <Item>

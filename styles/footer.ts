@@ -5,7 +5,7 @@ export const Container = styled.header`
   width: 100%;
   padding: 0.5rem 0;
   background: ${({ theme }) => theme.text};
-  bottom: 0;
+  margin-top: auto;
 `
 
 export const Inner = styled.div`
