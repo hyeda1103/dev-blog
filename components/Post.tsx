@@ -7,7 +7,9 @@ export default function Post({ post }) {
     <Container>
       <Image src={post.frontmatter.cover_image} alt="" height={420} width={600} />
       <span>{post.frontmatter.date}</span>
-      <Tag>{post.frontmatter.category}</Tag>
+      <Tag>
+        <Link href={`/blog/category/${post.frontmatter.category.toLowerCase()}`}>{post.frontmatter.category}</Link>
+      </Tag>
       <div>
         <Link href={`/blog/${post.slug}`}>
           <a>{post.frontmatter.title}</a>
