@@ -6,11 +6,12 @@ import Pagination from '@/components/Pagination'
 import CategoryList from '@/components/CategoryList'
 import { POSTS_PER_PAGE } from '@/config/index'
 import { getPosts } from '@/lib/posts'
+import { Container } from '@/styles/blogPage'
 
 export default function BlogPage({ posts, numPages, currentPage, categories }) {
   return (
     <Layout>
-      <div>
+      <Container>
         <div>
           <h1>Blog</h1>
           <div>
@@ -23,7 +24,7 @@ export default function BlogPage({ posts, numPages, currentPage, categories }) {
         <div>
           <CategoryList categories={categories} />
         </div>
-      </div>
+      </Container>
     </Layout>
   )
 }
