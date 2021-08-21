@@ -1,6 +1,7 @@
 import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
 import { Container, Inner, Logo, Nav, Item } from '@/styles/header'
+import Search from './Search'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)
@@ -12,6 +13,7 @@ export default function Navbar() {
             <a>열시로그</a>
           </Link>
         </Logo>
+        <Search />
         <Nav>
           <Item>
             <Link href="/blog">
