@@ -1,6 +1,11 @@
 import Link from 'next/link'
 
-export default function Pagination({ currentPage, numPages }) {
+type Props = {
+  currentPage: number
+  numPages: number
+}
+
+export default function Pagination({ currentPage, numPages }: Props) {
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
   const prevPage = `/blog/page/${currentPage - 1}`
@@ -17,7 +22,7 @@ export default function Pagination({ currentPage, numPages }) {
           </Link>
         )}
         {Array.from({ length: numPages }, (_, i) => (
-          <Link href={`/blog/page/${i + 1}`}>
+          <Link key={i + 1} href={`/blog/page/${i + 1}`}>
             <li>{i + 1}</li>
           </Link>
         ))}

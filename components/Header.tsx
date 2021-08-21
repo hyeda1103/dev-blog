@@ -13,7 +13,6 @@ export default function Navbar() {
             <a>열시로그</a>
           </Link>
         </Logo>
-        <Search />
         <Nav>
           <Item>
             <Link href="/blog">
@@ -30,8 +29,13 @@ export default function Navbar() {
               <a>대하여</a>
             </Link>
           </Item>
+          <Item>
+            <button onClick={darkmode.toggle}>Switch Theme</button>
+          </Item>
+          <Item>
+            <Search />
+          </Item>
         </Nav>
-        <button onClick={darkmode.toggle}>Switch Theme</button>
       </Inner>
     </Container>
   )

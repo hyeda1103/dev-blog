@@ -4,7 +4,6 @@ import Post from '@/components/Post'
 import { getPosts } from '@/lib/posts'
 
 type Post = {
-  slug: string
   frontmatter: {
     author: string
     author_image: string
@@ -14,13 +13,14 @@ type Post = {
     excerpt: string
     title: string
   }
+  slug: string
 }
 
-type Posts = {
-  posts: Post
+type Props = {
+  posts: Post[]
 }
 
-export default function HomePage({ posts }: Posts) {
+export default function HomePage({ posts }: Props) {
   return (
     <Layout>
       <h1>최근 포스트</h1>

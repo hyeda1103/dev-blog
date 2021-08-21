@@ -26,9 +26,12 @@ export const Nav = styled.div`
   display: flex;
 `
 
-export const Item = styled.h2`
-  padding: 0 2rem;
+export const Item = styled.div`
+  padding: 0 0.5rem;
   a {
     color: ${({ theme }) => theme.body};
+  }
+  &:last-child {
+    padding-right: 0;
   }
 `

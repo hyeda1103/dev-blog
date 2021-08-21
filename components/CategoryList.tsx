@@ -1,6 +1,10 @@
 import Link from 'next/link'
 
-export default function CategoryList({ categories }) {
+type Props = {
+  categories: string[]
+}
+
+export default function CategoryList({ categories }: Props) {
   return (
     <div>
       <h3>카테고리</h3>

@@ -2,7 +2,25 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Container, Tag } from '@/styles/post'
 
-export default function Post({ post, compact }) {
+type Post = {
+  frontmatter: {
+    author: string
+    author_image: string
+    category: string
+    cover_image: string
+    date: string
+    excerpt: string
+    title: string
+  }
+  slug: string
+}
+
+type Props = {
+  post: Post
+  compact?: boolean
+}
+
+export default function Post({ post, compact }: Props) {
   return (
     <Container>
       {!compact && <Image src={post.frontmatter.cover_image} alt="" height={420} width={600} />}

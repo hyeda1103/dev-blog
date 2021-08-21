@@ -7,8 +7,6 @@ import marked from 'marked'
 import { GetStaticPropsContext } from 'next'
 
 type Post = {
-  slug: string
-  content: string
   frontmatter: {
     author: string
     author_image: string
@@ -18,9 +16,14 @@ type Post = {
     excerpt: string
     title: string
   }
+  slug: string
 }
 
-export default function PostPage({ frontmatter: { title, category, date, cover_image, author, author_image }, content, slug }: Post) {
+type Props = Post & {
+  content: string
+}
+
+export default function PostPage({ frontmatter: { title, category, date, cover_image, author, author_image }, content, slug }: Props) {
   return (
     <Layout title={title}>
       <Link href="/blog">뒤로</Link>
@@ -60,7 +63,13 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
+type StaticProps = {
+  params: {
+    slug: string
+  }
+}
+
+export async function getStaticProps({ params: { slug } }: StaticProps) {
   const markdownWithMeta = fs.readFileSync(path.join('posts', slug + '.md'), 'utf-8')
   const { data: frontmatter, content } = matter(markdownWithMeta)
 

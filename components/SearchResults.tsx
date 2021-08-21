@@ -1,7 +1,24 @@
 import Post from './Post'
 import { Container } from '@/styles/searchResults'
 
-export default function SearchResults({ results }) {
+type Post = {
+  frontmatter: {
+    author: string
+    author_image: string
+    category: string
+    cover_image: string
+    date: string
+    excerpt: string
+    title: string
+  }
+  slug: string
+}
+
+type Props = {
+  results: Post[]
+}
+
+export default function SearchResults({ results }: Props) {
   if (results.length === 0) return <></>
   return (
     <Container>
