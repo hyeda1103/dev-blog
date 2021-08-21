@@ -1,7 +1,7 @@
-import search from 'pages/api/search'
 import { useState, useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import SearchResults from './SearchResults'
+import { SearchBox, SearchInput, SearchIcon } from '@/styles/searchBox'
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -21,14 +21,10 @@ export default function Search() {
   }, [searchTerm])
   return (
     <div>
-      <div>
-        <div>
-          <form>
-            <input type="search" name="search" id="search" value={searchTerm} placeholder="포스트 검색" onChange={(e) => setSearchTerm(e.target.value)} />
-            <FaSearch />
-          </form>
-        </div>
-      </div>
+      <SearchBox>
+        <SearchInput type="submit" name="search" id="search" value={searchTerm} placeholder="포스트 검색" onChange={(e) => setSearchTerm(e.target.value)} autoComplete="false" />
+        <SearchIcon />
+      </SearchBox>
       <SearchResults results={searchResults} />
     </div>
   )

@@ -1,16 +1,17 @@
 import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
-import { Container, Inner, Logo, Nav, Item } from '@/styles/header'
+import { Container, Inner, Logo, Nav, Item, SwitchMode } from '@/styles/header'
 import Search from './Search'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)
+  console.log(darkmode)
   return (
     <Container>
       <Inner>
         <Logo>
           <Link href="/">
-            <a>열시로그</a>
+            <a>코알라</a>
           </Link>
         </Logo>
         <Nav>
@@ -30,7 +31,7 @@ export default function Navbar() {
             </Link>
           </Item>
           <Item>
-            <button onClick={darkmode.toggle}>Switch Theme</button>
+            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '어' : '밝'}</SwitchMode>
           </Item>
           <Item>
             <Search />

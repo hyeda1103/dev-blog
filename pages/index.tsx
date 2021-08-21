@@ -29,7 +29,7 @@ export default function HomePage({ posts }: Props) {
         ))}
       </div>
       <Link href="/blog">
-        <a>모든 포스트들</a>
+        <a>모든 포스트들 보고 싶어요?</a>
       </Link>
     </Layout>
   )
