@@ -18,6 +18,10 @@ export default function Layout({ title, keywords, description, children }: Props
         <meta name="keywords" content={keywords} />
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href="/fonts/NanumSquareL.ttf" as="font" />
+        <link rel="preload" href="/fonts/NanumSquareR.ttf" as="font" />
+        <link rel="preload" href="/fonts/NanumSquareB.ttf" as="font" />
+        <link rel="preload" href="/fonts/NanumSquareEB.ttf" as="font" />
       </Head>
       <Header />
       <Main>{children}</Main>

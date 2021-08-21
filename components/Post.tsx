@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Container, Tag } from '@/styles/post'
+import { Container, Date, Tag, Contents, Title, Info } from '@/styles/post'
 
 type Post = {
   frontmatter: {
@@ -24,28 +24,24 @@ export default function Post({ post, compact }: Props) {
   return (
     <Container>
       {!compact && <Image src={post.frontmatter.cover_image} alt="" height={420} width={600} />}
-      <span>{post.frontmatter.date}</span>
-      <Tag>
-        <Link href={`/blog/category/${post.frontmatter.category.toLowerCase()}`}>{post.frontmatter.category}</Link>
-      </Tag>
-      <div>
+      <Contents>
+        <Info>
+          <Date>{post.frontmatter.date}</Date>
+          <Link href={`/blog/category/${post.frontmatter.category.toLowerCase()}`}>
+            <Tag>{post.frontmatter.category}</Tag>
+          </Link>
+        </Info>
         <Link href={`/blog/${post.slug}`}>
-          <a>{post.frontmatter.title}</a>
+          <a>
+            <Title>{post.frontmatter.title}</Title>
+          </a>
         </Link>
         <p>{post.frontmatter.excerpt}</p>
-      </div>
+      </Contents>
       {!compact && (
-        <>
-          <div>
-            <Link href={`/blog/${post.slug}`}>
-              <a>더 읽기</a>
-            </Link>
-            <div>
-              <Image src={post.frontmatter.author_image} alt="" height={40} width={40} />
-              <h3>{post.frontmatter.author}</h3>
-            </div>
-          </div>
-        </>
+        <Link href={`/blog/${post.slug}`}>
+          <a>더 읽기</a>
+        </Link>
       )}
     </Container>
   )

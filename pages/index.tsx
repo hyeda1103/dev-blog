@@ -23,7 +23,6 @@ type Props = {
 export default function HomePage({ posts }: Props) {
   return (
     <Layout>
-      <h1>최근 포스트</h1>
       <div>
         {posts.map((post: Post, index: number) => (
           <Post key={index} post={post} />
