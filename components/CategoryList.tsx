@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Container, List, Item } from '@/styles/categoryList'
 
 type Props = {
   categories: string[]
@@ -6,15 +7,15 @@ type Props = {
 
 export default function CategoryList({ categories }: Props) {
   return (
-    <div>
+    <Container>
       <h3>카테고리</h3>
-      <ul>
+      <List>
         {categories.map((category, index) => (
           <Link key={index} href={`/blog/category/${category.toLowerCase()}`}>
-            <li>{category}</li>
+            <Item>{category}</Item>
           </Link>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Container>
   )
 }
