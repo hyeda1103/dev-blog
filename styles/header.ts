@@ -7,7 +7,7 @@ export const Container = styled.header`
 `
 
 export const Inner = styled.div`
-  width: 960px;
+  width: 1200px;
   height: 100%;
   position: relative;
   box-sizing: border-box;
