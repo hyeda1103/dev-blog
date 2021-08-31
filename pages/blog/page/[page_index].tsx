@@ -8,12 +8,31 @@ import { POSTS_PER_PAGE } from '@/config/index'
 import { getPosts } from '@/lib/posts'
 import { Container } from '@/styles/blogPage'
 
-export default function BlogPage({ posts, numPages, currentPage, categories }) {
+type Post = {
+  frontmatter: {
+    author: string
+    author_image: string
+    category: string
+    cover_image: string
+    date: string
+    excerpt: string
+    title: string
+  }
+  slug: string
+}
+
+type Props = {
+  posts: Post[]
+  numPages: number
+  currentPage: number
+  categories: string[]
+}
+
+export default function BlogPage({ posts, numPages, currentPage, categories }: Props) {
   return (
     <Layout>
       <Container>
         <div>
-          <h1>Blog</h1>
           <div>
             {posts.map((post, index) => (
               <Post key={index} post={post} />
@@ -21,9 +40,7 @@ export default function BlogPage({ posts, numPages, currentPage, categories }) {
           </div>
           <Pagination currentPage={currentPage} numPages={numPages} />
         </div>
-        <div>
-          <CategoryList categories={categories} />
-        </div>
+        <CategoryList categories={categories} />
       </Container>
     </Layout>
   )
