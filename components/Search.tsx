@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { FaSearch } from 'react-icons/fa'
 import SearchResults from './SearchResults'
 import { SearchBox, SearchInput, SearchIcon } from '@/styles/searchBox'
 
@@ -22,7 +21,7 @@ export default function Search() {
   return (
     <div>
       <SearchBox>
-        <SearchInput type="submit" name="search" id="search" value={searchTerm} placeholder="포스트 검색" onChange={(e) => setSearchTerm(e.target.value)} autoComplete="false" />
+        <SearchInput type="search" name="search" id="search" value={searchTerm} placeholder="포스트 검색" onChange={(e) => setSearchTerm(e.target.value)} autoComplete="false" />
         <SearchIcon />
       </SearchBox>
       <SearchResults results={searchResults} />
