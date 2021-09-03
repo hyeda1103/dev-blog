@@ -15,10 +15,12 @@ export const SearchInput = styled.input`
   outline: none;
   display: flex;
   justify-content: left;
+  z-index: 19;
 `
 
 export const SearchIcon = styled(FaSearch)`
   position: absolute;
   right: 0.5rem;
   color: #040a3c;
+  z-index: 19;
 `
