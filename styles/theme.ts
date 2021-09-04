@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
   body: '#fff',
-  text: '#040A3C',
+  text: '#121212',
   toggleBorder: '#fff',
   background: '#040A3C',
 }
