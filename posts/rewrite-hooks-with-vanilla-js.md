@@ -12,3 +12,14 @@ Lorem [markdownum](http://insunt.org/inpositaque), et sanguine rutilos dixit
 nigro cornu genus duris linguae. Super hic deus ego adveniens nullumque Venerem
 equis aurem aliisque celare densis dextramque similis **post**: mihi rexerat;
 bis.
+<pre class="language-javascript">
+  <span class="red"></span>
+  <span class="yellow"></span>
+  <span class="green"></span>
+  <code>
+    function getFullName (user) {
+        const fullName = user.firstName + user.lastName;
+        return fullName;
+    }
+  </code>
+</pre>

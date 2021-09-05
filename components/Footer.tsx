@@ -4,7 +4,11 @@ export default function Footer() {
   return (
     <Container>
       <Inner>
-        <Copyright>열시로그</Copyright>
+        <Copyright>
+          &copy;
+          {new Date().getFullYear()} Built with{" "}
+          <a href="https://nextjs.org/">Next.js</a>
+        </Copyright>
       </Inner>
     </Container>
   )

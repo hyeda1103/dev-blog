@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Post from '@/components/Post'
 import { getPosts } from '@/lib/posts'
+import { Bookshelf } from '@/styles/home'
 
 type Post = {
   frontmatter: {
@@ -23,11 +24,11 @@ type Props = {
 export default function HomePage({ posts }: Props) {
   return (
     <Layout>
-      <div>
+      <Bookshelf>
         {posts.map((post: Post, index: number) => (
           <Post key={index} post={post} />
         ))}
-      </div>
+      </Bookshelf>
       <Link href="/blog">
         <a>모든 포스트들 보고 싶어요?</a>
       </Link>
