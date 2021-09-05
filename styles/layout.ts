@@ -5,4 +5,63 @@ export const Main = styled.main`
   margin: 0 auto;
   padding: 8rem 0;
   min-height: 100vh;
+
+  pre {
+    /* background-color: #eff0f1; */
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    overflow: auto;
+    font-size: 14px;
+    margin-bottom: 4.1rem;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    span[class*="red"] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #e04f5f;
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      z-index: 50;
+    }
+    span[class*="yellow"] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #fcba38;
+      position: absolute;
+      top: 14px;
+      left: 33px;
+      z-index: 50;
+    }
+    span[class*="green"] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00cc94;
+      position: absolute;
+      top: 14px;
+      left: 50px;
+      z-index: 50;
+    }
+
+    code {
+      position: relative;
+      top: -1.5rem;
+    }
+  }
+  /* pre:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: 50px;
+    z-index: 50;
+  } */
 `

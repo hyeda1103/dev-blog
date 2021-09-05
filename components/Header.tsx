@@ -11,13 +11,13 @@ export default function Navbar() {
       <Inner>
         <Logo>
           <Link href="/">
-            <a>코알라</a>
+            <a>블로그</a>
           </Link>
         </Logo>
         <Nav>
           <Item>
             <Link href="/blog">
-              <a>블로그</a>
+              <a>긴 글</a>
             </Link>
           </Item>
           <Item>
@@ -31,7 +31,7 @@ export default function Navbar() {
             </Link>
           </Item>
           <Item>
-            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '어' : '밝'}</SwitchMode>
+            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '어둠' : '밝음'}</SwitchMode>
           </Item>
           <Item>
             <Search />

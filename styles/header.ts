@@ -16,27 +16,8 @@ export const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid ${({ theme }) => theme.text};
-  border-bottom: 1px solid ${({ theme }) => theme.text};
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 9px;
-    top: -6px;
-    width: 12px;
-    height: 60px;
-    border-left: 1px solid ${({ theme }) => theme.text};
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    top: -6px;
-    right: 9px;
-    height: 60px;
-    width: 12px;
-    border-right: 1px solid ${({ theme }) => theme.text};
-  }
+  border: 1px solid ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.body};
 `
 
 export const Logo = styled.h2`
@@ -59,10 +40,10 @@ export const Item = styled.div`
   }
 `
 export const SwitchMode = styled.button`
-  width: 24px;
   height: 24px;
   border-radius: 5px;
   border: none;
+  padding: 0 0.5rem;
   cursor: pointer;
   transition: 0.4s ease;
 `

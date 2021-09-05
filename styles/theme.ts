@@ -25,38 +25,38 @@ type Theme = {
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
-      font-family: 'Pretendard-Thin';
-      src: url("/fonts/Pretendard-Thin.ttf");
+      font-family: 'KoPubWorld-Batang-Light';
+      src: url("/fonts/KoPubWorld-Batang-Light.ttf");
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Pretendard-Light';
-      src: url("/fonts/Pretendard-Light.ttf");
+      font-family: 'KoPubWorld-Dotum-Light';
+      src: url("/fonts/KoPubWorld-Dotum-Light.ttf");
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Pretendard-Regular';
-      src: url("/fonts/Pretendard-Regular.ttf");
+      font-family: 'KoPubWorld-Batang-Medium';
+      src: url("/fonts/KoPubWorld-Batang-Medium.ttf");
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Pretendard-Medium';
-      src: url("/fonts/Pretendard-Medium.ttf");
+      font-family: 'KoPubWorld-Dotum-Medium';
+      src: url("/fonts/KoPubWorld-Dotum-Medium.ttf");
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Pretendard-SemiBold';
-      src: url("/fonts/Pretendard-SemiBold.ttf");
+      font-family: 'KoPubWorld-Batang-Bold';
+      src: url("/fonts/KoPubWorld-Batang-Bold.ttf");
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Pretendard-Bold';
-      src: url("/fonts/Pretendard-Bold.ttf");
+      font-family: 'KoPubWorld-Dotum-Bold';
+      src: url("/fonts/KoPubWorld-Dotum-Bold.ttf");
       font-style: normal;
       font-display: swap;
     }
@@ -69,7 +69,7 @@ export const GlobalStyles = createGlobalStyle`
         color: ${({ theme }: Theme) => theme.text};
         transition: all 0.50s linear;
         overflow-x: hidden;
-        font-family: 'Pretendard-Regular';
+        font-family: 'KoPubWorld-Dotum-Light';
     }
     a {
       text-decoration: none;

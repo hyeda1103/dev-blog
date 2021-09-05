@@ -4,7 +4,6 @@ export const Container = styled.header`
   position: absolute;
   width: 100%;
   padding: 0.5rem 0;
-  background: ${({ theme }) => theme.text};
   margin-top: auto;
 `
 
@@ -16,6 +15,5 @@ export const Inner = styled.div`
   justify-content: center;
 `
 
-export const Copyright = styled.h2`
-  color: ${({ theme }) => theme.body};
+export const Copyright = styled.p`
 `
