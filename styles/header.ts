@@ -22,6 +22,7 @@ export const Inner = styled.div`
 
 export const Logo = styled.h2`
   a {
+    font-weight: 700;
   }
 `
 
@@ -34,6 +35,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   a {
+    font-size: 18px;
   }
   &:last-child {
     padding-right: 0;

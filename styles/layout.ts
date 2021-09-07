@@ -6,18 +6,24 @@ export const Main = styled.main`
   padding: 8rem 0;
   min-height: 100vh;
 
+  .paragraph {
+    font-size: 1.25rem;
+    margin: 4rem 0.75rem;
+  }
+
   pre {
     /* background-color: #eff0f1; */
     position: relative;
     padding: 16px;
     border-radius: 4px;
     overflow: auto;
-    font-size: 14px;
-    margin-bottom: 4.1rem;
+    font-size: 17px;
+    margin: 4rem 0;
     padding: 0;
     border-radius: 12px;
     overflow: hidden;
     
+    /* window-buttons */
     span[class*="red"] {
       width: 10px;
       height: 10px;
@@ -51,17 +57,37 @@ export const Main = styled.main`
 
     code {
       position: relative;
-      top: -1.5rem;
+      top: -1.7rem;
     }
   }
-  /* pre:before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: red;
-    position: absolute;
-    top: 50px;
-    z-index: 50;
-  } */
+  // styles regardless of programming language
+  pre[class*="language-"],
+  code[class*="language-"] {
+
+  }
+  // styles for javascript
+  pre[class*="language-javascript"],
+  code[class*="language-javascript"] {
+    color: #4ec9b0;
+  }
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #6a9955;
+  }
+
+  .token.punctuation {
+    color: #d4d4d4;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #b5cea8;
+  }
 `
