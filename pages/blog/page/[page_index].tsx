@@ -69,8 +69,8 @@ export async function getStaticProps({ params }: any) {
   const posts = getPosts()
 
   // Get categories for sidebar
-  const categories = posts.map((post) => post.frontmatter.category)
-  const uniqueCategories = [...new Set(categories)]
+  const categories = posts.map((post) => post.frontmatter.category.split(', '))
+  const uniqueCategories = [...new Set(categories)].flat()
 
   const numPages = Math.ceil(files.length / POSTS_PER_PAGE)
   const pageIndex = page - 1
