@@ -8,7 +8,7 @@ export const SearchBox = styled.form`
 `
 
 export const SearchInput = styled.input`
-  width: 187px;
+  width: 100%;
   height: 30px;
   padding: 0 0.5rem;
   border: 1px solid ${({ theme }) => theme.text};

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Post from '@/components/Post'
+import Author from '@/components/Author'
 import { getPosts } from '@/lib/posts'
-import { Bookshelf } from '@/styles/home'
+import { Library, Bookshelf } from '@/styles/home'
 
 type Post = {
   frontmatter: {
@@ -24,11 +25,14 @@ type Props = {
 export default function HomePage({ posts }: Props) {
   return (
     <Layout>
-      <Bookshelf>
-        {posts.map((post: Post, index: number) => (
-          <Post key={index} post={post} />
-        ))}
-      </Bookshelf>
+      <Library>
+        <Bookshelf>
+          {posts.map((post: Post, index: number) => (
+            <Post key={index} post={post} />
+          ))}
+        </Bookshelf>
+        <Author />
+      </Library>
       <Link href="/blog">
         <a>모든 포스트들 보고 싶어요?</a>
       </Link>
