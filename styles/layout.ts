@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
-  width: 1200px;
+  width: 960px;
   margin: 0 auto;
-  padding: 8rem 0;
-  min-height: 100vh;
+  padding: 6.25rem 0 0;
+  height: calc(100vh - 41px);
+  box-sizing: border-box;
 
   .paragraph {
     font-size: 1.25rem;

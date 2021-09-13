@@ -22,7 +22,7 @@ type Post = {
 type Posts = {
   posts: Post
   categoryName: string
-  categories: string
+  categories: string[]
 }
 
 export default function CategoryBlogPage({ posts, categoryName, categories }: Posts) {
@@ -51,10 +51,10 @@ export async function getStaticPaths() {
     const markdownWithMeta = fs.readFileSync(path.join('posts', filename), 'utf-8')
     const { data: frontmatter } = matter(markdownWithMeta)
 
-    return frontmatter.category.toLowerCase()
-  })
-  const paths = categories.map((category) => ({
-    params: { category_name: category },
+    return frontmatter.category.split(', ')
+  }).flat()
+  const paths = [...new Set(categories)].map((category) => ({
+    params: { category_name: category.toLowerCase() },
   }))
   return {
     paths,
@@ -63,13 +63,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { category_name } }) {
-  const files = fs.readdirSync(path.join('posts'))
-  const posts = getPosts()
+  const posts = getTechPosts()
   // Get categories for sidebar
   const categories = posts.map((post) => post.frontmatter.category)
   const uniqueCategories = [...new Set(categories)]
   // Filter posts by category
-  const categoryPosts = posts.filter((post) => post.frontmatter.category.toLowerCase() === category_name)
+  const categoryPosts = posts.filter((post) => post.frontmatter.category.split(', ').includes(category_name))
 
   return {
     props: {

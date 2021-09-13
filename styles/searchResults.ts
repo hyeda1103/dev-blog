@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  position: fixed;
-  top: 5rem;
-  background: ${({ theme }) => theme.body};
-  padding: 0.5rem;
-  box-sizing: border-box;
-  box-shadow: 1px 3px 3px ${({ theme }) => theme.text};
+  display: grid;
+  grid-template-columns: 1fr;
+  border-left: 1px solid ${({ theme }) => theme.text};  
+  border-right: 1px solid ${({ theme }) => theme.text};
+  gap: 0.25rem;
+`
+export const Result = styled.p`
+  font-size: 15px;
+  padding: 8px 24px 3px;
 `

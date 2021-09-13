@@ -66,7 +66,7 @@ export async function getStaticProps({ params }: any) {
   const page = parseInt((params && params.page_index) || 1)
   const files = fs.readdirSync(path.join('posts'))
 
-  const posts = getPosts()
+  const posts = getTechPosts()
 
   // Get categories for sidebar
   const categories = posts.map((post) => post.frontmatter.category.split(', '))

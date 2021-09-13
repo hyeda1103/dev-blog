@@ -6,7 +6,15 @@ import Layout from '@/components/Layout'
 import { useEffect } from 'react'
 import marked from 'marked'
 import Prism from 'prismjs'
-
+import {
+  Container,
+  Punch,
+  Date,
+  Title,
+  Keywords,
+  Tag,
+  CoverImage
+} from '@/styles/post';
 
 type Post = {
   frontmatter: {
@@ -26,32 +34,33 @@ type Props = Post & {
 }
 
 
-export default function PostPage({ frontmatter: { title, category, date, cover_image, author, author_image }, content, slug }: Props) {
+export default function PostPage({ frontmatter: { title, category, date, cover_image }, content, slug }: Props) {
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
       Prism.highlightAll()
     }
   }, [])
-  
+
   return (
     <Layout title={title}>
-      <Link href="/blog">뒤로</Link>
-      <div>
-        <div>
-          <h1>{title}</h1>
-          <span>{category}</span>
-        </div>
-        <img src={cover_image} alt="" />
-        <div>{date}</div>
+      {/* <Link href="/blog">뒤로</Link> */}
+      <Container>
+        <Date>{date}</Date>
+        <Title>{title}</Title>
+        <Keywords>KEYWORDS {category.split(', ').map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+        </Keywords>
+        <CoverImage src={cover_image} alt="" />
         <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
-      </div>
+      </Container>
     </Layout>
   )
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('posts'))
+  const files = fs.readdirSync(path.join('posts/tech'))
 
   const paths = files.map((filename) => ({
     params: {
@@ -72,9 +81,8 @@ type StaticProps = {
 }
 
 export async function getStaticProps({ params: { slug } }: StaticProps) {
-  const markdownWithMeta = fs.readFileSync(path.join('posts', slug + '.md'), 'utf-8')
+  const markdownWithMeta = fs.readFileSync(path.join('posts/tech', slug + '.md'), 'utf-8')
   const { data: frontmatter, content } = matter(markdownWithMeta)
-
   return {
     props: {
       frontmatter,

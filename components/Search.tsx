@@ -19,11 +19,11 @@ export default function Search() {
     getResults()
   }, [searchTerm])
   return (
-    <div>
+    <>
       <SearchBox>
         <SearchInput name="search" id="search" value={searchTerm} placeholder="무슨 포스트가 보고 싶어요?" onChange={(e) => setSearchTerm(e.target.value)} autoComplete="false" />
       </SearchBox>
       <SearchResults results={searchResults} />
-    </div>
+    </>
   )
 }

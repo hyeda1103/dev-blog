@@ -1,5 +1,5 @@
 import Post from './Post'
-import { Container } from '@/styles/searchResults'
+import { Container, Result } from '@/styles/searchResults'
 
 type Post = {
   frontmatter: {
@@ -22,12 +22,10 @@ export default function SearchResults({ results }: Props) {
   if (results.length === 0) return <></>
   return (
     <Container>
-      <div>
-        <h2>{results.length}개의 검색결과</h2>
-        {results.map((result, index) => (
-          <Post key={index} post={result} compact={true} />
-        ))}
-      </div>
+      <Result>{results.length}개의 검색결과가 있습니다</Result>
+      {results.map((result, index) => (
+        <Post key={index} post={result} compact={true} />
+      ))}
     </Container>
   )
 }

@@ -6,8 +6,7 @@ export default function Footer() {
       <Inner>
         <Copyright>
           &copy;
-          {new Date().getFullYear()} Built with{" "}
-          <a href="https://nextjs.org/">Next.js</a>
+          {new Date().getFullYear()} 고다혜
         </Copyright>
       </Inner>
     </Container>

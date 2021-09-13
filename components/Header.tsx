@@ -1,41 +1,31 @@
 import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
 import { Container, Inner, Logo, Nav, Item, SwitchMode } from '@/styles/header'
-import Search from './Search'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)
-  console.log(darkmode)
   return (
     <Container>
       <Inner>
         <Logo>
           <Link href="/">
-            <a>블로그</a>
+            <a>고다혜</a>
           </Link>
         </Logo>
         <Nav>
           <Item>
             <Link href="/blog">
-              <a>긴 글</a>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/toon">
-              <a>짧은 만화</a>
+              <a>블로그</a>
             </Link>
           </Item>
           <Item>
             <Link href="/about">
-              <a>대하여</a>
+              <a>포트폴리오</a>
             </Link>
           </Item>
           <Item>
-            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '어둠' : '밝음'}</SwitchMode>
-          </Item>
-          <Item>
-            <Search />
-          </Item>
+            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '밝음' : '어둠'}</SwitchMode>
+          </Item> 
         </Nav>
       </Inner>
     </Container>

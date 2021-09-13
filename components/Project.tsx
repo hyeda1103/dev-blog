@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import { Tag, Contents, Title, Category, Abstract } from '@/styles/card'
+import {
+  Date, Tag, Contents, Title, Website, ReadMore, Category, Abstract
+} from '@/styles/project'
 
-type Post = {
+type Project = {
   frontmatter: {
     author: string
     author_image: string
@@ -10,24 +12,25 @@ type Post = {
     date: string
     excerpt: string
     title: string
-  }
+    website: string
+    github_link: string
+  };
   slug: string
 }
 
 type Props = {
-  post: Post
-  compact?: boolean
+  post: Project
 }
 
-export default function Post({ post, compact }: Props) {
+export default function Project({ post }: Props) {
   return (
-    <Link href={`/blog/${post.slug}`}>
+    <Link href={`/portfolio/${post.slug}`}>
       <Contents>
-        <Title compact={compact}>
+        <Title>
             <a>
             {post.frontmatter.title}
             </a>
-          {!compact && <Category>
+          <Category>
             {post.frontmatter.category.split(', ').map((tag) => (
               <Tag key={tag}>
                 <Link href={`/blog/category/${tag}`}>
@@ -35,11 +38,16 @@ export default function Post({ post, compact }: Props) {
                 </Link>
               </Tag>
             ))}
-          </Category>}
+          </Category>
         </Title>
-        {!compact && <Abstract>
+        <Abstract>
+          <Website>
+            <a href={post.frontmatter.website}>
+              {post.frontmatter.website}
+            </a>
+          </Website>
           {post.frontmatter.excerpt}
-        </Abstract>}
+        </Abstract>
       </Contents>
     </Link>
   )

@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
-type StyleProps = {
-  compact?: boolean;
-}
 
-export const Contents = styled.div<StyleProps>`
-  position: relative;
+export const Contents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -27,13 +23,13 @@ export const Tag = styled.span`
   border: 1px solid ${({ theme }) => theme.text};
 `
 
-export const Title = styled.div<StyleProps>`
-  font-size: ${({ compact }) => compact ? '13px' : '18px'};
+export const Title = styled.div`
+  font-size: 18px;
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: ${({ compact }) => compact ? '0' : '6px 0'};
-  border-bottom: ${({ compact }) => compact ? 'none' : '1px solid ${({ theme }) => theme.text}'};
+  padding: 6px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
 `
 
 export const Info = styled.div`
@@ -48,10 +44,12 @@ export const ReadMore = styled.div`
   font-size: 14px;
 `
 
-export const Abstract = styled.p`
+export const Abstract = styled.div`
   font-size: 13px;
   margin: 6px 0;
 `
 
 export const Category = styled.div`
 `
+
+export const Website = styled.p``

@@ -7,7 +7,7 @@ export const Container = styled.header`
 `
 
 export const Inner = styled.div`
-  width: 1200px;
+  width: 960px;
   height: 100%;
   position: relative;
   box-sizing: border-box;
@@ -20,9 +20,9 @@ export const Inner = styled.div`
   background-color: ${({ theme }) => theme.body};
 `
 
-export const Logo = styled.h2`
+export const Logo = styled.p`
   a {
-    font-weight: 700;
+    font-size: 16px;
   }
 `
 
@@ -35,7 +35,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   a {
-    font-size: 18px;
+    font-size: 16px;
   }
   &:last-child {
     padding-right: 0;
