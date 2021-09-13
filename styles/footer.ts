@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.header`
-  position: absolute;
+export const Container = styled.footer`
+  position: relative;
+  display: flex;
   width: 100%;
+  height: 100%;
   padding: 0.5rem 0;
   margin-top: auto;
 `
