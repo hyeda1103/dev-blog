@@ -1,18 +1,24 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  padding: 0.5rem;
-`
+export const List = styled.ul`
+  position: relative;
+  box-sizing: border-box;
+  padding: 8px 24px;
+  border: 1px solid ${({ theme }) => theme.text};
 
-export const List = styled.ul``
+  &:before {
+    content: '카테고리';
+    position: absolute;
+    top: -50%;
+  }
+`
 
 export const Item = styled.li`
   list-style: none;
-  padding: 3px 8px;
-  background: #f2f2f2;
-  font-size: 11px;
-  border-radius: 5px;
-  color: #040a3c;
+  cursor: pointer;
+  padding: 1px 5px;
+  margin-right: 0.25rem;
   display: inline-block;
-  margin: 0.5rem;
+  font-size: 11px;
+  border: 1px solid ${({ theme }) => theme.text};
 `

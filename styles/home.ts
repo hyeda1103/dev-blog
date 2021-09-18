@@ -34,6 +34,16 @@ export const Tab = css<TabProps>`
   border-bottom: none;
 `
 
+export const CategoryTab = styled.div`
+  padding: 8px 24px;
+  border: 1px solid ${({ theme }) => theme.text};
+  box-sizing: border-box;
+  cursor: pointer;
+  border-bottom: none;
+  background-color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.body};
+`
+
 export const TechTab = styled.div`
   ${Tab}
 `

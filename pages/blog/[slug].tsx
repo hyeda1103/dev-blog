@@ -1,14 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { useEffect } from 'react'
 import marked from 'marked'
 import Prism from 'prismjs'
 import {
   Container,
-  Punch,
   Date,
   Title,
   Keywords,
@@ -44,7 +42,6 @@ export default function PostPage({ frontmatter: { title, category, date, cover_i
 
   return (
     <Layout title={title}>
-      {/* <Link href="/blog">뒤로</Link> */}
       <Container>
         <Date>{date}</Date>
         <Title>{title}</Title>

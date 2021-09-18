@@ -21,8 +21,8 @@ export const Item = css`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.text};
   padding: 2px 0;
-  margin: 2px 0;
   display: grid;
+  margin: 2px 0;
   grid-template-columns: 1fr 4fr;
 `
 

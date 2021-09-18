@@ -1,4 +1,5 @@
 import { Container, Inner, Copyright } from '@/styles/footer'
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -6,7 +7,12 @@ export default function Footer() {
       <Inner>
         <Copyright>
           &copy;
-          {new Date().getFullYear()} 고다혜
+          {new Date().getFullYear()} YEOLSIKO, Built with{" "}
+          <Link href='https://nextjs.org/'>
+            <a>
+              Next.js
+            </a>
+          </Link>
         </Copyright>
       </Inner>
     </Container>

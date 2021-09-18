@@ -1,5 +1,5 @@
 ---
-title: '요즘의 노동요'
+title: '9월의 노동요'
 date: 'September 09, 2021'
 excerpt: '신경쓰여, 민수는 혼란스럽다'
 cover_image: '/images/posts/img3.jpg'

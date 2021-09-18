@@ -9,7 +9,7 @@ export default function Navbar() {
       <Inner>
         <Logo>
           <Link href="/">
-            <a>고다혜</a>
+            <a>YEOLSIKO</a>
           </Link>
         </Logo>
         <Nav>

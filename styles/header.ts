@@ -23,6 +23,7 @@ export const Inner = styled.div`
 export const Logo = styled.p`
   a {
     font-size: 16px;
+    font-family: 'KoPubWorld-Dotum-Bold';
   }
 `
 

@@ -74,5 +74,5 @@ export function getAllPosts() {
     }
   })
 
-  return techPost.concat(dailyPost).concat(project).sort(sortByDate)
+  return techPost.concat(dailyPost, project).sort(sortByDate)
 }

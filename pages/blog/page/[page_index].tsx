@@ -5,7 +5,7 @@ import Post from '@/components/Post'
 import Pagination from '@/components/Pagination'
 import CategoryList from '@/components/CategoryList'
 import { POSTS_PER_PAGE } from '@/config/index'
-import { getPosts } from '@/lib/posts'
+import { getTechPosts } from '@/lib/posts'
 import { Container } from '@/styles/blogPage'
 
 type Post = {
@@ -69,8 +69,8 @@ export async function getStaticProps({ params }: any) {
   const posts = getTechPosts()
 
   // Get categories for sidebar
-  const categories = posts.map((post) => post.frontmatter.category.split(', '))
-  const uniqueCategories = [...new Set(categories)].flat()
+  const categories = posts.map((post) => post.frontmatter.category.split(', ').toString().toLowerCase())
+  const uniqueCategories = [...new Set(categories)].flat().map(category => category.toString())
 
   const numPages = Math.ceil(files.length / POSTS_PER_PAGE)
   const pageIndex = page - 1

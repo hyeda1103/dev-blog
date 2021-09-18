@@ -1,4 +1,8 @@
 import {useState} from 'react'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+
 import Layout from '@/components/Layout'
 import Post from '@/components/Post'
 import Author from '@/components/Author'
@@ -39,13 +43,14 @@ type Props = {
   allPosts: Post[],
   allProjects: Project[],
   NofProjects: number,
-  techPosts: Post[]
-  NofTechPosts: number
-  dailyPosts: Post[]
-  NofDailyPosts: number
+  techPosts: Post[],
+  NofTechPosts: number,
+  dailyPosts: Post[],
+  NofDailyPosts: number,
+  categories: string[]
 }
 
-export default function HomePage({ allPosts, allProjects, techPosts, NofTechPosts, dailyPosts, NofDailyPosts, NofProjects }: Props) {
+export default function HomePage({ allPosts, allProjects, techPosts, NofTechPosts, dailyPosts, NofDailyPosts, NofProjects, categories }: Props) {
   const [genre, setGenre] = useState('tech')
   return (
     <Layout>
@@ -76,18 +81,23 @@ export default function HomePage({ allPosts, allProjects, techPosts, NofTechPost
             )}
           {genre === 'project' && (
             allProjects.map((post: Project, index: number) => (
-              <Project key={index} post={post} />
+              <Post key={index} post={post} />
             ))
           )}
         </ContentsList>
         </Bookshelf>
-        <Author />
+        <Author categories={categories} />
       </Library>
     </Layout>
   )
 }
 
 export async function getStaticProps() {
+  const posts = getAllPosts()
+  // Get categories for sidebar
+  const categories = posts.map((post) => post.frontmatter.category.split(', '))
+  const uniqueCategories = [...new Set(categories.flat().map(category => category.toLowerCase()))].sort()
+  
   return {
     props: {
       allProjects: getAllProjects().slice(0, 2),
@@ -97,6 +107,7 @@ export async function getStaticProps() {
       dailyPosts: getDailyPosts().slice(0, 7),
       NofDailyPosts: getDailyPosts().length,
       NofProjects:  getAllProjects().length,
+      categories: uniqueCategories,
     },
   }
 }

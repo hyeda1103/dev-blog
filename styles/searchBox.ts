@@ -11,6 +11,7 @@ export const SearchInput = styled.input`
   width: 100%;
   height: 30px;
   padding: 0 24px;
+  box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.text};
   outline: none;
   display: flex;
