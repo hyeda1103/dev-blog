@@ -4,14 +4,16 @@ export const lightTheme = {
   body: '#fff',
   text: '#121212',
   toggleBorder: '#fff',
-  background: '#040A3C',
+  hover: '#EFEFEF',
+  active: '#999'
 }
 
 export const darkTheme = {
   body: '#040A3C',
   text: '#f2f2f2',
   toggleBorder: '#6B8096',
-  background: '#999',
+  hover: '#999',
+  active: '#EFEFEF'
 }
 
 type Theme = {
@@ -19,7 +21,8 @@ type Theme = {
     body: string
     text: string
     toggleBorder: string
-    background: string
+    hover: string
+    active: string
   }
 }
 

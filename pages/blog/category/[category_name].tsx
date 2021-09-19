@@ -6,6 +6,7 @@ import { getAllPosts } from '@/lib/posts'
 import matter from 'gray-matter'
 import CategoryList from '@/components/CategoryList'
 import { Library, Bookshelf, ContentsHeader, ContentsList, CategoryTab } from '@/styles/home'
+import Author from '@/components/Author'
 
 type Post = {
   slug: string
@@ -37,12 +38,15 @@ export default function CategoryBlogPage({ posts, categoryName, categories }: Po
             </CategoryTab>
           </ContentsHeader>
           <ContentsList>
-            {/* {posts.map((post, index) => (
+            {posts.map((post, index) => (
               <Post key={index} post={post} />
-            ))} */}
+            ))}
           </ContentsList>
         </Bookshelf>
-        <CategoryList categories={categories} />
+        {/* <div>
+          <CategoryList categories={categories} />
+        </div> */}
+        <Author categories={categories} />
       </Library>
     </Layout>
   )
@@ -71,7 +75,7 @@ export async function getStaticPaths() {
     return frontmatter.category.split(', ')
   }).flat()
   const paths = [...new Set(techCategories.concat(dailyCategories, projectCategories))].map((category) => ({
-    params: { category_name: category.toLowerCase() },
+    params: { category_name: category },
   }))
   return {
     paths,
@@ -82,8 +86,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { category_name } }) {
   const posts = getAllPosts()
   // Get categories for sidebar
-  const categories = posts.map((post) => post.frontmatter.category.split(', ').toLowerCase())
-  const uniqueCategories = [...new Set(categories.flat())]
+  const categories = posts.map((post) => post.frontmatter.category.split(', '))
+  const uniqueCategories = [...new Set(categories.flat())].sort()
   // Filter posts by category
   const categoryPosts = posts.filter((post) => post.frontmatter.category.split(', ').includes(category_name))
   return {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import SearchResults from './SearchResults'
-import { SearchInput } from '@/styles/searchBox'
+import { Container, SearchBox, SearchInput, SearchIcon } from '@/styles/searchBox'
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -18,10 +18,23 @@ export default function Search() {
     }
     getResults()
   }, [searchTerm])
+  
+  
   return (
-    <>
-      <SearchInput name="search" id="search" value={searchTerm} placeholder="무슨 포스트가 보고 싶어요?" onChange={(e) => setSearchTerm(e.target.value)} autoComplete="false" />
+    <Container>
+      <SearchBox>
+        <SearchInput
+          name="search"
+          id="search"
+          type="text"
+          value={searchTerm}
+          placeholder="무슨 포스트가 보고 싶어요?"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          autoComplete="off"
+        />
+        <SearchIcon />
+      </SearchBox>
       <SearchResults results={searchResults} />
-    </>
+    </Container>
   )
 }

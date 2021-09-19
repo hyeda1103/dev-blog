@@ -1,7 +1,4 @@
 import {useState} from 'react'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 
 import Layout from '@/components/Layout'
 import Post from '@/components/Post'
@@ -64,27 +61,27 @@ export default function HomePage({ allPosts, allProjects, techPosts, NofTechPost
             <ProjectTab onClick={() => setGenre('project')} isClicked={genre === 'project'}>프로젝트({NofProjects})</ProjectTab>
           </ContentsHeader>
           <ContentsList>
-          {genre === 'tech' && (
-            techPosts.map((post: Post, index: number) => (
-              <Post key={index} post={post} />
-            ))
-          )}
-          {genre === 'all' && (
-            allPosts.map((post: Post, index: number) => (
-              <Post key={index} post={post} />
-            ))
-          )}
-          {genre === 'daily' && (
-            dailyPosts.map((post: Post, index: number) => (
-              <Post key={index} post={post} />
-            ))
+            {genre === 'tech' && (
+              techPosts.map((post: Post, index: number) => (
+                <Post key={index} post={post} />
+              ))
             )}
-          {genre === 'project' && (
-            allProjects.map((post: Project, index: number) => (
-              <Post key={index} post={post} />
-            ))
-          )}
-        </ContentsList>
+            {genre === 'all' && (
+              allPosts.map((post: Post, index: number) => (
+                <Post key={index} post={post} />
+              ))
+            )}
+            {genre === 'daily' && (
+              dailyPosts.map((post: Post, index: number) => (
+                <Post key={index} post={post} />
+              ))
+              )}
+            {genre === 'project' && (
+              allProjects.map((post: Project, index: number) => (
+                <Post key={index} post={post} />
+              ))
+            )}
+          </ContentsList> 
         </Bookshelf>
         <Author categories={categories} />
       </Library>
@@ -96,8 +93,8 @@ export async function getStaticProps() {
   const posts = getAllPosts()
   // Get categories for sidebar
   const categories = posts.map((post) => post.frontmatter.category.split(', '))
-  const uniqueCategories = [...new Set(categories.flat().map(category => category.toLowerCase()))].sort()
-  
+  const uniqueCategories = [...new Set(categories.flat())].sort()
+
   return {
     props: {
       allProjects: getAllProjects().slice(0, 2),

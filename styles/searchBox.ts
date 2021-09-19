@@ -1,16 +1,25 @@
 import styled from 'styled-components'
-import { FaSearch } from 'react-icons/fa'
+import { GoSearch } from 'react-icons/go'
 
-export const SearchBox = styled.form`
+export const Container = styled.form`
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 42px 0 0.25rem; 
+`
+
+export const SearchBox = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
   align-items: center;
 `
 
 export const SearchInput = styled.input`
   width: 100%;
   height: 30px;
-  padding: 0 24px;
+  padding: 0 32px 0 24px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.text};
   outline: none;
@@ -19,9 +28,9 @@ export const SearchInput = styled.input`
   z-index: 19;
 `
 
-export const SearchIcon = styled(FaSearch)`
+export const SearchIcon = styled(GoSearch)`
   position: absolute;
   right: 0.5rem;
-  color: #040a3c;
+  color: ${({ theme }) => theme.text};
   z-index: 19;
 `

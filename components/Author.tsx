@@ -10,6 +10,7 @@ type Posts = {
 export default function Author({ categories }: Posts) {
   return (
     <Container>
+      <Search />
       <CategoryList categories={categories} />
       <Profile>
         <Email>
@@ -23,7 +24,6 @@ export default function Author({ categories }: Posts) {
           </a>
         </GitHub>
       </Profile>
-      <Search />
     </Container>
   )
 }

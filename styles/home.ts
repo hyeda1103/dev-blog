@@ -15,8 +15,6 @@ export const ContentsHeader = styled.div`
 export const ContentsList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  border-left: 1px solid ${({ theme }) => theme.text};  
-  border-right: 1px solid ${({ theme }) => theme.text};
   gap: 0.25rem;
 `
 
@@ -30,8 +28,14 @@ export const Tab = css<TabProps>`
   box-sizing: border-box;
   cursor: pointer;
   color: ${props => props.isClicked ? ({ theme }) => theme.body : ({ theme }) => theme.text };
-  background-color: ${props => props.isClicked ? ({ theme }) => theme.text : '#fff' };
+  background-color: ${props => props.isClicked ? ({ theme }) => theme.text : ({ theme }) => theme.body };
   border-bottom: none;
+  transition: ease .4s;
+
+  &:hover {
+    color: ${props => props.isClicked ? ({ theme }) => theme.body : ({ theme }) => theme.text };
+    background-color: ${props => props.isClicked ? ({ theme }) => theme.text : ({ theme }) => theme.hover };
+  }
 `
 
 export const CategoryTab = styled.div`

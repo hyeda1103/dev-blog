@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Container, PageList, PageIndex } from '@/styles/pagination'
 
 type Props = {
   currentPage: number
@@ -11,27 +12,25 @@ export default function Pagination({ currentPage, numPages }: Props) {
   const prevPage = `/blog/page/${currentPage - 1}`
   const nextPage = `/blog/page/${currentPage + 1}`
 
-  if (numPages === 1) return <></>
-
   return (
-    <div>
-      <ul>
+    <Container>
+      <PageList>
         {!isFirst && (
           <Link href={prevPage}>
-            <li>이전</li>
+            <PageIndex>이전</PageIndex>
           </Link>
         )}
         {Array.from({ length: numPages }, (_, i) => (
           <Link key={i + 1} href={`/blog/page/${i + 1}`}>
-            <li>{i + 1}</li>
+            <PageIndex>{i + 1}</PageIndex>
           </Link>
         ))}
         {!isLast && (
           <Link href={nextPage}>
-            <li>다음</li>
+            <PageIndex>다음</PageIndex>
           </Link>
         )}
-      </ul>
-    </div>
+      </PageList>
+    </Container>
   )
 }

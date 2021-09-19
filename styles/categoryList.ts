@@ -5,12 +5,6 @@ export const List = styled.ul`
   box-sizing: border-box;
   padding: 8px 24px;
   border: 1px solid ${({ theme }) => theme.text};
-
-  &:before {
-    content: '카테고리';
-    position: absolute;
-    top: -50%;
-  }
 `
 
 export const Item = styled.li`
@@ -21,4 +15,9 @@ export const Item = styled.li`
   display: inline-block;
   font-size: 11px;
   border: 1px solid ${({ theme }) => theme.text};
+
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px ${({ theme }) => theme.text};
+  }
 `

@@ -18,12 +18,6 @@ export default function Layout({ title, keywords, description, children }: Props
         <meta name="keywords" content={keywords} />
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preload" href="/fonts/KoPubWorld-Batang-Bold.ttf" as="font" />
-        <link rel="preload" href="/fonts/KoPubWorld-Batang-Light.ttf" as="font" />
-        <link rel="preload" href="/fonts/KoPubWorld-Batang-Medium.ttf" as="font" />
-        <link rel="preload" href="/fonts/KoPubWorld-Dotum-Bold.ttf" as="font" />
-        <link rel="preload" href="/fonts/KoPubWorld-Dotum-Light.ttf" as="font" />
-        <link rel="preload" href="/fonts/KoPubWorld-Dotum-Medium.ttf" as="font" />
       </Head>
       <Header />
       <Main>{children}</Main>
