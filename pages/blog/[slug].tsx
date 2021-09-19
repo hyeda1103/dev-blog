@@ -57,13 +57,22 @@ export default function PostPage({ frontmatter: { title, category, date, cover_i
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('posts/tech'))
-
-  const paths = files.map((filename) => ({
+  const techFiles = fs.readdirSync(path.join('posts/tech'))
+  const dailyFiles = fs.readdirSync(path.join('posts/dailyLife'))
+  
+  const techPaths = techFiles.map((filename) => ({
     params: {
       slug: filename.replace('.md', ''),
     },
   }))
+  
+  const dailyPaths = dailyFiles.map((filename) => ({
+    params: {
+      slug: filename.replace('.md', ''),
+    },
+  }))
+  
+  const paths = techPaths.concat(dailyPaths)
 
   return {
     paths,
@@ -77,8 +86,13 @@ type StaticProps = {
   }
 }
 
-export async function getStaticProps({ params: { slug } }: StaticProps) {
+export async function getStaticProps({params: { slug }}: StaticProps) {
+  // const techMarkdownWithMeta = fs.readFileSync(path.join('posts/tech', slug + '.md'), 'utf-8')
+  // const dailyMarkdownWithMeta = fs.readFileSync(path.join('posts/dailyLife', slug + '.md'), 'utf-8')
+  
   const markdownWithMeta = fs.readFileSync(path.join('posts/tech', slug + '.md'), 'utf-8')
+    ? fs.readFileSync(path.join('posts/tech', slug + '.md'), 'utf-8')
+    : fs.readFileSync(path.join('posts/dailyLife', slug + '.md'), 'utf-8')
   const { data: frontmatter, content } = matter(markdownWithMeta)
   return {
     props: {

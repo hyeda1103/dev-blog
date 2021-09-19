@@ -57,7 +57,6 @@ export default function HomePage({ allPosts, allProjects, techPosts, NofTechPost
             <TechTab onClick={() => setGenre('tech')} isClicked={genre === 'tech'}>개발({NofTechPosts})</TechTab>
             <Operator onClick={() => setGenre('all')} isClicked={genre === 'all'}>||</Operator>
             <DailyTab onClick={() => setGenre('daily')} isClicked={genre === 'daily'}>일상({NofDailyPosts})</DailyTab>
-            <Operator onClick={() => setGenre('all')} isClicked={genre === 'all'}>||</Operator>
             <ProjectTab onClick={() => setGenre('project')} isClicked={genre === 'project'}>프로젝트({NofProjects})</ProjectTab>
           </ContentsHeader>
           <ContentsList>

@@ -62,6 +62,8 @@ export const DailyTab = styled.div`
 
 export const ProjectTab = styled.div`
   ${Tab}
+  display: flex;
+  margin-left: auto;
 `
 
 export const Bookshelf = styled.div`

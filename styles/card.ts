@@ -72,7 +72,8 @@ export const Abstract = styled.div`
 
 export const PublishedAt = styled.div<StyleProps>`
   font-size: ${({ compact }) => compact ? '9px' : '13px'};
-  align-items: baseline;
+  display: flex;
+  align-items: flex-start;
 `
 
 export const Category = styled.div`
