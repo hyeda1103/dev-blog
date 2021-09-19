@@ -8,15 +8,6 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.text};
 `
 
-export const Punch = styled.div`
-  position: absolute;
-  top: 1.5rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.text};
-`
-
 export const Date = styled.div`
   text-align: right;
 `

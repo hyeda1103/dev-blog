@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {
-  Date, Tag, Contents, Title, Website, ReadMore, Category, Abstract
+  Info, Tag, Address, Contents, Title, Website, Brief, LinkIcon, GitHubIcon, LinesIcon, PublishedAt, Category, Abstract
 } from '@/styles/project'
 
 type Project = {
@@ -29,7 +29,34 @@ export default function Project({ post }: Props) {
         <Title>
             <a>
             {post.frontmatter.title}
-            </a>
+            </a>          
+          <PublishedAt>
+            {post.frontmatter.date}
+          </PublishedAt>   
+        </Title>
+        <Info>
+          <Abstract>          
+            <Link href={post.frontmatter.website}>              
+              <a>
+                <Website>
+                  <LinkIcon />
+                  <Address>{post.frontmatter.website}</Address>
+                </Website>
+              </a>
+            </Link>
+            <Link href={post.frontmatter.website}>              
+              <a>
+                <Website>
+                  <GitHubIcon />
+                  <Address>{post.frontmatter.github_link}</Address>
+                </Website>
+              </a>
+            </Link>
+            <Brief>
+              <LinesIcon />
+              {post.frontmatter.excerpt}
+            </Brief>
+          </Abstract>
           <Category>
             {post.frontmatter.category.split(', ').map((tag) => (
               <Tag key={tag}>
@@ -39,15 +66,8 @@ export default function Project({ post }: Props) {
               </Tag>
             ))}
           </Category>
-        </Title>
-        <Abstract>
-          <Website>
-            <a href={post.frontmatter.website}>
-              {post.frontmatter.website}
-            </a>
-          </Website>
-          {post.frontmatter.excerpt}
-        </Abstract>
+        </Info>
+        
       </Contents>
     </Link>
   )

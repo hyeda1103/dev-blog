@@ -77,7 +77,7 @@ export default function HomePage({ allPosts, allProjects, techPosts, NofTechPost
               )}
             {genre === 'project' && (
               allProjects.map((post: Project, index: number) => (
-                <Post key={index} post={post} />
+                <Project key={index} post={post} />
               ))
             )}
           </ContentsList> 

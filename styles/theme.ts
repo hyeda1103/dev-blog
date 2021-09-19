@@ -5,7 +5,7 @@ export const lightTheme = {
   text: '#121212',
   toggleBorder: '#fff',
   hover: '#EFEFEF',
-  active: '#999'
+  active: '#999',
 }
 
 export const darkTheme = {
