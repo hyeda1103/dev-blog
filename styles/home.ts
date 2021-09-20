@@ -23,7 +23,7 @@ interface TabProps {
 }
 
 export const Tab = css<TabProps>`
-  padding: 8px 24px;
+  padding: 3px 24px;
   border: 1px solid ${({ theme }) => theme.text};
   box-sizing: border-box;
   cursor: pointer;

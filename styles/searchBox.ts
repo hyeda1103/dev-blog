@@ -4,9 +4,10 @@ import { GoSearch } from 'react-icons/go'
 export const Container = styled.form`
   position: relative;
   display: flex;
+  width: 314.66px;
+  height: 100%;
   flex-direction: column;
   align-items: center;
-  margin: 42px 0 0.25rem; 
 `
 
 export const SearchBox = styled.div`

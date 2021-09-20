@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Tag, Contents, Title, Category, Abstract, PublishedAt, Info } from '@/styles/card'
+import { Main, Tag, Contents, Title, Category, Abstract, PublishedAt, Info } from '@/styles/card'
+import Tippy from './Tippy';
 
 type Post = {
   frontmatter: {
@@ -24,21 +25,34 @@ export default function Post({ post, compact }: Props) {
   const gapDate = Math.abs(new Date().getDate() - new Date(post.frontmatter.date).getDate())
   const gapTime = new Date().getHours() - new Date(post.frontmatter.date).getHours()
   const date = gapMonth 
-    ? `${new Date(post.frontmatter.date).getMonth()+1}월 ${new Date(post.frontmatter.date).getDate()}일, ${new Date(post.frontmatter.date).getFullYear()}년`
+    ? `${new Date(post.frontmatter.date).getFullYear()}-${new Date(post.frontmatter.date).getMonth()+1}-${new Date(post.frontmatter.date).getDate()}`
     : gapDate
       ? `${gapDate}일 전`
       : `${gapTime}시간 전`
   return (
     <Link href={`/blog/${post.slug}`}>
       <Contents compact={compact}>
-        <Title compact={compact}>
-          <a>
-            {post.frontmatter.title}
-          </a>   
-          <PublishedAt compact={compact}>
-            {date}
-          </PublishedAt>          
-        </Title>
+        {!compact ? (
+          <Main compact={compact}>
+            <Title compact={compact}>
+              {post.frontmatter.title}                      
+            </Title>
+            <PublishedAt compact={compact}>
+              {date}
+            </PublishedAt>
+          </Main>
+        ) : (
+            <Main compact={compact}>
+          <Tippy compact={compact} tooltipContent={post.frontmatter.title}>
+              <Title compact={compact}>
+                {post.frontmatter.title}                      
+              </Title>
+              <PublishedAt compact={compact}>
+                {date}
+              </PublishedAt>
+          </Tippy>
+            </Main>
+        )}
         {!compact && (
           <Info>
             <Abstract>

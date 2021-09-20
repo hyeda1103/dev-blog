@@ -1,9 +1,12 @@
 import styled from 'styled-components'
+import { IoMdSunny, IoMdMoon } from "react-icons/io";
 
 export const Container = styled.header`
   position: fixed;
   width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
   z-index: 9;
+  background-color: ${({ theme }) => theme.body};
 `
 
 export const Inner = styled.div`
@@ -11,13 +14,12 @@ export const Inner = styled.div`
   height: 100%;
   position: relative;
   box-sizing: border-box;
-  margin: 1rem auto;
-  padding: 0.5rem 24px;
-  display: flex;
+  margin: 3px auto 0;
+  padding: 8px 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid ${({ theme }) => theme.text};
-  background-color: ${({ theme }) => theme.body};
 `
 
 export const Logo = styled.p`
@@ -28,6 +30,8 @@ export const Logo = styled.p`
 
 export const Nav = styled.div`
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `
 
 export const Item = styled.div`
@@ -41,11 +45,22 @@ export const Item = styled.div`
     padding-right: 0;
   }
 `
-export const SwitchMode = styled.button`
+export const SwitchMode = styled.div<StyleProps>`
   height: 24px;
-  border-radius: 5px;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 0.5rem;
   cursor: pointer;
-  transition: 0.4s ease;
+  transition: 0.1s ease;
+`
+
+type StyleProps = {
+  darkmode: boolean
+}
+
+export const SunIcon = styled(IoMdSunny)`
+`
+
+export const MoonIcon = styled(IoMdMoon)`
 `

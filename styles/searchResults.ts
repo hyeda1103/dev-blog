@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  position: absolute;
+  background-color: ${({ theme }) => theme.body};
+  top: 28px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,7 +13,6 @@ export const Container = styled.div`
   margin-top: 0.25rem;
   padding-bottom: 0.25rem;
   border: 1px solid ${({ theme }) => theme.text};  
-  /* border-right: 1px solid ${({ theme }) => theme.text}; */
   gap: 0.25rem;
 
   /* width */        

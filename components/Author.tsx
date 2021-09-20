@@ -1,7 +1,6 @@
 import CategoryList from '@/components/CategoryList'
 
-import { Container, Profile, Location, GitHub, Tab, Email } from '@/styles/author'
-import Search from './Search'
+import { Container, Profile, GitHub, Tab, Email } from '@/styles/author'
 
 type Posts = {
   categories: string[]
@@ -10,7 +9,6 @@ type Posts = {
 export default function Author({ categories }: Posts) {
   return (
     <Container>
-      <Search />
       <CategoryList categories={categories} />
       <Profile>
         <Email>

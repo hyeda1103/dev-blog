@@ -38,8 +38,7 @@ export const Tag = styled.span`
   }
 `
 
-export const Title = styled.div<StyleProps>`
-  font-size: ${({ compact }) => compact ? '13px' : '18px'};
+export const Main = styled.div<StyleProps>`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -47,11 +46,17 @@ export const Title = styled.div<StyleProps>`
   border-bottom: ${({ compact, theme }) => compact ? 'none' : `1px solid ${theme.text}}`};
 `
 
-export const ReadMore = styled.div`
+export const Title = styled.div<StyleProps>`
+  font-size: ${({ compact }) => compact ? '13px' : '18px'};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+export const PublishedAt = styled.div<StyleProps>`
+  font-size: ${({ compact }) => compact ? '9px' : '13px'};
+  margin-left: auto;
   position: relative;
-  margin-top: auto;
-  align-self: flex-end;
-  font-size: 14px;
 `
 
 export const Info = styled.div`
@@ -68,12 +73,6 @@ export const Abstract = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`
-
-export const PublishedAt = styled.div<StyleProps>`
-  font-size: ${({ compact }) => compact ? '9px' : '13px'};
-  display: flex;
-  align-items: flex-start;
 `
 
 export const Category = styled.div`

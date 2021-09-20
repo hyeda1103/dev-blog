@@ -1,6 +1,7 @@
 import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
-import { Container, Inner, Logo, Nav, Item, SwitchMode } from '@/styles/header'
+import { Container, Inner, SunIcon, MoonIcon, Logo, Nav, Item, SwitchMode } from '@/styles/header'
+import Search from './Search'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)
@@ -12,7 +13,7 @@ export default function Navbar() {
             <a>YEOLSIKO</a>
           </Link>
         </Logo>
-        <Nav>
+        <Nav>          
           <Item>
             <Link href="/blog">
               <a>블로그</a>
@@ -24,8 +25,13 @@ export default function Navbar() {
             </Link>
           </Item>
           <Item>
-            <SwitchMode onClick={darkmode.toggle}>{darkmode.value ? '밝음' : '어둠'}</SwitchMode>
-          </Item> 
+            <SwitchMode darkmode={darkmode.value} onClick={darkmode.toggle}>
+              {darkmode.value ? <SunIcon /> : <MoonIcon />}
+            </SwitchMode>
+          </Item>
+          <Item>
+            <Search />
+          </Item>
         </Nav>
       </Inner>
     </Container>
