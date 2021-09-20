@@ -5,5 +5,6 @@ excerpt: '바닐라 JS로 리덕스와 미들웨어를 구현해보자'
 cover_image: '/images/posts/img3.jpg'
 category: 'Redux, 바닐라 JS'
 author: '열시'
+section: 'tech'
 author_image: '/images/profile/yeolsi.jpg'
 ---

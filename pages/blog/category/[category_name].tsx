@@ -53,28 +53,14 @@ export default function CategoryBlogPage({ posts, categoryName, categories }: Po
 }
 
 export async function getStaticPaths() {
-  const techPosts = fs.readdirSync(path.join('posts/tech'))
-  const techCategories = techPosts.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join('posts/tech', filename), 'utf-8')
+  const posts = fs.readdirSync(path.join('blog'))
+  const categories = posts.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(path.join('blog', filename), 'utf-8')
     const { data: frontmatter } = matter(markdownWithMeta)
-
+    
     return frontmatter.category.split(', ')
   }).flat()
-  const dailyPosts = fs.readdirSync(path.join('posts/dailyLife'))
-  const dailyCategories = dailyPosts.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join('posts/dailyLife', filename), 'utf-8')
-    const { data: frontmatter } = matter(markdownWithMeta)
-
-    return frontmatter.category.split(', ')
-  }).flat()
-  const allProjects = fs.readdirSync(path.join('posts/project'))
-  const projectCategories = allProjects.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join('posts/project', filename), 'utf-8')
-    const { data: frontmatter } = matter(markdownWithMeta)
-
-    return frontmatter.category.split(', ')
-  }).flat()
-  const paths = [...new Set(techCategories.concat(dailyCategories, projectCategories))].map((category) => ({
+  const paths = [...new Set(categories)].map((category) => ({
     params: { category_name: category },
   }))
   return {

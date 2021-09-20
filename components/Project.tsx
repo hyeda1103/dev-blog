@@ -14,6 +14,7 @@ type Project = {
     title: string
     website: string
     github_link: string
+    section: string
   };
   slug: string
 }

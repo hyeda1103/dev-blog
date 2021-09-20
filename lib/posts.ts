@@ -3,58 +3,48 @@ import path from 'path'
 import matter from 'gray-matter'
 import { sortByDate } from '@/utils/index'
 
-const dailyPosts = fs.readdirSync(path.join('posts/dailyLife'))
-const techPosts = fs.readdirSync(path.join('posts/tech'))
+const posts = fs.readdirSync(path.join('blog'))
 
 export function getDailyPosts() {
-  const posts = dailyPosts.map((filename) => {
+    const post = posts.map((filename) => {
     const slug = filename.replace('.md', '')
-
-    const markdownWithMeta = fs.readFileSync(path.join('posts/dailyLife', filename), 'utf-8')
-
+    
+    const markdownWithMeta = fs.readFileSync(path.join('blog', filename), 'utf-8')
+    
     const { data: frontmatter } = matter(markdownWithMeta)
+    
     return {
       slug,
       frontmatter,
     }
   })
 
-  return posts.sort(sortByDate)
+  return post.filter(p => p.frontmatter.section === 'dailyLife').sort(sortByDate)
 }
 
 export function getTechPosts() {
-  const posts = techPosts.map((filename) => {
+  const post = posts.map((filename) => {
     const slug = filename.replace('.md', '')
-
-    const markdownWithMeta = fs.readFileSync(path.join('posts/tech', filename), 'utf-8')
-
+    
+    const markdownWithMeta = fs.readFileSync(path.join('blog', filename), 'utf-8')
+    
     const { data: frontmatter } = matter(markdownWithMeta)
+    
     return {
       slug,
       frontmatter,
     }
   })
 
-  return posts.sort(sortByDate)
+  return post.filter(p => p.frontmatter.section === 'tech').sort(sortByDate)
 }
 
 export function getAllPosts() {
-  const techPost = techPosts.map((filename) => {
+  const post = posts.map((filename) => {
     const slug = filename.replace('.md', '')
-
-    const markdownWithMeta = fs.readFileSync(path.join('posts/tech', filename), 'utf-8')
-
-    const { data: frontmatter } = matter(markdownWithMeta)
-    return {
-      slug,
-      frontmatter,
-    }
-  })
-  const dailyPost = dailyPosts.map((filename) => {
-    const slug = filename.replace('.md', '')
-
-    const markdownWithMeta = fs.readFileSync(path.join('posts/dailyLife', filename), 'utf-8')
-
+    
+    const markdownWithMeta = fs.readFileSync(path.join('blog', filename), 'utf-8')
+    
     const { data: frontmatter } = matter(markdownWithMeta)
     return {
       slug,
@@ -62,5 +52,5 @@ export function getAllPosts() {
     }
   })
 
-  return techPost.concat(dailyPost).sort(sortByDate)
+  return post.sort(sortByDate)
 }

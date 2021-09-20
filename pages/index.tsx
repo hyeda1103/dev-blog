@@ -17,6 +17,7 @@ type Post = {
     date: string
     excerpt: string
     title: string
+    section: string
   }
   slug: string
 }
@@ -32,6 +33,7 @@ type Project ={
     title: string
     website: string
     github_link: string
+    section: string
   }
   slug: string
 }

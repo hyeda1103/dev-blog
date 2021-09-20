@@ -7,5 +7,6 @@ excerpt: '개인 블로그를 만들어보았다'
 cover_image: '/images/posts/img3.jpg'
 category: 'Next.js'
 author: '열시'
+section: 'portfolio'
 author_image: '/images/profile/yeolsi.jpg'
 ---

@@ -7,5 +7,6 @@ excerpt: '데이터 시각화를 통해 수도권으로의 쏠림 현상에 따�
 cover_image: '/images/posts/img3.jpg'
 category: 'React, Redux, data-journalism'
 author: '열시'
+section: 'portfolio'
 author_image: '/images/profile/yeolsi.jpg'
 ---

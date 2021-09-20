@@ -5,6 +5,7 @@ excerpt: '바닐라 JS로 리액트 훅을 구현해보자'
 cover_image: '/images/posts/img3.jpg'
 category: 'React, hooks'
 author: '열시'
+section: 'tech'
 author_image: '/images/profile/yeolsi.jpg'
 ---
 

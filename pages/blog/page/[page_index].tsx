@@ -3,10 +3,11 @@ import path from 'path'
 import Layout from '@/components/Layout'
 import Post from '@/components/Post'
 import Pagination from '@/components/Pagination'
+import Author from '@/components/Author'
+import Project from '@/components/Project';
 import { POSTS_PER_PAGE } from '@/config/index'
 import { getAllPosts } from '@/lib/posts'
 import { Library, Bookshelf, ContentsList } from '@/styles/blogPage'
-import Author from '@/components/Author'
 
 type Post = {
   frontmatter: {
@@ -17,6 +18,9 @@ type Post = {
     date: string
     excerpt: string
     title: string
+    section: string
+    website: string
+    github_link: string
   }
   slug: string
 }
@@ -35,21 +39,22 @@ export default function BlogPage({ posts, numPages, currentPage, categories }: P
         <Bookshelf>
           <ContentsList>         
             {posts.map((post, index) => (
-              <Post key={index} post={post} />
-            ))}
+              post.frontmatter.section === 'portfolio'
+                ? (<Project key={index} post={post} />)  
+                : (<Post key={index} post={post} />)                
+            ))}            
           </ContentsList> 
         <Pagination currentPage={currentPage} numPages={numPages} />
       </Bookshelf>
-      <Author categories={categories} />
+        <Author categories={categories} />
     </Library>
   </Layout>
   )
 }
 
 export async function getStaticPaths() {
-  const techFiles = fs.readdirSync(path.join('posts/tech'))
-  const dailyFiles = fs.readdirSync(path.join('posts/dailyLife'))
-  const numPages = Math.ceil((techFiles.length+dailyFiles.length) / POSTS_PER_PAGE)
+  const files = fs.readdirSync(path.join('blog'))
+  const numPages = Math.ceil((files.length) / POSTS_PER_PAGE)
 
   let paths = []
   for (let i = 1; i <= numPages; i++) {
@@ -65,8 +70,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const page = parseInt((params && params.page_index) || 1)
-  const techFiles = fs.readdirSync(path.join('posts/tech'))
-  const dailyFiles = fs.readdirSync(path.join('posts/dailyLife'))
+  const files = fs.readdirSync(path.join('blog'))
 
   const posts = getAllPosts()
 
@@ -74,13 +78,13 @@ export async function getStaticProps({ params }: any) {
   const categories = posts.map((post) => post.frontmatter.category.split(', '))
   const uniqueCategories = [...new Set(categories.flat())].sort()
 
-  const numPages = Math.ceil((techFiles.length + dailyFiles.length) / POSTS_PER_PAGE)
+  const numPages = Math.ceil((files.length) / POSTS_PER_PAGE)
   const pageIndex = page - 1
   const orderedPosts = posts.slice(pageIndex * POSTS_PER_PAGE, (pageIndex + 1) * POSTS_PER_PAGE)
-
+  
   return {
     props: {
-      posts: orderedPosts,
+      posts: orderedPosts,      
       numPages,
       currentPage: page,
       categories: uniqueCategories,

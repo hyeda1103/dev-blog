@@ -1,1 +1,1 @@
-export const POSTS_PER_PAGE = 7
+export const POSTS_PER_PAGE = 6
