@@ -44,7 +44,7 @@ export const Title = styled.div<StyleProps>`
   width: 100%;
   justify-content: space-between;
   padding: ${({ compact }) => compact ? '0' : '6px 0'};
-  border-bottom: ${({ compact }) => compact ? 'none' : '1px solid ${({ theme }) => theme.text}'};
+  border-bottom: ${({ compact, theme }) => compact ? 'none' : `1px solid ${theme.text}}`};
 `
 
 export const ReadMore = styled.div`

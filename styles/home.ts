@@ -31,6 +31,11 @@ export const Tab = css<TabProps>`
   background-color: ${props => props.isClicked ? ({ theme }) => theme.text : ({ theme }) => theme.body };
   border-bottom: none;
   transition: ease .4s;
+  overflow: hidden;
+
+  &:focus {
+    outline: 0;
+  }
 
   &:hover {
     color: ${props => props.isClicked ? ({ theme }) => theme.body : ({ theme }) => theme.text };
