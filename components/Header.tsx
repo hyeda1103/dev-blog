@@ -10,7 +10,7 @@ export default function Navbar() {
       <Inner>
         <Logo>
           <Link href="/">
-            <a>YEOLSIKO</a>
+            <a>열시고</a>
           </Link>
         </Logo>
         <Nav>          
@@ -26,7 +26,7 @@ export default function Navbar() {
           </Item>
           <Item>
             <SwitchMode darkmode={darkmode.value} onClick={darkmode.toggle}>
-              {darkmode.value ? <SunIcon /> : <MoonIcon />}
+              {darkmode.value ? <MoonIcon /> : <SunIcon />}
             </SwitchMode>
           </Item>
           <Item>

@@ -41,16 +41,19 @@ export const Tag = styled.span`
 export const Main = styled.div<StyleProps>`
   display: flex;
   width: 100%;
+  /* background-color: red; */
+  position: relative;
   justify-content: space-between;
   padding: ${({ compact }) => compact ? '0' : '6px 0'};
   border-bottom: ${({ compact, theme }) => compact ? 'none' : `1px solid ${theme.text}}`};
 `
 
-export const Title = styled.div<StyleProps>`
+export const Title = styled.h1<StyleProps>`
   font-size: ${({ compact }) => compact ? '13px' : '18px'};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 400;
 `
 
 export const PublishedAt = styled.div<StyleProps>`

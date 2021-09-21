@@ -4,7 +4,8 @@ export const Main = styled.main`
   width: 960px;
   margin: 0 auto;
   padding: 6.25rem 0 0;
-  height: calc(100vh - 41px);
+  height: 100%;
+  min-height: calc(100vh - 41px);
   box-sizing: border-box;
 
   .paragraph {

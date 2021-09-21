@@ -43,14 +43,14 @@ export default function Post({ post, compact }: Props) {
           </Main>
         ) : (
             <Main compact={compact}>
-          <Tippy compact={compact} tooltipContent={post.frontmatter.title}>
-              <Title compact={compact}>
-                {post.frontmatter.title}                      
-              </Title>
+              <Tippy compact={compact} tooltipContent={post.frontmatter.excerpt}>
+                <Title compact={compact}>
+                  {post.frontmatter.title}                      
+                </Title>
+              </Tippy>
               <PublishedAt compact={compact}>
                 {date}
               </PublishedAt>
-          </Tippy>
             </Main>
         )}
         {!compact && (

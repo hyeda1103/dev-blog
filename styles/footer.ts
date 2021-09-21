@@ -4,9 +4,8 @@ export const Container = styled.footer`
   position: relative;
   display: flex;
   width: 100%;
-  height: 100%;
   padding: 0.5rem 0;
-  margin-top: auto;
+  bottom: 0;
 `
 
 export const Inner = styled.div`
