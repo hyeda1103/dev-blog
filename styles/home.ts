@@ -11,11 +11,15 @@ export const ContentsHeader = styled.div`
   display: flex;
   width: 100%;
   gap: 0.25rem;
+position: relative;
+  z-index: 1;
 `
 export const ContentsList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.25rem;
+  position: relative;
+  z-index: 3;
 `
 
 interface TabProps {
@@ -23,14 +27,16 @@ interface TabProps {
 }
 
 export const Tab = css<TabProps>`
-  padding: 3px 24px;
+  position: relative;
+  padding: 3px 24px 6px;
   border: 1px solid ${({ theme }) => theme.text};
+  bottom: -3px;
   box-sizing: border-box;
   cursor: pointer;
   color: ${props => props.isClicked ? ({ theme }) => theme.body : ({ theme }) => theme.text };
   background-color: ${props => props.isClicked ? ({ theme }) => theme.text : ({ theme }) => theme.body };
+  transform: ${({isClicked}) => isClicked ? 'translate(0, -3px)' : 'none'};
   border-bottom: none;
-  transition: ease .4s;
   overflow: hidden;
 
   &:focus {
@@ -38,8 +44,7 @@ export const Tab = css<TabProps>`
   }
 
   &:hover {
-    color: ${props => props.isClicked ? ({ theme }) => theme.body : ({ theme }) => theme.text };
-    background-color: ${props => props.isClicked ? ({ theme }) => theme.text : ({ theme }) => theme.hover };
+    transform: translate(0, -3px);
   }
 `
 

@@ -11,9 +11,9 @@ export const Contents = styled.div`
   padding: 8px 24px;
   cursor: pointer;
   transition: ease .07s;
+  background-color: ${({ theme }) => theme.body};
 
   &:hover {
-    background-color: ${({ theme }) => theme.body};
     transform: translate(-2px, -2px);
     box-shadow: ${({ theme }) => `2px 2px ${theme.text}`};
   }
