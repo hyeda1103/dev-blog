@@ -24,8 +24,15 @@ export default function Post({ post, compact }: Props) {
   const gapMonth = new Date().getMonth() - new Date(post.frontmatter.date).getMonth()
   const gapDate = Math.abs(new Date().getDate() - new Date(post.frontmatter.date).getDate())
   const gapTime = new Date().getHours() - new Date(post.frontmatter.date).getHours()
-  const date = gapMonth 
-    ? `${new Date(post.frontmatter.date).getFullYear()}-${new Date(post.frontmatter.date).getMonth()+1}-${new Date(post.frontmatter.date).getDate()}`
+    
+  const minutes = new Date(post.frontmatter.date).getMinutes().toString().length === 1
+    ?  `0${new Date(post.frontmatter.date).getMinutes().toString()}`
+    : new Date(post.frontmatter.date).getMinutes().toString()
+  const hours = new Date(post.frontmatter.date).getHours().toString().length === 1
+    ?  `0${new Date(post.frontmatter.date).getHours().toString()}`
+    : new Date(post.frontmatter.date).getHours().toString()
+  const date = gapMonth
+    ? `${new Date(post.frontmatter.date).getFullYear()}.${new Date(post.frontmatter.date).getMonth()+1}.${new Date(post.frontmatter.date).getDate()} ${hours}:${minutes}`
     : gapDate
       ? `${gapDate}일 전`
       : `${gapTime}시간 전`

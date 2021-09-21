@@ -8,27 +8,34 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.text};
 `
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
+`
+
+export const Title = styled.h1`
+  font-weight: 400;
+`
+
 export const Date = styled.div`
-  text-align: right;
 `
 
 export const Tag = styled.span`
   padding: 3px 8px;
-  background: #f2f2f2;
-  font-size: 15px;
-  border-radius: 5px;
+  display: inline-block;
+  font-size: 13px;
+  border: 1px solid ${({ theme }) => theme.text};
   cursor: pointer;
 
-  &:first-child {
-    margin-left: 1rem;
-  }
-
-  & + & {
-    margin-left: 0.5rem;
-  }
-
   &:hover {
-    transform: scale(1.05);
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.body};
   }
 `
 
@@ -39,12 +46,7 @@ export const Contents = styled.div`
   word-break: keep-all;
 `
 
-export const Title = styled.h1`
-  font-family: 'KoPubWorld-Dotum-Bold';
-  line-height: 2.0;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid  ${({ theme }) => theme.text};
-`
+
 
 export const Keywords = styled.div`
   font-size: 18px;

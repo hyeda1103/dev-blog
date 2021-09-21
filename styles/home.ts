@@ -49,7 +49,9 @@ export const Tab = css<TabProps>`
 `
 
 export const CategoryTab = styled.div`
-  padding: 3px 24px;
+  padding: 3px 24px 6px;
+  bottom: -3px;
+  position: relative;
   border: 1px solid ${({ theme }) => theme.text};
   box-sizing: border-box;
   cursor: pointer;

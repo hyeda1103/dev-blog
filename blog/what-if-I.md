@@ -1,6 +1,6 @@
 ---
 title: '내가 만일'
-date: '9 19, 2021'
+date: '9 19, 2021 12:14'
 excerpt: '방황, 방황, 방황'
 cover_image: '/images/posts/img3.jpg'
 category: '공상'

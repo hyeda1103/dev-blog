@@ -7,6 +7,7 @@ import marked from 'marked'
 import Prism from 'prismjs'
 import {
   Container,
+  Header,
   Date,
   Title,
   Keywords,
@@ -23,6 +24,7 @@ type Post = {
     date: string
     excerpt: string
     title: string
+    section: string
   }
   slug: string
 }
@@ -32,20 +34,26 @@ type Props = Post & {
 }
 
 
-export default function PostPage({ frontmatter: { title, category, date, cover_image }, content, slug }: Props) {
-  
+export default function PostPage({ frontmatter: { section, title, category, date, cover_image }, content, slug }: Props) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       Prism.highlightAll()
     }
   }, [])
+  
+  const MM = date.split(' ')[0]
+  const DD = date.split(' ')[1].slice(0, date.split(' ')[1].length-1)
+  const YYYY = date.split(' ')[2]
 
   return (
     <Layout title={title}>
       <Container>
-        <Date>{date}</Date>
-        <Title>{title}</Title>
-        <Keywords>KEYWORDS {category.split(', ').map((tag) => (
+        <Header>
+          {section === 'tech' ? '개발' : 'dailyLife' ? '일상' : '프로젝트'}
+          <Title>{title}</Title>
+          <Date>{YYYY}.{MM}.{DD}</Date>
+        </Header>
+        <Keywords>{category.split(', ').map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
         </Keywords>

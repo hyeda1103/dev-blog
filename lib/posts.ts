@@ -52,5 +52,5 @@ export function getAllPosts() {
     }
   })
 
-  return post.sort(sortByDate)
+  return post.filter(p => p.frontmatter.section !== 'portfolio').sort(sortByDate)
 }

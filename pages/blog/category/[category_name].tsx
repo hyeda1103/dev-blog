@@ -43,9 +43,6 @@ export default function CategoryBlogPage({ posts, categoryName, categories }: Po
             ))}
           </ContentsList>
         </Bookshelf>
-        {/* <div>
-          <CategoryList categories={categories} />
-        </div> */}
         <Author categories={categories} />
       </Library>
     </Layout>
