@@ -16,6 +16,7 @@ import {
   Tag,
   CoverImage
 } from '@/styles/post';
+import Link from 'next/link';
 
 type Post = {
   frontmatter: {
@@ -54,8 +55,10 @@ export default function PostPage({ frontmatter: { section, title, category, date
             <CopyToClipboard />
           </SubInfo>
         </Header>
-        <Keywords>{category.split(', ').map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
+        <Keywords>{category.split(', ').map((tag, index) => (
+          <Link key={index} href={`/project/category/${tag}`}>
+            <Tag key={tag}>{tag}</Tag>
+          </Link>
         ))}
         </Keywords>
         <CoverImage src={cover_image} alt="" />
@@ -66,7 +69,7 @@ export default function PostPage({ frontmatter: { section, title, category, date
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('blog'))
+  const files = fs.readdirSync(path.join('project'))
   
   const paths = files.map((filename) => ({
     params: {
@@ -87,7 +90,7 @@ type StaticProps = {
 }
 
 export async function getStaticProps({params: { slug }}: StaticProps) {  
-  const markdownWithMeta = fs.readFileSync(path.join('blog', slug + '.md'), 'utf-8')
+  const markdownWithMeta = fs.readFileSync(path.join('project', slug + '.md'), 'utf-8')
   const { data: frontmatter, content } = matter(markdownWithMeta)
   return {
     props: {

@@ -32,6 +32,6 @@ export const SearchInput = styled.input`
 export const SearchIcon = styled(GoSearch)`
   position: absolute;
   right: 0.5rem;
-  color: ${({ theme }) => theme.text};
+  color: #121212;
   z-index: 19;
 `

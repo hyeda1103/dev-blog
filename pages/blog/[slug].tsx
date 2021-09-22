@@ -6,6 +6,7 @@ import CopyToClipboard from '@/components/CopyToClipboard'
 import { useEffect } from 'react'
 import marked from 'marked'
 import Prism from 'prismjs'
+import Link from 'next/link';
 import {
   Container,
   Header,
@@ -60,8 +61,10 @@ export default function PostPage({ frontmatter: { section, title, category, date
             <CopyToClipboard />
           </SubInfo>
         </Header>
-        <Keywords>{category.split(', ').map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
+        <Keywords>{category.split(', ').map((tag, index) => (
+          <Link key={index} href={`/blog/category/${tag}`}>
+            <Tag key={tag}>{tag}</Tag>
+          </Link>
         ))}
         </Keywords>
         <CoverImage src={cover_image} alt="" />

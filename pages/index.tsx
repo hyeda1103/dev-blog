@@ -92,8 +92,9 @@ export default function HomePage({ allPosts, allProjects, techPosts, NofTechPost
 
 export async function getStaticProps() {
   const posts = getAllPosts()
+  const projects = getAllProjects()
   // Get categories for sidebar
-  const categories = posts.map((post) => post.frontmatter.category.split(', '))
+  const categories = posts.concat(projects).map((post) => post.frontmatter.category.split(', '))
   const uniqueCategories = [...new Set(categories.flat())].sort()
 
   return {
