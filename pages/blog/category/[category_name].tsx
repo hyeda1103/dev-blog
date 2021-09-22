@@ -4,7 +4,6 @@ import Layout from '@/components/Layout'
 import Post from '@/components/Post'
 import { getAllPosts } from '@/lib/posts'
 import matter from 'gray-matter'
-import CategoryList from '@/components/CategoryList'
 import { Library, Bookshelf, ContentsHeader, ContentsList, CategoryTab } from '@/styles/home'
 import Author from '@/components/Author'
 

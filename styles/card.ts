@@ -28,7 +28,6 @@ export const Tag = styled.span`
   padding: 1px 5px;
   margin-left: 4px;
   display: inline-block;
-  font-size: 11px;
   border: 1px solid ${({ theme }) => theme.text};
 
   &:hover {

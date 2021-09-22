@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import marked from 'marked'
 import Prism from 'prismjs'
 import Link from 'next/link';
+import { getAllPosts } from '@/lib/posts';
 import {
   Container,
   Header,
@@ -17,6 +18,7 @@ import {
   Tag,
   CoverImage
 } from '@/styles/post';
+import RecommendedPost from '@/components/RecommendedPost'
 
 type Post = {
   frontmatter: {
@@ -34,10 +36,11 @@ type Post = {
 
 type Props = Post & {
   content: string
+  postsRecommended: any
 }
 
 
-export default function PostPage({ frontmatter: { section, title, category, date, cover_image }, content, slug }: Props) {
+export default function PostPage({ frontmatter: { section, title, category, date, cover_image }, content, postsRecommended }: Props) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       Prism.highlightAll()
@@ -70,6 +73,7 @@ export default function PostPage({ frontmatter: { section, title, category, date
         <CoverImage src={cover_image} alt="" />
         <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
       </Container>
+      <RecommendedPost posts={postsRecommended} />
     </Layout>
   )
 }
@@ -95,13 +99,27 @@ type StaticProps = {
   }
 }
 
-export async function getStaticProps({params: { slug }}: StaticProps) {  
+export async function getStaticProps({ params: { slug } }: StaticProps) {
+  const posts = getAllPosts()
   const markdownWithMeta = fs.readFileSync(path.join('blog', slug + '.md'), 'utf-8')
   const { data: frontmatter, content } = matter(markdownWithMeta)
+  const categories = frontmatter.category.split(', ')
+  let postsWithSameCategories: any = [] 
+  posts.forEach((post) => {
+    categories.forEach((category: string) => {
+      if (post.frontmatter.category.split(', ').includes(category) && post.frontmatter.slug !== slug) {
+        postsWithSameCategories.push(post)
+      }
+    })
+  }) 
+
+  console.log(postsWithSameCategories)
+
   return {
     props: {
       frontmatter,
       content,
+      postsRecommended: [...new Set(postsWithSameCategories)]
     },
   }
 }

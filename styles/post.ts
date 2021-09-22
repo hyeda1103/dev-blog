@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: 3rem 0 15rem;
 `
 
 export const Header = styled.div`
@@ -34,10 +35,11 @@ export const SubInfo = styled.div`
 export const Tag = styled.span`
   padding: 1px 8px;
   display: inline-block;
-  font-size: 13px;
+  font-size: 14px;
   margin-right: 4px;
   border: 1px solid ${({ theme }) => theme.text};
   cursor: pointer;
+  font-weight:400; 
 
   &:hover {
     transform: translate(-1px, -1px);
