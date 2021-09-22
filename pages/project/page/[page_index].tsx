@@ -6,8 +6,8 @@ import Pagination from '@/components/Pagination'
 import Author from '@/components/Author'
 import Project from '@/components/Project';
 import { POSTS_PER_PAGE } from '@/config/index'
-import { getAllPosts } from '@/lib/posts'
 import { Library, Bookshelf, ContentsList } from '@/styles/blogPage'
+import { getAllProjects } from '@/lib/projects';
 
 type Post = {
   frontmatter: {
@@ -53,7 +53,7 @@ export default function BlogPage({ posts, numPages, currentPage, categories }: P
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('blog'))
+  const files = fs.readdirSync(path.join('project'))
   const numPages = Math.ceil((files.length) / POSTS_PER_PAGE)
 
   let paths = []
@@ -70,9 +70,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const page = parseInt((params && params.page_index) || 1)
-  const files = fs.readdirSync(path.join('blog'))
+  const files = fs.readdirSync(path.join('project'))
 
-  const posts = getAllPosts()
+  const posts = getAllProjects()
 
   // Get categories for sidebar
   const categories = posts.map((post) => post.frontmatter.category.split(', '))

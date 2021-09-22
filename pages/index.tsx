@@ -99,10 +99,10 @@ export async function getStaticProps() {
   return {
     props: {
       allProjects: getAllProjects().slice(0, 2),
-      allPosts: getAllPosts().slice(0, 7),
-      techPosts: getTechPosts().slice(0, 7),
+      allPosts: getAllPosts().slice(0, 6),
+      techPosts: getTechPosts().slice(0, 6),
       NofTechPosts: getTechPosts().length,
-      dailyPosts: getDailyPosts().slice(0, 7),
+      dailyPosts: getDailyPosts().slice(0, 6),
       NofDailyPosts: getDailyPosts().length,
       NofProjects:  getAllProjects().length,
       categories: uniqueCategories,

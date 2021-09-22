@@ -20,8 +20,8 @@ export default function Navbar() {
             </Link>
           </Item>
           <Item>
-            <Link href="/about">
-              <a>포트폴리오</a>
+            <Link href="/project">
+              <a>프로젝트</a>
             </Link>
           </Item>
           <Item>

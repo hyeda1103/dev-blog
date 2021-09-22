@@ -25,7 +25,7 @@ type Props = {
 
 export default function Project({ post }: Props) {
   return (
-    <Link href={`/portfolio/${post.slug}`}>
+    <Link href={`/project/${post.slug}`}>
       <Contents>
         <Title>
             <a>

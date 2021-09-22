@@ -3,21 +3,21 @@ import path from 'path'
 import matter from 'gray-matter'
 import { sortByDate } from '@/utils/index'
 
-const allProjects = fs.readdirSync(path.join('blog'))
+const allProjects = fs.readdirSync(path.join('project'))
 
 export function getAllProjects() {
   const post = allProjects.map((filename) => {
     const slug = filename.replace('.md', '')
     
-    const markdownWithMeta = fs.readFileSync(path.join('blog', filename), 'utf-8')
+    const markdownWithMeta = fs.readFileSync(path.join('project', filename), 'utf-8')
     
     const { data: frontmatter } = matter(markdownWithMeta)
     
-    return {
+  return {
       slug,
       frontmatter,
     }
   })
 
-  return post.filter(p => p.frontmatter.section === 'portfolio').sort(sortByDate)
+  return post.sort(sortByDate)
 }
