@@ -11,7 +11,7 @@ export const Posts = styled.div`
 `
 
 export const Post = styled.div`
-  width: 200px;
+  width: 300px;
   height: 200px;
   padding: 8px 24px;
   border: 1px solid ${({ theme }) => theme.text};

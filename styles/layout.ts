@@ -9,17 +9,15 @@ export const Main = styled.main`
   box-sizing: border-box;
 
   .paragraph {
-    font-size: 1.25rem;
     margin: 4rem 0.75rem;
   }
 
   pre {
     /* background-color: #eff0f1; */
     position: relative;
-    padding: 16px;
+    padding: 8px;
     border-radius: 4px;
     overflow: auto;
-    font-size: 17px;
     margin: 4rem 0;
     padding: 0;
     border-radius: 12px;
