@@ -7,7 +7,7 @@ export default function Footer() {
       <Inner>
         <Copyright>
           &copy;
-          {new Date().getFullYear()} YEOLSIKO, Built with{" "}
+          {new Date().getFullYear()} YEOLSIKO, Powered by{" "}
           <Link href='https://nextjs.org/'>
             <a>
               Next.js

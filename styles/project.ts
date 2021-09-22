@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { BsLink45Deg } from "react-icons/bs";
 import { GoMarkGithub } from "react-icons/go";
-import { IoBrowsersSharp, IoDocumentTextOutline } from 'react-icons/io5'
+import { IoBrowsersSharp } from 'react-icons/io5'
 
 export const Contents = styled.div`
   display: flex;

@@ -4,8 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 4rem 1.5rem; 
-  border: 1px solid ${({ theme }) => theme.text};
 `
 
 export const Header = styled.div`
@@ -20,15 +18,24 @@ export const Header = styled.div`
 
 export const Title = styled.h1`
   font-weight: 400;
+  margin: 24px 0 40px;
 `
 
 export const Date = styled.div`
 `
 
+export const SubInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
+
 export const Tag = styled.span`
-  padding: 3px 8px;
+  padding: 1px 8px;
   display: inline-block;
   font-size: 13px;
+  margin-right: 4px;
   border: 1px solid ${({ theme }) => theme.text};
   cursor: pointer;
 

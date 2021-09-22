@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Layout from '@/components/Layout'
+import CopyToClipboard from '@/components/CopyToClipboard'
 import { useEffect } from 'react'
 import marked from 'marked'
 import Prism from 'prismjs'
@@ -10,6 +11,7 @@ import {
   Header,
   Date,
   Title,
+  SubInfo,
   Keywords,
   Tag,
   CoverImage
@@ -41,6 +43,8 @@ export default function PostPage({ frontmatter: { section, title, category, date
     }
   }, [])
   
+  const mm = date.split(' ')[3].split(':')[1]
+  const hh = date.split(' ')[3].split(':')[0]
   const MM = date.split(' ')[0]
   const DD = date.split(' ')[1].slice(0, date.split(' ')[1].length-1)
   const YYYY = date.split(' ')[2]
@@ -51,7 +55,10 @@ export default function PostPage({ frontmatter: { section, title, category, date
         <Header>
           {section === 'tech' ? '개발' : 'dailyLife' ? '일상' : '프로젝트'}
           <Title>{title}</Title>
-          <Date>{YYYY}.{MM}.{DD}</Date>
+          <SubInfo>
+            <Date>{YYYY}.{MM}.{DD} {hh}:{mm}</Date>
+            <CopyToClipboard />
+          </SubInfo>
         </Header>
         <Keywords>{category.split(', ').map((tag) => (
           <Tag key={tag}>{tag}</Tag>
