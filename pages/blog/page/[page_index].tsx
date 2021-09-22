@@ -37,6 +37,7 @@ export default function BlogPage({ posts, numPages, currentPage, categories }: P
     <Layout>
       <Library>
         <Bookshelf>
+          <Pagination currentPage={currentPage} numPages={numPages} />
           <ContentsList>         
             {posts.map((post, index) => (
               post.frontmatter.section === 'portfolio'
@@ -44,8 +45,7 @@ export default function BlogPage({ posts, numPages, currentPage, categories }: P
                 : (<Post key={index} post={post} />)                
             ))}            
           </ContentsList> 
-        <Pagination currentPage={currentPage} numPages={numPages} />
-      </Bookshelf>
+        </Bookshelf>
         <Author categories={categories} />
     </Library>
   </Layout>

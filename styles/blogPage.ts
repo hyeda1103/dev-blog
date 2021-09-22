@@ -26,4 +26,6 @@ export const ContentsList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.25rem;
+  position: relative;
+  z-index: 3;
 `

@@ -1,5 +1,6 @@
+import {useState} from 'react'
 import Link from 'next/link'
-import { Container, PageList, PageIndex } from '@/styles/pagination'
+import { Container, PageList, Pages, PageIndex } from '@/styles/pagination'
 
 type Props = {
   currentPage: number
@@ -7,6 +8,8 @@ type Props = {
 }
 
 export default function Pagination({ currentPage, numPages }: Props) {
+  const [currPage, setCurrPage] = useState(1)
+  
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
   const prevPage = `/blog/page/${currentPage - 1}`
@@ -17,17 +20,19 @@ export default function Pagination({ currentPage, numPages }: Props) {
       <PageList>
         {!isFirst && (
           <Link href={prevPage}>
-            <PageIndex>이전</PageIndex>
+            <PageIndex isClicked={false}>이전</PageIndex>
           </Link>
         )}
+        <Pages>
         {Array.from({ length: numPages }, (_, i) => (
           <Link key={i + 1} href={`/blog/page/${i + 1}`}>
-            <PageIndex>{i + 1}</PageIndex>
+            <PageIndex isClicked={currentPage === i + 1}>{i + 1}</PageIndex>
           </Link>
         ))}
+        </Pages>
         {!isLast && (
           <Link href={nextPage}>
-            <PageIndex>다음</PageIndex>
+            <PageIndex isClicked={false}>다음</PageIndex>
           </Link>
         )}
       </PageList>
