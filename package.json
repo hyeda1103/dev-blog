@@ -22,7 +22,6 @@
     "react-toastify": "^8.0.2",
     "styled-components": "^5.3.0",
     "styled-jsx": "^4.0.0",
-    "typography": "^0.16.21",
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {

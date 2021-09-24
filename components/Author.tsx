@@ -1,6 +1,7 @@
 import CategoryList from '@/components/CategoryList'
 
 import { Container, Profile, LinkedInIcon, LinkedIn, GitHubIcon, GitHub, EmailIcon, Email } from '@/styles/author'
+import Newsletter from './Subscribe'
 
 type Posts = {
   categories: string[]
@@ -30,6 +31,7 @@ export default function Author({ categories }: Posts) {
           </a>
         </LinkedIn>
       </Profile>
+      <Newsletter />
     </Container>
   )
 }
