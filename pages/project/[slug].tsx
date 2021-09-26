@@ -48,7 +48,7 @@ export default function PostPage({ frontmatter: { section, title, category, date
     <Layout title={title}>
       <Container>
         <Header>
-          {section === 'tech' ? '개발' : 'dailyLife' ? '일상' : '프로젝트'}
+          {'프로젝트'}
           <Title>{title}</Title>
           <SubInfo>
             <Date>{date}</Date>

@@ -3,11 +3,11 @@ import CategoryList from '@/components/CategoryList'
 import { Container, Profile, LinkedInIcon, LinkedIn, GitHubIcon, GitHub, EmailIcon, Email } from '@/styles/author'
 import Newsletter from './Subscribe'
 
-type Posts = {
+type Props = {
   categories: string[]
 }
 
-export default function Author({ categories }: Posts) {
+export default function Author({ categories }: Props) {
   return (
     <Container>
       <CategoryList categories={categories} />

@@ -46,11 +46,41 @@ type Props = {
   NofTechPosts: number,
   dailyPosts: Post[],
   NofDailyPosts: number,
-  categories: string[]
+  techCategories: string[],
+  dailyCategories: string[],
+  allPostCategories: string[],
+  allProjectCategories: string[]
 }
 
-export default function HomePage({ allPosts, allProjects, techPosts, NofTechPosts, dailyPosts, NofDailyPosts, NofProjects, categories }: Props) {
+export default function HomePage({
+  allPosts,
+  allProjects,
+  techPosts,
+  NofTechPosts,
+  dailyPosts,
+  NofDailyPosts,
+  NofProjects,
+  techCategories,
+  dailyCategories,
+  allPostCategories,
+  allProjectCategories }: Props) {
   const [genre, setGenre] = useState('tech')
+  
+  const categories: string[] = (() => {
+    switch (genre) {
+      case 'all':
+        return allPostCategories;
+      case 'tech':
+        return techCategories;
+      case 'daily':
+        return dailyCategories;
+      case 'project':
+        return allProjectCategories;
+      default:
+        return techCategories;
+    }
+  })()
+  
   return (
     <Layout>
       <Library>
@@ -94,8 +124,14 @@ export async function getStaticProps() {
   const posts = getAllPosts()
   const projects = getAllProjects()
   // Get categories for sidebar
-  const categories = posts.concat(projects).map((post) => post.frontmatter.category.split(', '))
-  const uniqueCategories = [...new Set(categories.flat())].sort()
+  const techCategories = posts
+    .filter((post) => post.frontmatter.section === 'tech')
+    .map((post) => post.frontmatter.category.split(', ')).flat()
+  const dailyCategories = posts
+    .filter((post) => post.frontmatter.section === 'dailyLife')
+    .map((post) => post.frontmatter.category.split(', ')).flat()
+  const allPostCategories = [...new Set(techCategories.concat(dailyCategories))].sort()
+  const allProjectCategories = [...new Set(projects.map((project) => project.frontmatter.category.split(', ')).flat())].sort()
 
   return {
     props: {
@@ -106,7 +142,10 @@ export async function getStaticProps() {
       dailyPosts: getDailyPosts().slice(0, 6),
       NofDailyPosts: getDailyPosts().length,
       NofProjects:  getAllProjects().length,
-      categories: uniqueCategories,
+      techCategories,
+      dailyCategories,
+      allPostCategories,
+      allProjectCategories
     },
   }
 }
