@@ -67,7 +67,7 @@ export default function NewsletterForm( { status, message, onValidated }: any) {
           {
             status === "sending"
               ? <Spinner />
-              : '구독신청'
+              : '구독'
           }
         </SubmitButton>
         

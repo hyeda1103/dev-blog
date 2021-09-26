@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -8,7 +9,18 @@ export const Container = styled.div`
   padding: 8px 24px 16px;
 
   &:before {
-    content: '편지 구독'
+    content: "";
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    border-style: solid;
+    border-width: 0 13px 13px 0;
+    border-color: ${({ theme }) => `${theme.text} ${theme.body}`};
+    transition: all ease 0.5s;
   }
 `
 
