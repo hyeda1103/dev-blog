@@ -65,7 +65,7 @@ export default function PostPage({ frontmatter: { section, title, category, date
           </SubInfo>
         </Header>
         <Keywords>{category.split(', ').map((tag, index) => (
-          <Link key={index} href={`/blog/category/${tag}`}>
+          <Link key={index} href={`/category/${tag}`}>
             <Tag key={tag}>{tag}</Tag>
           </Link>
         ))}

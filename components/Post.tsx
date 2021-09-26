@@ -68,7 +68,7 @@ export default function Post({ post, compact }: Props) {
             <Category>
               {post.frontmatter.category.split(', ').map((tag) => (
                 <Tag key={tag}>
-                  <Link href={`/blog/category/${tag}`}>
+                  <Link href={`/category/${tag}`}>
                     <a>{tag}</a>
                   </Link>
                 </Tag>
