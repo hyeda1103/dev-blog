@@ -9,7 +9,7 @@ export default function CategoryList({ categories }: Props) {
   return (
     <List>
       {categories.map((category, index) => (
-        <Link key={index} href={`/blog/category/${category}`}>
+        <Link key={index} href={`/category/${category}`}>
           <Item>{category}</Item>
         </Link>
       ))}
