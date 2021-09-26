@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { decode } from 'html-entities';
+import { Container, EmailInput, SubmitButton, Message } from '@/styles/newsletterform';
+import Spinner from './Spinner';
 
 export default function NewsletterForm( { status, message, onValidated }: any) {
-
   const [error, setError] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
@@ -12,7 +12,6 @@ export default function NewsletterForm( { status, message, onValidated }: any) {
    * @return {{value}|*|boolean|null}
    */
   const handleFormSubmit = () => {
-
     setError('');
 
     if (!email) {
@@ -22,7 +21,6 @@ export default function NewsletterForm( { status, message, onValidated }: any) {
 
     const isFormValidated = onValidated({ EMAIL: email });
 
-    // On success return true
     return email && email.indexOf("@") > -1 && isFormValidated;
   }
 
@@ -33,11 +31,8 @@ export default function NewsletterForm( { status, message, onValidated }: any) {
    */
   const handleInputKeyEvent = (event: any) => {
     setError('');
-    // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
-      // Cancel the default action, if needed
       event.preventDefault();
-      // Trigger the button element with a click
       handleFormSubmit();
     }
   }
@@ -53,41 +48,35 @@ export default function NewsletterForm( { status, message, onValidated }: any) {
      return '';
     }
     const result = message?.split('-') ?? null;
-    if ( "0" !== result?.[0]?.trim() ) {
-     return `${decode(message)}`;
+    if ("0" !== result?.[0]?.trim()) {
+     return '이미 구독 중인 이메일 주소입니다';
     }
     const formattedMessage = result?.[1]?.trim() ?? null;
-    return formattedMessage ? decode(formattedMessage) : '';
+    return formattedMessage ? '입력값이 유효하지 않습니다' : '';
   }
 
   return (
-    <>
-      <div>
-        <div>
-          <input
-            onChange={(event) => setEmail(event?.target?.value ?? '')}
-            type="email"
-            placeholder="당신의 이메일"
-            onKeyUp={(event) => handleInputKeyEvent(event)}
-          />
-        </div>
-        <div>
-          <button onClick={handleFormSubmit}>
-            Submit
-          </button>
-        </div>
-      </div>
-      <div>
-        {status === "sending" && <div>구독신청 중 ...</div>}
+      <Container>
+        <EmailInput
+          onChange={(event) => setEmail(event?.target?.value ?? '')}
+          type="email"
+          placeholder="당신의 이메일 주소"
+          onKeyUp={(event) => handleInputKeyEvent(event)}
+        />
+        <SubmitButton onClick={handleFormSubmit}>
+          {
+            status === "sending"
+              ? <Spinner />
+              : '구독신청'
+          }
+        </SubmitButton>
+        
         {status === "error" || error ? (
-          <div
-            dangerouslySetInnerHTML={{ __html: error || getMessage(message) }}
-          />
+          <Message status={status}>{getMessage(message)}</Message>
         ) : null }
         {status === "success" && status !== "error" && !error && (
-          <div dangerouslySetInnerHTML={{ __html: decode(message) }} />
+          <Message status={status}>성공적으로 구독신청되었습니다</Message>
         )}
-      </div>
-    </>
+      </Container>
   );
 }

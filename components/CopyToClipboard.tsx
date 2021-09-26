@@ -30,7 +30,7 @@ export default function CopyToClipboard() {
         draggable
         pauseOnHover
         transition={Slide}
-        theme={darkmode.value ? 'dark' : 'light'}
+        theme={darkmode.value ? 'colored' : 'light'}
         style={{ fontSize: "13px" }}
       />
     </>
