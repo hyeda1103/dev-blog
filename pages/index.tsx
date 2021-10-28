@@ -135,7 +135,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      allProjects: getAllProjects().slice(0, 2),
+      allProjects: getAllProjects().slice(0, 4),
       allPosts: getAllPosts().slice(0, 6),
       techPosts: getTechPosts().slice(0, 6),
       NofTechPosts: getTechPosts().length,
