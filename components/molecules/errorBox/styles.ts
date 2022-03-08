@@ -3,7 +3,7 @@ import { MdError } from 'react-icons/md'
 
 export const ErrorWrapper = styled.div`
   margin: 7px 6px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.fail};
 
   svg {
     vertical-align: middle;

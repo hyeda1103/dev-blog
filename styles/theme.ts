@@ -6,6 +6,7 @@ export const lightTheme = {
   toggleBorder: '#fff',
   hover: '#EFEFEF',
   active: '#999',
+  fail: '#ff3300',
 }
 
 export const darkTheme = {
@@ -13,7 +14,8 @@ export const darkTheme = {
   text: '#f2f2f2',
   toggleBorder: '#6B8096',
   hover: '#999',
-  active: '#EFEFEF'
+  active: '#EFEFEF',
+  fail: '#ff3300',
 }
 
 type Theme = {
@@ -23,6 +25,7 @@ type Theme = {
     toggleBorder: string
     hover: string
     active: string
+    fail: string
   }
 }
 
