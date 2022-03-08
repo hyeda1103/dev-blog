@@ -30,11 +30,6 @@ export default function Navbar() {
             </Link>
           </Item>
           <Item>
-            <Link href="/register">
-              <a>회원가입</a>
-            </Link>
-          </Item>
-          <Item>
             <SwitchMode darkmode={darkmode.value} onClick={darkmode.toggle}>
               {darkmode.value ? <MoonIcon /> : <SunIcon />}
             </SwitchMode>
