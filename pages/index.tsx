@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import Layout from '@/components/Layout'
+import Layout from '@/components/templates/layout'
 import Post from '@/components/Post'
 import Author from '@/components/Author'
 import { getAllPosts, getTechPosts, getDailyPosts } from '@/lib/posts'
@@ -49,7 +49,9 @@ type Props = {
   techCategories: string[],
   dailyCategories: string[],
   allPostCategories: string[],
-  allProjectCategories: string[]
+  allProjectCategories: string[],
+  numPages: number,
+  currentPage: number,
 }
 
 export default function HomePage({
@@ -63,7 +65,10 @@ export default function HomePage({
   techCategories,
   dailyCategories,
   allPostCategories,
-  allProjectCategories }: Props) {
+  allProjectCategories,
+  numPages,
+  currentPage,
+}: Props) {
   const [genre, setGenre] = useState('tech')
   
   const categories: string[] = (() => {
@@ -106,13 +111,13 @@ export default function HomePage({
               dailyPosts.map((post: Post, index: number) => (
                 <Post key={index} post={post} />
               ))
-              )}
+            )}
             {genre === 'project' && (
               allProjects.map((post: Project, index: number) => (
                 <Project key={index} post={post} />
               ))
             )}
-          </ContentsList> 
+          </ContentsList>
         </Bookshelf>
         <Author categories={categories} />
       </Library>
@@ -120,7 +125,7 @@ export default function HomePage({
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps() {  
   const posts = getAllPosts()
   const projects = getAllProjects()
   // Get categories for sidebar

@@ -63,6 +63,12 @@ export const GlobalStyles = createGlobalStyle`
       font-style: normal;
       font-display: swap;
     }
+    @font-face {
+      font-family: 'Gilbeot-Rainbow';
+      src: url("/fonts/Gilbeot-Rainbow.ttf");
+      font-style: normal;
+      font-display: swap;
+    }
     * {
         margin: 0;
         padding: 0;

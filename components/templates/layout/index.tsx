@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import Header from './Header'
-import Footer from './Footer'
-import { Main } from '@/styles/layout'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+import Header from '@/components/organisms/header'
+import Footer from '@/components/organisms/footer'
+import { Main } from './styles'
+import 'nprogress/nprogress.css'
 
 type Props = {
   title?: string
@@ -10,9 +13,13 @@ type Props = {
   children: React.ReactNode
 }
 
+Router.events.on("routeChangeStart", NProgress.start);
+Router.events.on("routeChangeError", NProgress.done);
+Router.events.on("routeChangeComplete", NProgress.done);
+
 export default function Layout({ title, keywords, description, children }: Props) {
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
         <meta name="keywords" content={keywords} />
@@ -40,6 +47,6 @@ export default function Layout({ title, keywords, description, children }: Props
       <Header />
       <Main>{children}</Main>
       <Footer />
-    </div>
+    </>
   )
 }

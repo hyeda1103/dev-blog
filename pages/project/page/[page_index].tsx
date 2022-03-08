@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import Layout from '@/components/Layout'
+import Layout from '@/components/templates/layout'
 import Post from '@/components/Post'
 import Pagination from '@/components/Pagination'
 import Author from '@/components/Author'

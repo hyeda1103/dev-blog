@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Layout from '@/components/Layout'
+import Layout from '@/components/templates/layout'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { useEffect } from 'react'
 import marked from 'marked'
