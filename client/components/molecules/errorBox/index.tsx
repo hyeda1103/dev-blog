@@ -1,22 +1,41 @@
-import React, { ReactChild } from 'react';
+import React from 'react';
 
 import {
-  ErrorWrapper,
+  Wrapper,
+  CheckIcon,
   ErrorIcon,
 } from './styles';
 
 interface Props {
-  children: ReactChild
+  success?: string
+  error?: string
 }
 
-function ErrorBox({ children }: Props) {
+function ErrorBox({ success, error }: Props) {
+  const Status = (() => {
+    if (success) {
+      return (
+        <span>
+          <CheckIcon />
+          {success}
+        </span>
+      )
+    }
+    if (error) {
+      return (
+        <span>
+          <ErrorIcon />
+          {error}
+        </span>
+      )
+    }
+  })()
   return (
-    <ErrorWrapper>
-      <ErrorIcon />
-      <span>
-        {children}
-      </span>
-    </ErrorWrapper>
+    success || error ? (
+      <Wrapper success={!!success} error={!!error}>
+        {Status}
+      </Wrapper>
+    ) : null
   );
 }
 

@@ -35,9 +35,7 @@ function InputWithLabel({
         error={!!formErrors[id]}
       />
       {formErrors[id] && (
-        <ErrorBox>
-          {formErrors[id]}
-        </ErrorBox>
+        <ErrorBox error={formErrors[id]} />
       )}
     </StyledLabel>
   );

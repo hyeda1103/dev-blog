@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, ChangeEvent, FormEventHandler } from 'react'
 import Link from 'next/link';
 import Button from '@/components/atoms/button';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
+import ErrorBox from '@/components/molecules/errorBox';
 import AuthForm from '@/components/templates/authForm';
 import Layout from '@/components/templates/layout'
 import * as T from '@/types/index'
@@ -21,13 +22,15 @@ const Register = () => {
     confirmPassword: '',
   });
   const [formErrors, setFormErrors] = useState<T.Object>({});
+  const [successMessage, setSuccessMessage] = useState('');
+  const [serverErrorMessage, setServerErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     name, email, password, confirmPassword,
   } = formValues;
 
-  const handleChange = (keyName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
     setFormErrors({ ...formErrors, [keyName]: '' });
     setFormValues({ ...formValues, [keyName]: e.target.value });
@@ -64,22 +67,34 @@ const Register = () => {
     return errorRegisters;
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmitting(true);
   };
 
-  useEffect(() => {
-    if (!Object.keys(formErrors).length && isSubmitting) {
-      // register handling
-      axios.post('http://localhost:8000/api/register', {
-        name, email, password,
+  const register = async () => {
+    try {
+      const res = await axios.post('http://localhost:8000/api/register', {
+          name, email, password,
       })
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+      setFormValues({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      })
+      setSuccessMessage(res.data.message)
+      setIsSubmitting(false);
+    } catch (err: any) {
+      setServerErrorMessage(err.response.data.error)
+      setIsSubmitting(false);
     }
-  }, [formErrors, isSubmitting, formValues]);
+  }
+
+  useEffect(() => {
+    if (!Object.keys(formErrors).length && isSubmitting) register()
+  }, [formErrors, isSubmitting]);
 
   const title = (
     <Title>
@@ -126,6 +141,7 @@ const Register = () => {
           handleChange={handleChange}
           formErrors={formErrors}
         />
+        <ErrorBox success={successMessage} error={serverErrorMessage} />
       </InputWrapper>
       <Button>
         회원가입
