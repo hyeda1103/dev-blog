@@ -11,6 +11,7 @@ import {
   DirectToWrapper,
   InputWrapper,
 } from './styles';
+import axios from 'axios';
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -72,7 +73,11 @@ const Register = () => {
   useEffect(() => {
     if (!Object.keys(formErrors).length && isSubmitting) {
       // register handling
-      console.log('registered!')
+      axios.post('http://localhost:8000/api/register', {
+        name, email, password,
+      })
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     }
   }, [formErrors, isSubmitting, formValues]);
 
