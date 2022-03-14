@@ -13,6 +13,7 @@ import {
   InputWrapper,
 } from './styles';
 import axios from 'axios';
+import { API } from '../../config'
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -75,7 +76,7 @@ const Register = () => {
 
   const register = async () => {
     try {
-      const res = await axios.post('http://localhost:8000/api/register', {
+      const res = await axios.post(`${API}/register`, {
           name, email, password,
       })
       setFormValues({
