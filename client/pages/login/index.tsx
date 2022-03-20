@@ -84,8 +84,13 @@ const Login = () => {
       setSuccessMessage('성공적으로 로그인하였습니다')
       setIsSubmitting(false);
       authenticate(res, () => {
-        if (isAuth() && isAuth().role === 'admin') Router.push('/admin')
-        Router.push('/user')
+        if (isAuth()) {
+          if (isAuth().role === 'admin') {
+            Router.push('/admin')
+          } else if (isAuth().role === 'subscriber') {
+            Router.push('/user')
+          }
+        }
       })
     } catch (err: any) {
       setButtonText('로그인')

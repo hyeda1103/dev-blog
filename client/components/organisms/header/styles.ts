@@ -38,6 +38,7 @@ export const Item = styled.div`
   padding: 0 0.5rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
   a {
     font-size: 16px;
   }
