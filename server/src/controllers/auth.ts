@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import shortId from 'shortid'
 
 import User from '../models/user'
-import { registerEmailParams } from '../../helpers/sendEmail'
+import { registerEmailParams, forgotPasswordEmailParams } from '../../helpers/sendEmail'
 import { UserRegister } from '../types'
 
 export const register = (req: Request, res: Response) => {
@@ -106,4 +106,48 @@ export const login = (req: Request, res: Response) => {
       }
     })
   })
+}
+
+export const forgotPassword = (req: Request, res: Response) => {
+  AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
+  });
+  const { email } = req.body
+  User.findOne({email}).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: '가입하지 않은 이메일 주소입니다'
+      })
+    }
+    const token = jwt.sign({ name: user.name }, `${process.env.JWT_RESET_PASSWORD}`, { expiresIn: '10m' })
+    const params = forgotPasswordEmailParams(email, token)
+
+    return user.updateOne({resetPasswordLink: token}, (err: any, success: any) => {
+      if (err) {
+        return res.status(400).json({
+          error: '비밀번호 재설정에 실패하였습니다. 다시 시도하여 주십시오.'
+        })
+      }
+      const sendEmailonForgotPassword = new AWS.SES({
+        apiVersion: '2010-12-01'
+      }).sendEmail(params).promise()
+
+      sendEmailonForgotPassword.then(data => {
+        console.log('Email submitted to SES', data)
+        res.json({
+          message: `비밀번호 재설정 링크가 ${email}로 발송되었습니다. 10분 이내로 이메일을 확인하고 비밀번호 재설정을 위한 절차를 완료하여 주십시오`
+        })
+      }).catch(error => {
+        console.log('SES email on register', error)
+        res.json({
+          error: '이메일을 인증할 수 없습니다. 다시 시도하여 주십시오.'
+        })
+      })
+    })
+  })
+}
+
+export const resetPassword = (req: Request, res: Response) => {
 }
