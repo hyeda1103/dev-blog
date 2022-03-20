@@ -1,9 +1,11 @@
 import { Request, Response } from 'express'
 import AWS from 'aws-sdk'
 import jwt from 'jsonwebtoken'
+import shortId from 'shortid'
 
 import User from '../models/user'
 import { registerEmailParams } from '../../helpers/sendEmail'
+import { UserRegister } from '../types'
 
 export const register = (req: Request, res: Response) => {
   AWS.config.update({
@@ -39,6 +41,38 @@ export const register = (req: Request, res: Response) => {
       console.log('SES email on register', error)
       res.json({
         error: '이메일 인증을 진행할 수 없습니다. 다시 시도하여 주십시오.'
+      })
+    })
+  })
+}
+
+export const registerActivate = (req: Request, res: Response) => {
+  const { token } = req.body;
+  jwt.verify(token, `${process.env.JWT_ACCOUNT_ACTIVATION}`, function (err: any) {
+    if (err) {
+      return res.status(401).json({
+        error: '만료된 링크입니다. 회원가입을 다시 진행해주세요.'
+      })
+    }
+
+    const { name, email, password } = jwt.decode(token) as UserRegister
+    const username = shortId.generate()
+    User.findOne({ email }).exec((err, user) => {
+      if (user) {
+        return res.status(401).json({
+          error: '이미 가입된 이메일 주소입니다'
+        })
+      }
+      const newUser = new User({ username, name, email, password })
+      newUser.save((err, result) => {
+        if (err) {
+          return res.status(401).json({
+            error: '데이터베이스에 정보를 저장하는 데에 실패했습니다. 다시 시도해주세요.'
+          })
+        }
+        return res.json({
+          message: '성공적으로 회원가입하였습니다. 로그인하세요.'
+        })
       })
     })
   })

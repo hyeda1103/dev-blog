@@ -1,5 +1,3 @@
-import { Schema } from 'mongoose';
-
 export interface User {
   username: string
   name: string;
@@ -8,4 +6,10 @@ export interface User {
   salt: string;
   role: string;
   resetPasswordLink: string;
+}
+
+export interface UserRegister {
+  name: string;
+  email: string;
+  password: string;
 }
