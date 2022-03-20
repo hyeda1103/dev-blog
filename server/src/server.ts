@@ -6,6 +6,7 @@ import cors from 'cors';
 
 // routes
 import authRoutes from './routes/auth'
+import userRoutes from './routes/user'
 
 // config
 import { connectDB } from '../config';
@@ -25,6 +26,7 @@ app.use(cors({
 
 // middlewares
 app.use('/api', authRoutes)
+app.use('/api', userRoutes)
 
 const port = process.env.PORT || 8000
 

@@ -15,9 +15,28 @@ export const removeCookie = (key: string) => {
   if (process.browser) cookie.remove(key)
 }
 
+export const getCookieFromBrowser = (key: string) => {
+  return cookie.get(key)
+}
+
+export const getCookieFromServer = (key: string, req: any) => {
+  if (!req.headers.cookie) {
+    return undefined
+  }
+  let token = req.headers.cookie.split(';').find((c: string) => c.trim().startsWith(`${key}=`))
+  if (!token) {
+    return undefined
+  }
+  let tokenValue = token.split('=')[1]
+  return tokenValue
+}
+
 // get from cookie such as stored token
-export const getCookie = (key: string) => {
-  if (process.browser) cookie.get(key)
+export const getCookie = (key: string, req: any) => {
+  if (process.browser) {
+    return getCookieFromBrowser(key)
+  }
+  return getCookieFromServer(key, req)
 }
 
 // set in localstorage

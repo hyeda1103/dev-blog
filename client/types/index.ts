@@ -2,6 +2,20 @@ export interface Object {
   [key: string]: string
 }
 
+enum Role {
+  subscriber = 'subscriber',
+  admin = 'admin'
+}
+
+export interface Profile {
+  _id: string
+  username: string
+  name: string
+  email: string
+  role: Role
+  createdAt: string
+}
+
 export interface RegisterForm {
   name: string
   email: string
