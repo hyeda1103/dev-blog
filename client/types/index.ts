@@ -9,6 +9,11 @@ export interface RegisterForm {
   confirmPassword: string
 }
 
+export interface LoginForm {
+  email: string
+  password: string
+}
+
 export interface TokenDecoded {
   name: string
   email: string

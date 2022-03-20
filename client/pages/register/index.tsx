@@ -1,11 +1,14 @@
 import React, { useEffect, useState, ChangeEvent, FormEventHandler } from 'react'
 import Link from 'next/link';
+import Router from 'next/router';
+
 import Button from '@/components/atoms/button';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
 import ErrorBox from '@/components/molecules/errorBox';
 import AuthForm from '@/components/templates/authForm';
 import Layout from '@/components/templates/layout'
 import * as T from '@/types/index'
+import { isAuth } from '@/helpers/auth';
 import {
   StyledForm,
   Title,
@@ -30,6 +33,10 @@ const Register = () => {
   const {
     name, email, password, confirmPassword,
   } = formValues;
+
+  useEffect(() => {
+    isAuth() && Router.push('/')
+  }, [])
 
   const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
