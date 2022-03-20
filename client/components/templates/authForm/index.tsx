@@ -11,14 +11,16 @@ import {
 
 interface Props {
   title: React.ReactChild | JSX.Element[] | JSX.Element | null
+  subTitle?: React.ReactChild | JSX.Element[] | JSX.Element | null
   guide?: React.ReactChild | JSX.Element[] | JSX.Element | null
-  form: React.ReactChild | JSX.Element[] | JSX.Element | null
+  form?: React.ReactChild | JSX.Element[] | JSX.Element | null
   findPassword?: React.ReactChild | JSX.Element[] | JSX.Element | null
   directTo?: React.ReactChild | JSX.Element[] | JSX.Element | null
 }
 
 function AuthForm({
   title,
+  subTitle,
   guide,
   form,
   findPassword,
@@ -28,6 +30,7 @@ function AuthForm({
     <Container>
       <TitleWrapper>
         {title}
+        {subTitle}
       </TitleWrapper>
       <GuideWrapper>
         {guide}

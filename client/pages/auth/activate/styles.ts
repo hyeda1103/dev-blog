@@ -10,6 +10,11 @@ export const Title = styled.h1`
   line-height: 38.4px;
 `;
 
+export const SubTitle = styled.p`
+  margin-top: 20px;
+  font-size: 16px;
+`;
+
 export const InputWrapper = styled.div`
   margin-bottom: 50.71px;
 `;

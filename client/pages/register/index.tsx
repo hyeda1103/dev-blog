@@ -103,6 +103,10 @@ const Register = () => {
     </Title>
   );
 
+  const subTitle = (
+    <p></p>
+  )
+
   const form = (
     <StyledForm onSubmit={handleSubmit} noValidate>
       <InputWrapper>
@@ -164,6 +168,7 @@ const Register = () => {
     <Layout>
       <AuthForm
         title={title}
+        subTitle={subTitle}
         form={form}
         directTo={directTo}
       />
