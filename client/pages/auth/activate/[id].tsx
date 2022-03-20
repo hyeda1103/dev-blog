@@ -9,8 +9,7 @@ import ErrorBox from '@/components/molecules/errorBox';
 import Button from '@/components/atoms/button';
 import * as T from '@/types/index'
 import AuthForm from '@/components/templates/authForm'
-import { DirectToWrapper, InputWrapper, StyledForm, SubTitle, Title } from './styles'
-import Link from 'next/link';
+import { InputWrapper, StyledForm, SubTitle, Title } from './styles'
 import { API } from '../../../config'
 
 const ActivateAccount = ({ router }: WithRouterProps) => {
