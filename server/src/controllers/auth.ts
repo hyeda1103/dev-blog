@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import AWS from 'aws-sdk'
 import jwt from 'jsonwebtoken'
 import shortId from 'shortid'
+import _ from 'lodash'
 
 import User from '../models/user'
 import { registerEmailParams, forgotPasswordEmailParams } from '../../helpers/sendEmail'
@@ -150,4 +151,39 @@ export const forgotPassword = (req: Request, res: Response) => {
 }
 
 export const resetPassword = (req: Request, res: Response) => {
+  const { resetPasswordLink, newPassword } = req.body
+  if (resetPasswordLink) {
+    jwt.verify(resetPasswordLink, `${process.env.JWT_RESET_PASSWORD}`, (err: any, success: any) => {
+      if (err) {
+        return res.status(400).json({
+          error: '유효하지 않은 토큰입니다. 다시 시도해 주세요.'
+        })
+      }
+      User.findOne({ resetPasswordLink }).exec((err, user) => {
+        if (err || !user) {
+          return res.status(400).json({
+            error: '유효하지 않은 토큰입니다. 다시 시도해 주세요.'
+          })
+        }
+        const updatedFields = {
+          password: newPassword,
+          resetPasswordLink: '',
+        }
+        
+        user = _.extend(user, updatedFields)
+        
+        user.save((err, result) => {
+          if (err) {
+            return res.status(400).json({
+              error: '비밀번호 재설정에 실패하였습니다. 다시 시도해주세요.'
+            })
+          }
+
+          res.json({
+            message: '비밀번호를 성공적으로 재설정하였습니다'
+          })
+        })
+      })
+    })
+  }
 }
