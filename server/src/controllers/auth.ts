@@ -77,3 +77,33 @@ export const registerActivate = (req: Request, res: Response) => {
     })
   })
 }
+
+export const login = (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(401).json({
+        error: '가입된 이메일 주소가 아닙니다. 회원가입을 진행해주세요.'
+      })
+    }
+
+    if (!user.authenticate(password)) {
+      return res.status(400).json({
+        error: '이메일과 비밀번호가 일치하지 않습니다'
+      })
+    }
+    const { _id, name, email, role } = user
+    const token = jwt.sign({ _id }, `${process.env.JWT_SECRET}`, {
+      expiresIn: '7d'
+    })
+    return res.json({
+      token,
+      user: {
+        _id,
+        name,
+        email,
+        role,
+      }
+    })
+  })
+}
