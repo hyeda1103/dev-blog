@@ -1,2 +1,2 @@
-## Blog App
+## Dev Blog for Ten
 
