@@ -111,9 +111,7 @@ export async function getStaticProps({ params: { slug } }: StaticProps) {
         postsWithSameCategories.push(post)
       }
     })
-  }) 
-
-  console.log(postsWithSameCategories)
+  })
 
   return {
     props: {

@@ -13,7 +13,6 @@ interface Props {
 
 
 const Admin = ({ admin }: Props) => {
-  console.log(admin)
   return (
     <Layout>{JSON.stringify(admin)}</Layout>
   )
