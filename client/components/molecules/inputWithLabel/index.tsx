@@ -11,8 +11,8 @@ interface Props {
   id: string
   label: string
   type: string
-  value: string
-  placeholder: string
+  value?: string
+  placeholder?: string
   handleChange: (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => void
   formErrors: T.Object
 }

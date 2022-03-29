@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
+import Link from 'next/link';
 
 import * as T from '@/types/index';
 import { getCookie } from '@/helpers/auth';
@@ -14,7 +15,16 @@ interface Props {
 
 const Admin = ({ admin }: Props) => {
   return (
-    <Layout>{JSON.stringify(admin)}</Layout>
+    <Layout>
+      <h1>어드민 대시보드</h1>
+      <ul>
+        <li>
+          <Link href="admin/category/create">
+            <a>카테고리 만들기</a>
+          </Link>
+        </li>
+      </ul>
+    </Layout>
   )
 }
 

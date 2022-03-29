@@ -26,7 +26,10 @@ export const createCategory = (req: any, res: Response) => {
     const { name, content } = fields
     const { image } = files
 
-    const slug = slugify(name as string)
+    // name이 한글이면 slug 생성이 제대로 되지 않고 있음
+    const slug = slugify(name as string, {
+      locale: 'ko',
+    })
     let category = new Category({ name, content, slug })
     if ((image as File).size > 2000000) {
       return res.status(400).json({
@@ -51,6 +54,8 @@ export const createCategory = (req: any, res: Response) => {
       console.log('AWS 업로드 RES DATA', data)
       category.image.url = data.Location
       category.image.key = data.Key
+
+      console.log(category)
       
       // Save to DB
       category.save((err: any, success: string) => {

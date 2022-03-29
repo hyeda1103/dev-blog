@@ -6,7 +6,7 @@ import Footer from '@/components/organisms/footer'
 import { Main } from './styles'
 import 'nprogress/nprogress.css'
 
-type Props = {
+interface Props {
   title?: string
   keywords?: string
   description?: string

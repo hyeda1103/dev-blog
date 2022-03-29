@@ -43,3 +43,9 @@ export interface ForgotPasswordForm {
 export interface ResetPasswordForm {
   password: string
 }
+
+export interface CreateCategoryForm {
+  name: string
+  content: string
+  formData: FormData | null
+}
