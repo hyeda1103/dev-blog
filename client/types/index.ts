@@ -43,3 +43,22 @@ export interface ForgotPasswordForm {
 export interface ResetPasswordForm {
   password: string
 }
+
+export interface CreateCategoryForm {
+  name: string
+  content: any
+  image: string | File | Blob | ProgressEvent<FileReader>
+}
+
+export interface Image {
+  url: string
+  key: string
+}
+
+export interface Category {
+  _id: string
+  name: string
+  slug: string
+  image: Image
+  content: string
+}

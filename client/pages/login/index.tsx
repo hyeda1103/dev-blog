@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEventHandler, useEffect, useState } from 'react'
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
@@ -39,7 +39,7 @@ const Login = () => {
     isAuth() && Router.push('/')
   }, [])
 
-  const handleChange = (keyName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
     setFormErrors({ ...formErrors, [keyName]: '' });
     setFormValues({ ...formValues, [keyName]: e.target.value });
