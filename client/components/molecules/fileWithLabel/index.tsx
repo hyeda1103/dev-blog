@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, ChangeEventHandler } from 'react';
 import ErrorBox from '@/components/molecules/errorBox';
 import * as T from '@/types/index'
 import {
@@ -12,7 +12,7 @@ interface Props {
   label: string
   type: string
   accept?: string
-  handleChange: (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => void
+  handleChange: ChangeEventHandler<HTMLElement> | undefined
   formErrors: T.Object
 }
 
@@ -28,7 +28,7 @@ function FileWithLabel({
         id={id}
         type={type}
         autoComplete="off"
-        onChange={handleChange(id)}
+        onChange={handleChange}
         accept={accept}
         error={!!formErrors[id]}
         hidden

@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
-import { ChangeEvent, FormEventHandler, useEffect, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, FormEventHandler, useEffect, useState } from 'react';
 import axios from 'axios'
+import Resizer from 'react-image-file-resizer';
 
 import * as T from '@/types/index';
 import { getCookie } from '@/helpers/auth';
@@ -12,7 +13,7 @@ import Button from '@/components/atoms/button';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
 import { InputWrapper, StyledForm, Title } from './styles';
 import FileWithLabel from '@/components/molecules/fileWithLabel';
-
+import TextEditor from '@/components/molecules/textEditor';
 
 interface Props {
   admin: T.Profile
@@ -21,30 +22,25 @@ interface Props {
 
 
 const CreateCategory = ({ admin, token }: Props) => {
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<T.CreateCategoryForm>({
     name: "",
     content: "",
-    formData: process.browser ? new FormData() : undefined,
+    image: '',
   })
   const [formErrors, setFormErrors] = useState<T.Object>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
-  const [buttonText, setButtonText] = useState('카테고리 생성');
   const [imageUploadText, setImageUploadText] = useState('이미지 업로드')
   
   const {
-    name, content, formData
+    name, content, image
   } = formValues;
   
-  const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement | HTMLFormElement>) => {
+  const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
     setFormErrors({ ...formErrors, [keyName]: '' });
-    const value = keyName === 'image' ? e.target.files[0] : e.target.value;
-    const imageName = keyName === 'image' ? e.target.files[0].name : '이미지 업로드';
-    if (formData) formData.set(keyName, value)
-    setFormValues({ ...formValues, [keyName]: value });
-    setImageUploadText(imageName)
+    setFormValues({ ...formValues, [keyName]: e.target.value });
   };
   
   // form validation handler
@@ -59,8 +55,8 @@ const CreateCategory = ({ admin, token }: Props) => {
       errorRegisters.content = '카테고리 설명을 입력해야 합니다';
     }
 
-    if (values.formData === null) {
-      errorRegisters.formData = '카테고리 이미지를 업로드해야 합니다';
+    if (!values.image) {
+      errorRegisters.image = '카테고리 이미지를 업로드해야 합니다';
     }
     return errorRegisters;
   };
@@ -69,12 +65,42 @@ const CreateCategory = ({ admin, token }: Props) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmitting(true);
-    setButtonText('카테고리 생성 중...')
   };
+
+  const handleContent = (e: string) => {
+    setFormValues({
+      ...formValues,
+      content: e,
+    })
+  }
+
+  const handleImage: ChangeEventHandler<HTMLFormElement> = (e) => {
+    let fileInput = false;
+    if (e.target.files[0]) fileInput = true;
+    setImageUploadText(e.target.files[0].name);
+    setFormErrors({ ...formErrors, image: '' });
+    if (fileInput) {
+      Resizer.imageFileResizer(
+        e.target.files[0],
+        300,
+        300,
+        'JPEG',
+        100,
+        0,
+        uri => {
+          setFormValues({
+            ...formValues,
+            image: uri
+          })
+        },
+        'base64'
+      )
+    }
+  }
 
   const create = async () => {
     try {
-      const res = await axios.post(`${API}/category`, formData, {
+      const res = await axios.post(`${API}/category`, formValues, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -82,14 +108,12 @@ const CreateCategory = ({ admin, token }: Props) => {
       setFormValues({
         name: '',
         content: '',
-        formData: undefined
+        image: '',
       })
-      setButtonText('카테고리 생성 완료')
       setServerErrorMessage('')
-      setSuccessMessage(`카테고리 ${res.data.name}이 성공적으로 생성되었습니다`)
+      setSuccessMessage(`카테고리 ${res.data.name}가(이) 성공적으로 생성되었습니다`)
       setIsSubmitting(false);
     } catch (err: any) {
-      setButtonText('카테고리 생성')
       setServerErrorMessage(err.response.data.error)
       setIsSubmitting(false);
     }
@@ -121,13 +145,13 @@ const CreateCategory = ({ admin, token }: Props) => {
           handleChange={handleChange}
           formErrors={formErrors}
         />
-        <InputWithLabel
+        <TextEditor
           id="content"
           label="카테고리 설명"
-          type="text"
           value={content}
+          theme="bubble"
           placeholder="카테고리 설명을 입력하세요"
-          handleChange={handleChange}
+          handleChange={handleContent}
           formErrors={formErrors}
         />
         <FileWithLabel
@@ -135,13 +159,13 @@ const CreateCategory = ({ admin, token }: Props) => {
           type="file"
           accept='image/*'
           label={imageUploadText}
-          handleChange={handleChange}
+          handleChange={handleImage}
           formErrors={formErrors}
         />
         <ErrorBox success={successMessage} error={serverErrorMessage} />
       </InputWrapper>
       <Button>
-        {buttonText}
+        카테고리 생성
       </Button>
     </StyledForm>
   );
