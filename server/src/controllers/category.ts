@@ -67,8 +67,18 @@ export const createCategory = (req: any, res: Response) => {
 }
 
 export const listCategory = (req: Request, res: Response) => {
+  Category.find({}).exec((err, data) => {
+    if (err) {
+      return res.status(400).json({
+        error: '카테고리를 로드할 수 없습니다'
+      })
+    }
+    res.json(data)
+  })
 }
+
 export const readCategory = (req: Request, res: Response) => {
 }
+
 export const deleteCategory= (req: Request, res: Response) => {
 }

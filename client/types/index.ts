@@ -49,3 +49,16 @@ export interface CreateCategoryForm {
   content: string
   formData: FormData | undefined
 }
+
+export interface Image {
+  url: string
+  key: string
+}
+
+export interface Category {
+  _id: string
+  name: string
+  slug: string
+  image: Image
+  content: string
+}
