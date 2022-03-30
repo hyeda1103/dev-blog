@@ -79,7 +79,6 @@ const CreateCategory = ({ admin, token }: Props) => {
           Authorization: `Bearer ${token}`
         }
       }) 
-      console.log(res)
       setFormValues({
         name: '',
         content: '',
@@ -87,7 +86,7 @@ const CreateCategory = ({ admin, token }: Props) => {
       })
       setButtonText('카테고리 생성 완료')
       setServerErrorMessage('')
-      setSuccessMessage('성공적으로 카테고리가 생성되었습니다')
+      setSuccessMessage(`카테고리 ${res.data.name}이 성공적으로 생성되었습니다`)
       setIsSubmitting(false);
     } catch (err: any) {
       setButtonText('카테고리 생성')
@@ -97,7 +96,6 @@ const CreateCategory = ({ admin, token }: Props) => {
   }
   
   useEffect(() => {
-    console.log(admin)
     if (!Object.keys(formErrors).length && isSubmitting) create();
   }, [formErrors, isSubmitting]);
 
