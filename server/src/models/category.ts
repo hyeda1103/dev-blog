@@ -32,7 +32,7 @@ const categorySchema = new Schema({
   timestamps: true
 })
 
-// export user model
+// export category model
 const CategoryModel = model('Category', categorySchema);
 
 export default CategoryModel;
