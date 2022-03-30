@@ -47,5 +47,5 @@ export interface ResetPasswordForm {
 export interface CreateCategoryForm {
   name: string
   content: string
-  formData: FormData | null
+  formData: FormData | undefined
 }

@@ -1,7 +1,6 @@
 import mongoose, {
-  Schema, Document, model,
+  Schema, model,
 } from "mongoose";
-import * as crypto from 'crypto';
 
 const categorySchema = new Schema({
   name: {

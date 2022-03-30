@@ -24,7 +24,7 @@ const CreateCategory = ({ admin, token }: Props) => {
   const [formValues, setFormValues] = useState({
     name: "",
     content: "",
-    formData: process.browser ? new FormData() : null,
+    formData: process.browser ? new FormData() : undefined,
   })
   const [formErrors, setFormErrors] = useState<T.Object>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -83,7 +83,7 @@ const CreateCategory = ({ admin, token }: Props) => {
       setFormValues({
         name: '',
         content: '',
-        formData: null
+        formData: undefined
       })
       setButtonText('카테고리 생성 완료')
       setServerErrorMessage('')

@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import fs from "fs"
-import slugify from 'slugify'
 import { Fields, Files, File, IncomingForm } from 'formidable'
 import AWS from 'aws-sdk'
 import { v4 as uuidv4 } from 'uuid';
 
 import Category from '../models/category'
+import slugify from "../helpers/slugify";
 
 
 export const createCategory = (req: any, res: Response) => {  
@@ -27,10 +27,8 @@ export const createCategory = (req: any, res: Response) => {
     const { image } = files
 
     // name이 한글이면 slug 생성이 제대로 되지 않고 있음
-    const slug = slugify(name as string, {
-      locale: 'ko',
-    })
-    let category = new Category({ name, content, slug })
+    const slug = slugify(name as string)
+    let category = new Category({ name, content, slug  })
     if ((image as File).size > 2000000) {
       return res.status(400).json({
         error: "이미지는 2MB 이하여야 합니다"
@@ -54,8 +52,6 @@ export const createCategory = (req: any, res: Response) => {
       console.log('AWS 업로드 RES DATA', data)
       category.image.url = data.Location
       category.image.key = data.Key
-
-      console.log(category)
       
       // Save to DB
       category.save((err: any, success: string) => {
