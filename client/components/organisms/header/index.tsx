@@ -16,8 +16,8 @@ export default function Navbar() {
         </Logo>
         <Nav>          
           <Item>
-            <Link href="/blog">
-              <a>블로그</a>
+            <Link href="/user/link/create">
+              <a>링크 등록</a>
             </Link>
           </Item>
           <Item>

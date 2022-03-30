@@ -62,3 +62,11 @@ export interface Category {
   image: Image
   content: string
 }
+
+export interface CreateLinkForm {
+  title: string
+  url: string
+  categories: Array<string>
+  type: string
+  medium: string
+}

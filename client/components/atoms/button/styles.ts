@@ -16,4 +16,10 @@ export const BasicButton = styled.button`
     color: ${({ theme }) => theme.body};
     background-color: ${({ theme }) => theme.text};
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.body};
+  }
 `

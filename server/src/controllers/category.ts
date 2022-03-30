@@ -38,7 +38,7 @@ export const createCategory = (req: any, res: Response) => {
     console.log('AWS 업로드 RES DATA', data)
     category.image.url = data.Location
     category.image.key = data.Key
-    category.postedBy = req.user._id;
+    category.postedBy = req.profile._id;
     
     // Save to DB
     category.save((err: any, success: string) => {
