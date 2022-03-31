@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post('/category', adminMiddleware, createCategory)
 router.get('/categories', listCategory)
-router.get('/category/:slug', readCategory)
+router.post('/category/:slug', readCategory)
 router.put('/category/:slug', adminMiddleware, createCategory)
 router.delete('/category/:slug', adminMiddleware, deleteCategory)
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { IoMdSunny, IoMdMoon } from "react-icons/io";
+import { HiLink } from 'react-icons/hi'
 
 export const Container = styled.header`
   position: fixed;
@@ -7,6 +8,8 @@ export const Container = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.text};
   z-index: 9;
   background-color: ${({ theme }) => theme.body};
+  display: flex;
+  align-items: center;
 `
 
 export const Inner = styled.div`
@@ -14,7 +17,7 @@ export const Inner = styled.div`
   height: 100%;
   position: relative;
   box-sizing: border-box;
-  margin: 3px auto 0;
+  margin: 0 auto;
   padding: 8px 0;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -56,8 +59,8 @@ export const SwitchMode = styled.div<StyleProps>`
   transition: 0.1s ease;
 `
 
-type StyleProps = {
-  darkmode: boolean
+interface StyleProps {
+  darkmode: boolean;
 }
 
 export const SunIcon = styled(IoMdSunny)`
@@ -65,3 +68,15 @@ export const SunIcon = styled(IoMdSunny)`
 
 export const MoonIcon = styled(IoMdMoon)`
 `
+
+export const LinkIcon = styled(HiLink)`
+  font-size: 17px;
+  color: #fff;
+  background-color: ${({ theme }) => theme.hyperlink.default};
+  vertical-align: middle;
+  padding: 6px;
+
+  &:hover {
+    color: ${({ theme }) => theme.hyperlink.contrast};
+  }
+`;

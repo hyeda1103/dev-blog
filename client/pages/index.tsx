@@ -5,6 +5,7 @@ import Layout from '@/components/templates/layout'
 import { API } from './../config';
 import * as T from '@/types/index';
 import CategoryList from '@/components/organisms/categoryList';
+import TwoCol from '@/components/templates/twoCol';
 interface Props {
   categories: Array<T.Category>
 }
@@ -13,9 +14,10 @@ function HomePage({ categories }: Props) {
   
   return (
     <Layout>
-      {categories && (
-        <CategoryList categories={categories} />
-      )}
+      <TwoCol
+        MainContent={<div>MainCol</div>}
+        SubContent={<CategoryList categories={categories} />}
+      />
     </Layout>
   )
 }

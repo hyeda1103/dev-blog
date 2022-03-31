@@ -1,27 +1,23 @@
 import styled from 'styled-components'
 
-export const Container = styled.ul`
-  position: relative;
-  list-style: none;
-  box-sizing: border-box;
-  padding: 8px 24px;
-  border: 1px solid ${({ theme }) => theme.text};
+export const Container = styled.div`
 `;
 
 
-export const Title = styled.li`
-  cursor: pointer;
+export const Title = styled.p`
   display: inline-block;
-  align-items: center;
-  margin-right: 8px;
-  font-weight: 700;
-
-  &:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 1px 1px ${({ theme }) => theme.text};
-  }
-
-  & + & {
-    margin-left: 4px;
-  }
+  padding: 2px 8px;
+  border: 1px solid ${({ theme }) => theme.text};
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.body};
 `;
+
+export const CategoryList = styled.ul`
+  box-sizing: border-box;
+  border: 1px solid ${({ theme }) => theme.text};
+  position: relative;
+  padding: 8px;
+`;
+

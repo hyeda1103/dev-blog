@@ -2,7 +2,7 @@ import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
 
 import { isAuth, logout } from '@/helpers/auth'
-import { Container, Inner, SunIcon, MoonIcon, Logo, Nav, Item, SwitchMode } from './styles'
+import { Container, Inner, SunIcon, MoonIcon, Logo, Nav, Item, SwitchMode, LinkIcon } from './styles'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)
@@ -16,15 +16,12 @@ export default function Navbar() {
         </Logo>
         <Nav>          
           <Item>
-            <Link href="/blog">
-              <a>블로그</a>
+            <Link href="/user/link/create">
+              <a>
+                <LinkIcon />
+              </a>
             </Link>
-          </Item>
-          <Item>
-            <Link href="/project">
-              <a>프로젝트</a>
-            </Link>
-          </Item>          
+          </Item>       
           {
             isAuth() && isAuth().role === 'admin' && (
               <Item>

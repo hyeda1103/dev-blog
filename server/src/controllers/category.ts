@@ -3,6 +3,7 @@ import AWS from 'aws-sdk'
 import { v4 as uuidv4 } from 'uuid';
 
 import Category from '../models/category'
+import Link from '../models/link'
 import slugify from "../helpers/slugify";
 
 export const createCategory = (req: any, res: Response) => {
@@ -38,7 +39,7 @@ export const createCategory = (req: any, res: Response) => {
     console.log('AWS 업로드 RES DATA', data)
     category.image.url = data.Location
     category.image.key = data.Key
-    category.postedBy = req.user._id;
+    category.postedBy = req.profile._id;
     
     // Save to DB
     category.save((err: any, success: string) => {
@@ -64,6 +65,36 @@ export const listCategory = (req: Request, res: Response) => {
 }
 
 export const readCategory = (req: Request, res: Response) => {
+  const { slug, limit, skip } = req.body
+  let limits = limit ? parseInt(limit) : 10
+  let skips = skip ? parseInt(skip) : 0
+
+  console.log(slug, limit, skip)
+  
+  Category.findOne({ slug })
+    .populate('postedBy', '_id name username')
+    .exec((err, category) => {
+      if (err) {
+        return res.status(400).json({
+          error: '카테고리를 로드할 수 없습니다'
+        })
+      }
+      console.log(category)
+      Link.find({ categories: category })
+        .populate('postedBy', '_id name username')
+        .populate('categories', 'name slug')
+        .sort({ createdAt: -1 })
+        .limit(limits)
+        .skip(skips)
+        .exec((err, links) => {
+          if (err) {
+            return res.status(400).json({
+              error: '카테고리에 해당하는 링크를 로드할 수 없습니다'
+            })
+          }
+          res.json({ category, links })
+        })
+    })
 }
 
 export const deleteCategory= (req: Request, res: Response) => {

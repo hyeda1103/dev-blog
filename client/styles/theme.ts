@@ -7,15 +7,27 @@ export const lightTheme = {
   hover: '#EFEFEF',
   active: '#999',
   fail: '#ff3300',
+  highlight: '#ffff7f',
+  hyperlink: {
+    default: '#0000ee',
+    contrast: '#00ee00',
+    broken: '#ee0000'
+  },
 }
 
 export const darkTheme = {
   body: '#121212',
-  text: '#f2f2f2',
+  text: '#fff',
   toggleBorder: '#6B8096',
   hover: '#999',
   active: '#EFEFEF',
   fail: '#ff3300',
+  highlight: '#7f7fff',
+  hyperlink: {
+    default: '#0000ee',
+    contrast: '#00ee00',
+    broken: '#ee0000'
+  },
 }
 
 type Theme = {
