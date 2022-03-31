@@ -70,3 +70,25 @@ export interface CreateLinkForm {
   type: string
   medium: string
 }
+
+export enum Type {
+  FREE = 'free',
+  Paid = 'paid'
+}
+
+export enum Medium {
+  Video = 'video',
+  Article = 'article'
+}
+
+export interface Link {
+  _id: string
+  title: string
+  url: string
+  slug: string
+  categories: Array<Category>
+  type: Type
+  medium: Medium 
+  clicks: number
+  postedBy: Profile['_id']  
+}

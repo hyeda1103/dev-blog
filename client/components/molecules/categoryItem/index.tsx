@@ -11,7 +11,7 @@ interface Props {
 function CategoryItem({ category }: Props) {
   return (
     <Container key={category._id}>
-      <Link href='/'>
+      <Link href={`/links/${category.slug}`}>
         <a>{category.name}</a>
       </Link>
     </Container>

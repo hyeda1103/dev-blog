@@ -34,6 +34,7 @@ export const listLink = (req: Request, res: Response) => {
 }
 
 export const readLink = (req: Request, res: Response) => {
+  
 }
 
 export const deleteLink= (req: Request, res: Response) => {

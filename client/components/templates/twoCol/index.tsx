@@ -9,12 +9,12 @@ interface Props {
 function TwoCol({ MainContent, SubContent }: Props) {
   return (
     <GridLayout reverse={false}>
-      <SubCol>
-        {SubContent}
-      </SubCol>
       <MainCol>
         {MainContent}
       </MainCol>
+      <SubCol>
+        {SubContent}
+      </SubCol>
     </GridLayout>
   )
 }

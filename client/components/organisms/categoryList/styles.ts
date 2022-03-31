@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-
 `;
 
 
@@ -19,6 +18,6 @@ export const CategoryList = styled.ul`
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.text};
   position: relative;
-  padding: 2px 8px;
+  padding: 8px;
 `;
 
