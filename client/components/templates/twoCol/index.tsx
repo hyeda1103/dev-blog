@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { GridLayout, MainCol, SubCol } from './styles';
 
 interface Props {

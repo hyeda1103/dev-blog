@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
-import { HiLink } from 'react-icons/hi'
+import { HiLink, HiCursorClick } from 'react-icons/hi'
+import { ImFire } from 'react-icons/im'
 
 export const Header = styled.div`
   display: flex;
@@ -82,7 +83,6 @@ export const Details = styled.div`
 export const TypeWrapper = styled.div`
   display: flex;
   font-size: 14px;
-  font-weight: 700;
 `;
 
 export const Footer = styled.div`
@@ -124,4 +124,15 @@ export const Medium = styled.span`
 
 export const ResultWrapper = styled.div`
   font-size: 32px;
+`;
+
+export const ViewWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+`
+
+export const ClickIcon = styled(HiCursorClick)`
+  vertical-align: middle;
+  margin-left: 4px;
 `;
