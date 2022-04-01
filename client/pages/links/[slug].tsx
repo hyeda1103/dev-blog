@@ -9,7 +9,7 @@ import { API } from './../../config'
 import Layout from '@/components/templates/layout';
 import TwoCol from '@/components/templates/twoCol';
 import * as T from '../../types/index'
-import { CategoryInfo, Details, Header, Profile, LinkIcon, LinkItem, LinkList, Medium, TagBox, Title, Type, ImageWrapper, ResultWrapper, CategoryTag, PostedAt } from './styles';
+import { CategoryInfo, Details, Header, Profile, LinkIcon, LinkItem, LinkList, Medium, TagBox, Title, Type, ImageWrapper, ResultWrapper, CategoryTag, PostedAt, Footer, TypeWrapper } from './styles';
 import CategoryItem from '@/components/molecules/categoryItem';
 
 interface Props {
@@ -45,20 +45,27 @@ function SingleCategory({ query, category, links, numOfLinks, linksLimit, linkSk
           <LinkItem key={link._id}>
             <Header>
               <Title>{link.title}</Title>
+              <TypeWrapper>
+                {link.type}
+                {' '}
+                {link.medium}
+              </TypeWrapper>
+            </Header>
+            <Details>
+              <Link href={link.url}>
+                <a target="_blank">
+                  <LinkIcon />{link.url}
+                </a>
+              </Link>
+            </Details>
+            <Footer>
               <TagBox>
                 {link.categories.map((category) => (
                   <CategoryItem key={category._id} category={category} />
                 ))}
               </TagBox>
-            </Header>
-            <Details>
-              <Link href={link.url}>
-                <a>
-                  <LinkIcon />{link.url}
-                </a>
-              </Link>
               <PostedAt>{moment(link.postedBy).fromNow()}</PostedAt>
-            </Details>
+            </Footer>
           </LinkItem>
         ))}
       </LinkList>

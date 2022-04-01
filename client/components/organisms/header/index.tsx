@@ -11,30 +11,23 @@ export default function Navbar() {
       <Inner>
         <Logo>
           <Link href="/">
-            <a>해다고</a>
+            <a>HYEDAKO</a>
           </Link>
         </Logo>
-        <Nav>          
-          <Item>
-            <Link href="/user/link/create">
-              <a>
-                <LinkIcon />
-              </a>
-            </Link>
-          </Item>       
+        <Nav>     
           {
-            isAuth() && isAuth().role === 'admin' && (
+            isAuth() && isAuth().role === 'subscriber' && (
               <Item>
-                <Link href="/admin">
+                <Link href="/user">
                   <a>{isAuth().name}</a>
                 </Link>
               </Item>
             )
           }
           {
-            isAuth() && isAuth().role === 'subscriber' && (
+            isAuth() && isAuth().role === 'admin' && (
               <Item>
-                <Link href="/user">
+                <Link href="/admin">
                   <a>{isAuth().name}</a>
                 </Link>
               </Item>
@@ -53,6 +46,13 @@ export default function Navbar() {
               </Item>
             )
           }
+          <Item>
+            <Link href="/user/link/create">
+              <a>
+                <LinkIcon />
+              </a>
+            </Link>
+          </Item>  
           <Item>
             <SwitchMode darkmode={darkmode.value} onClick={darkmode.toggle}>
               {darkmode.value ? <MoonIcon /> : <SunIcon />}

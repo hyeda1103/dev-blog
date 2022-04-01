@@ -68,8 +68,6 @@ export const readCategory = (req: Request, res: Response) => {
   const { slug, limit, skip } = req.body
   let limits = limit ? parseInt(limit) : 10
   let skips = skip ? parseInt(skip) : 0
-
-  console.log(slug, limit, skip)
   
   Category.findOne({ slug })
     .populate('postedBy', '_id name username')

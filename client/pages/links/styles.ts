@@ -20,15 +20,20 @@ export const CategoryInfo = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  padding: 20px;
   border: 1px solid ${({ theme }) => theme.text};
   border-radius: 50%;
   overflow: hidden;
   width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Profile = styled.img`
-  width: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const LinkList = styled.div`
@@ -74,6 +79,19 @@ export const Details = styled.div`
   }
 `
 
+export const TypeWrapper = styled.div`
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 8px;
+`;
+
 export const PostedAt = styled.div`
   text-align: right;
   font-size: 14px;
@@ -88,6 +106,7 @@ const Tag = css`
 
 export const TagBox = styled.div`
   display: flex;
+  justify-content: flex-end;
   gap: 6px;
 `;
 
