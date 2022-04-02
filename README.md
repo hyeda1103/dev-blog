@@ -1,4 +1,4 @@
-## Dev Blog for HYEDAKO
+## Dev Blog
 
 ## Table of contents
 
