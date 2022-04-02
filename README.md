@@ -33,7 +33,7 @@ $ yarn start
   - [x] Each links are categorized by related tech stacks(ex) React, Next.js, etc) and the user can see filtered results by selecting specifc tag  
 - [ ] the user with 'admin' role can CRUD own articles on the blog
 - [x] any user can view contents (tech articles & links to useful medium) on the blog
-- [ ] infinite scroll to load more contents
+- [x] infinite scroll to load more contents
 - [ ] skeleton loading or spinner to visualize loading status
 
 ## Built with
