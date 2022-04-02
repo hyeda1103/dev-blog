@@ -4,7 +4,6 @@
 
 - [General Info](#general-info)
 - [Setup](#setup)
-- [Features](#features)
 - [Built with](#built-with)
 - [Status](#status)
 
@@ -23,19 +22,6 @@ $ yarn
 $ yarn start
 ```
 
-## Features
-- [x] Auth
-  - register 
-  - email authentication
-  - login & logout
-  - Find Password
-- [x] the user with 'subscriber' role can register links of useful articles & videos on the blog
-  - [x] Each links are categorized by related tech stacks(ex) React, Next.js, etc) and the user can see filtered results by selecting specifc tag  
-- [ ] the user with 'admin' role can CRUD own articles on the blog
-- [x] any user can view contents (tech articles & links to useful medium) on the blog
-- [x] infinite scroll to load more contents
-- [ ] skeleton loading or spinner to visualize loading status
-
 ## Built with
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with TypeScript.
@@ -53,4 +39,15 @@ $ yarn start
 
 ## Status
 
-The project is **currently in progress(Upadated on April, 1st, 2022)** 🐫
+The project is **currently in progress(Upadated on April, 2nd, 2022)** 🐫
+- [x] Auth
+  - register 
+  - email authentication
+  - login & logout
+  - Find Password
+- [x] the user with 'subscriber' role can register links of useful articles & videos on the blog
+  - [x] Each links are categorized by related tech stacks(ex) React, Next.js, etc) and the user can see filtered results by selecting specifc tag  
+- [ ] the user with 'admin' role can CRUD own articles on the blog
+- [x] any user can view contents (tech articles & links to useful medium) on the blog
+- [x] infinite scroll to load more contents
+- [ ] skeleton loading or spinner to visualize loading status
