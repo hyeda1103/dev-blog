@@ -39,3 +39,20 @@ export const readLink = (req: Request, res: Response) => {
 
 export const deleteLink= (req: Request, res: Response) => {
 }
+
+export const clickCount = (req: Request, res: Response) => {
+  const { linkId } = req.body;
+  Link.findByIdAndUpdate(linkId, {
+    $inc: { clicks: 1 }
+  }, {
+    upsert: true, new: true
+  }).exec((err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                error: '클릭수를 업데이트할 수 없습니다'
+            });
+        }
+        res.json(result);
+    });
+};

@@ -65,7 +65,8 @@ export const listCategory = (req: Request, res: Response) => {
 }
 
 export const readCategory = (req: Request, res: Response) => {
-  const { slug, limit, skip } = req.body
+  const { slug } = req.params;
+  const { limit, skip } = req.body
   let limits = limit ? parseInt(limit) : 10
   let skips = skip ? parseInt(skip) : 0
   

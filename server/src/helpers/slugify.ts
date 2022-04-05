@@ -1,6 +1,5 @@
 function slugify(str: string) {
   str = str.replace(/^\s+|\s+$/g, ""); // trim
-  console.log(str);
   str = str.toLowerCase();
 
   // remove accents, swap ñ for n, etc
