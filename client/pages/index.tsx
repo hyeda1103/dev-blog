@@ -5,17 +5,18 @@ import Layout from '@/components/templates/layout'
 import { API } from './../config';
 import * as T from '@/types/index';
 import CategoryList from '@/components/organisms/categoryList';
+import LinkList from '@/components/organisms/linkList';
 import TwoCol from '@/components/templates/twoCol';
 interface Props {
   categories: Array<T.Category>
+  links: Array<T.Link>
 }
 
-function HomePage({ categories }: Props) {
-  
+function HomePage({ categories, links }: Props) {
   return (
     <Layout>
       <TwoCol
-        MainContent={<div>MainCol</div>}
+        MainContent={<LinkList links={links} />}
         SubContent={<CategoryList categories={categories} />}
       />
     </Layout>
@@ -24,10 +25,12 @@ function HomePage({ categories }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await axios.get(`${API}/categories`)
+    const categoryList = await axios.get(`${API}/categories`)
+    const linkList = await axios.get(`${API}/links`)
     return {
       props: {
-        categories: res.data
+        categories: categoryList.data,
+        links: linkList.data
       }
     }
   } catch (error) {

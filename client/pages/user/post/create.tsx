@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent, FormEventHandler, ChangeEventH
 import axios from 'axios'
 
 import Layout from '@/components/templates/layout';
-import { API } from './../../../config';
+import { API } from '../../../config';
 import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer } from './styles';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
 import ErrorBox from '@/components/molecules/errorBox';
@@ -14,10 +14,11 @@ import TwoCol from '@/components/templates/twoCol';
 
 interface Props {
   user: T.Profile
+  categoryList: Array<T.Category>
   token: string
 }
 
-function CreateLink({ user, token }: Props) {
+function CreateLink({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreateLinkForm>({
     title: '',
     url: '',
@@ -25,22 +26,12 @@ function CreateLink({ user, token }: Props) {
     type: 'free',
     medium: 'article',
   })
-  const [loadedCategories, setLoadedCategories] = useState<Array<T.Category>>([])
   const [formErrors, setFormErrors] = useState<T.Object>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
 
   const { title, url, categories, type, medium } = formValues
-  
-  const loadCategories = async () => {
-    const res = await axios.get(`${API}/categories`)
-    setLoadedCategories(res.data)
-  }
-  
-  useEffect(() => {
-    loadCategories()
-  }, [successMessage])
 
   const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
@@ -105,7 +96,6 @@ function CreateLink({ user, token }: Props) {
   const form = () => {
     return (
       <InputContainer>
-        <Title>Link to Tech</Title>
         <StyledForm onSubmit={handleSubmit} noValidate>
           <InputWrapper>
             <InputWithLabel
@@ -160,7 +150,7 @@ function CreateLink({ user, token }: Props) {
         <ChoiceWrapper>
           <CategoryLabel>카테고리</CategoryLabel>
           <CategoryList>
-            {loadedCategories && loadedCategories.map((category) => (
+            {categoryList && categoryList.map((category) => (
               <li key={category._id}>
                 <input
                   id={category._id}
@@ -242,18 +232,20 @@ function CreateLink({ user, token }: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = getCookie('token', context.req)
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const token = getCookie('token', req)
 
   try {
-    const res = await axios.get(`${API}/user`, {
+    const user = await axios.get(`${API}/user`, {
       headers: {
         authorization: `Bearer ${token}`
       }
     })
+    const category = await axios.get(`${API}/categories`)
     return {
       props: {
-        user: res.data,
+        user: user.data,
+        categoryList: category.data,
         token
       }
     }
@@ -261,6 +253,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         user: null,
+        categoryList: null,
         token: null
       },
     };

@@ -43,32 +43,39 @@ export const LinkList = styled.div`
   row-gap: 24px;
 `;
 
-export const Container = styled.div`
+export const LinkItem = styled.div`
   border: 1px solid ${({ theme }) => theme.text};
   padding: 8px 24px;
 `;
 
 export const LinkIcon = styled(HiLink)`
-  color: ${({ theme }) => theme.hyperlink.default};
+  font-size: 17px;
+  color: ${({ theme }) => theme.body};
+  background-color: ${({ theme }) => theme.hyperlink.default};
   vertical-align: middle;
-  font-size: 14px;
-  margin-right: 4px;
+  padding: 6px;
+  margin-right: 8px;
 `;
 
 export const Title = styled.p`
   font-size: 20px;
 `;
 
-export const Details = styled.span`
+export const Details = styled.div`
+  display: flex;
+  flex-direction: column;
   vertical-align: middle;
-  display: inline-block;
   margin: 8px 0;
+
   a {
     color: ${({ theme }) => theme.hyperlink.default};
 
     &:hover {
       text-decoration: underline;
       text-underline-offset: 2px;
+      ${LinkIcon} {
+        color: ${({ theme }) => theme.hyperlink.contrast};
+      }
     }
   }
 `

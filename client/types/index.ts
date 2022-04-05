@@ -92,3 +92,15 @@ export interface Link {
   clicks: number
   postedBy: Profile['_id']  
 }
+
+export interface Project {
+  _id: string
+  title: string
+  url: string
+  slug: string
+  categories: Array<Category>
+  type: Type
+  medium: Medium 
+  clicks: number
+  postedBy: Profile['_id']  
+}

@@ -38,15 +38,12 @@ export const Nav = styled.div`
 `
 
 export const Item = styled.div`
-  padding: 0 0.5rem;
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 6px;
   a {
     font-size: 16px;
-  }
-  &:last-child {
-    padding-right: 0;
   }
 `
 export const SwitchMode = styled.div<StyleProps>`
@@ -56,7 +53,11 @@ export const SwitchMode = styled.div<StyleProps>`
   justify-content: center;
   padding: 6px;
   cursor: pointer;
-  transition: 0.1s ease;
+  transition: 0.25s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.highlight};
+  }
 `
 
 interface StyleProps {
@@ -80,11 +81,14 @@ export const MoonIcon = styled(IoMdMoon)`
 export const LinkIcon = styled(HiLink)`
   font-size: 17px;
   color: #fff;
-  background-color: ${({ theme }) => theme.hyperlink.default};
+  color: ${({ theme }) => theme.text};
+  border: 1px solid ${({ theme }) => theme.text};
   vertical-align: middle;
-  padding: 6px;
+  padding: 5px;
+  transition: 0.25s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.hyperlink.contrast};
+    color: ${({ theme }) => theme.hyperlink.default};
+    background-color: ${({ theme }) => theme.hyperlink.contrast};
   }
 `;

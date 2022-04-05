@@ -14,7 +14,7 @@ interface Props {
   setAllLinks: any
 }
 
-function LinkItem({ slug, link, allLinks, setAllLinks }: Props) {
+function ProjectItem({ slug, link, allLinks, setAllLinks }: Props) {
   const loadUpdatedLinks = async () => {
     if (slug) {
       const res = await axios.post(`${API}/category/${slug}`, {
@@ -23,7 +23,7 @@ function LinkItem({ slug, link, allLinks, setAllLinks }: Props) {
       })
       setAllLinks(res.data.links)
     } else {
-      const res = await axios.get(`${API}/links`)
+      const res = await axios.get(`${API}/projects`)
       setAllLinks(res.data)
     }
   }
@@ -64,4 +64,4 @@ function LinkItem({ slug, link, allLinks, setAllLinks }: Props) {
   )
 }
 
-export default LinkItem
+export default ProjectItem

@@ -5,7 +5,7 @@ import axios from 'axios'
 import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { API } from './../../config'
+import { API } from '../../config'
 import Layout from '@/components/templates/layout';
 import TwoCol from '@/components/templates/twoCol';
 import * as T from '../../types/index'
@@ -54,7 +54,6 @@ function SingleCategory({ slug, category, links, numOfLinks, linksLimit, linkSki
     let toSkip = skip + limit
     setSkip(toSkip)
     const res = await axios.post(`${API}/category/${slug}`, { skip: toSkip, limit })
-    console.log(res.data.links)
     setAllLinks([...allLinks, ...res.data.links])
     setSize(res.data.links.length)
   }
@@ -65,8 +64,8 @@ function SingleCategory({ slug, category, links, numOfLinks, linksLimit, linkSki
         dataLength={allLinks.length}
         next={loadMore}
         hasMore={size > 0 && size >= limit}
-        loader={<div>로딩 중</div>}
-        endMessage={<h4>Nothing more to show</h4>}
+        loader={<></>}
+        endMessage={<></>}
       >
         <LinkList>
           {allLinks.map((link) => (
