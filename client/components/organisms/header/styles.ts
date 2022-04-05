@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { IoMdSunny, IoMdMoon } from "react-icons/io";
 import { HiLink } from 'react-icons/hi'
 
@@ -50,11 +50,11 @@ export const Item = styled.div`
   }
 `
 export const SwitchMode = styled.div<StyleProps>`
-  height: 24px;
+  background-color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.5rem;
+  padding: 6px;
   cursor: pointer;
   transition: 0.1s ease;
 `
@@ -63,10 +63,18 @@ interface StyleProps {
   darkmode: boolean;
 }
 
+const Icon = css`
+  font-size: 17px;
+  color: ${({ theme }) => theme.body};
+  vertical-align: middle;
+`;
+
 export const SunIcon = styled(IoMdSunny)`
+  ${Icon}
 `
 
 export const MoonIcon = styled(IoMdMoon)`
+  ${Icon}
 `
 
 export const LinkIcon = styled(HiLink)`

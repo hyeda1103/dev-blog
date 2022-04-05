@@ -11,6 +11,12 @@ export const Title = styled.h1`
   line-height: 38.4px;
 `;
 
+export const InputContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 24px;
+`;
+
 export const InputWrapper = styled.div`
   margin-bottom: 50.71px;
 `;

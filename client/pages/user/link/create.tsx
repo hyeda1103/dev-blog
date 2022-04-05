@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Layout from '@/components/templates/layout';
 import { API } from './../../../config';
-import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer } from './styles';
+import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer } from './styles';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
 import ErrorBox from '@/components/molecules/errorBox';
 import Button from '@/components/atoms/button';
@@ -102,37 +102,42 @@ function CreateLink({ user, token }: Props) {
     if (!Object.keys(formErrors).length && isSubmitting) create()
   }, [formErrors, isSubmitting]);
   
-  const form = (
-    <StyledForm onSubmit={handleSubmit} noValidate>
-      <InputWrapper>
-        <InputWithLabel
-          id="title"
-          label="제목"
-          type="text"
-          value={title}
-          placeholder="링크 제목을 입력하세요"
-          handleChange={handleChange}
-          formErrors={formErrors}
-        />
-        <InputWithLabel
-          id="url"
-          label="링크"
-          type="text"
-          value={url}
-          placeholder="url를 입력하세요"
-          handleChange={handleChange}
-          formErrors={formErrors}
-        />
-        <ErrorBox
-          success={successMessage}
-          error={serverErrorMessage}
-        />
-      </InputWrapper>
-      <Button disabled={!token}>
-        링크 등록
-      </Button>
-    </StyledForm>
-  );
+  const form = () => {
+    return (
+      <InputContainer>
+        <Title>Link to Tech</Title>
+        <StyledForm onSubmit={handleSubmit} noValidate>
+          <InputWrapper>
+            <InputWithLabel
+              id="title"
+              label="제목"
+              type="text"
+              value={title}
+              placeholder="링크 제목을 입력하세요"
+              handleChange={handleChange}
+              formErrors={formErrors}
+            />
+            <InputWithLabel
+              id="url"
+              label="링크"
+              type="text"
+              value={url}
+              placeholder="url를 입력하세요"
+              handleChange={handleChange}
+              formErrors={formErrors}
+            />
+            <ErrorBox
+              success={successMessage}
+              error={serverErrorMessage}
+            />
+          </InputWrapper>
+          <Button disabled={!token}>
+            링크 등록
+          </Button>
+        </StyledForm>
+      </InputContainer>
+    );
+  } 
 
   const handleToggle = (categoryId: T.Category['_id']) => (e: ChangeEvent) => {
     const clicked = categories.indexOf(categoryId)
@@ -230,7 +235,7 @@ function CreateLink({ user, token }: Props) {
   return (
     <Layout>
       <TwoCol
-        MainContent={form}
+        MainContent={form()}
         SubContent={MultipleChoice()}
       />
     </Layout>
