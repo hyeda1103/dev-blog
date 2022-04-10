@@ -16,14 +16,16 @@
 
 To run this project, install it locally using yarn:
 
+**To run server**
+
 ```
-// to run server
 $ cd ../dev-blog-for-ten/server
 $ yarn serve
 ```
 
+**To run client**
+
 ```
-// to run client
 $ cd ../dev-blog-for-ten/client
 $ yarn dev
 ```
