@@ -7,7 +7,6 @@ export const authMiddleware = async (req: any, res: Response, next: NextFunction
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      console.log(`auth token: ${token}`)
       if (token) {
         const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`) as JwtPayload;
         // Find the user by id
@@ -36,7 +35,6 @@ let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      console.log(`admin token: ${token}`)
       if (token) {
         const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`) as JwtPayload;
         // Find the user by id

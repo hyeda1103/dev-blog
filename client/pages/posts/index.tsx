@@ -8,77 +8,77 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { API } from '../../config'
 import Layout from '@/components/templates/layout';
 import * as T from '../../types/index'
-import { LinkList } from './styles';
-import LinkItem from '@/components/molecules/linkItem/index';
+import { PostList } from './styles';
+import LinkItem from '@/components/molecules/postItem/index';
 
 interface Props {
-  links: Array<T.Link>
-  numOfLinks: number
-  linksLimit: number
-  linkSkip: number
+  posts: Array<T.Post>
+  numOfPosts: number
+  postsLimit: number
+  postSkip: number
 }
 
-function LinksList({ links, numOfLinks, linksLimit, linkSkip }: Props) {
-  const [allLinks, setAllLinks] = useState<Array<T.Link>>(links)
-  const [limit, setLimit] = useState(linksLimit);
-  const [skip, setSkip] = useState(linkSkip)
-  const [size, setSize] = useState(numOfLinks)
+function PostsList({ posts, numOfPosts, postsLimit, postSkip }: Props) {
+  const [allPosts, setAllPosts] = useState<Array<T.Post>>(posts)
+  const [limit, setLimit] = useState(postsLimit);
+  const [skip, setSkip] = useState(postSkip)
+  const [size, setSize] = useState(numOfPosts)
 
   useEffect(() => {
-    setAllLinks(links)
-    setSkip(linkSkip)
-    setSize(numOfLinks)
-    setLimit(linksLimit)
-  }, [links, linkSkip, numOfLinks, linksLimit])
+    setAllPosts(posts)
+    setSkip(postSkip)
+    setSize(numOfPosts)
+    setLimit(postsLimit)
+  }, [posts, postSkip, numOfPosts, postsLimit])
   
   // const loadMore = async () => {
   //   let toSkip = skip + limit
   //   setSkip(toSkip)
-  //   const res = await axios.post(`${API}/links`, { skip: toSkip, limit })
-  //   console.log(res.data.links)
-  //   setAllLinks([...allLinks, ...res.data.links])
-  //   setSize(res.data.links.length)
+  //   const res = await axios.post(`${API}/posts`, { skip: toSkip, limit })
+  //   console.log(res.data.posts)
+  //   setAllPosts([...allPosts, ...res.data.posts])
+  //   setSize(res.data.posts.length)
   // }
   
   return (
     <Layout>
       {/* <InfiniteScroll
-        dataLength={allLinks.length}
+        dataLength={allPosts.length}
         next={loadMore}
         hasMore={size > 0 && size >= limit}
         loader={<></>}
         endMessage={<></>}
       > */}
-        <LinkList>
-          {allLinks.map((link) => (
+        <PostList>
+          {allPosts.map((post) => (
             <LinkItem
-              key={link._id}
-              link={link}
-              allLinks={allLinks}
-              setAllLinks={setAllLinks}
+              key={post._id}
+              post={post}
+              allPosts={allPosts}
+              setAllPosts={setAllPosts}
             />
           ))}
-        </LinkList>
+        </PostList>
       {/* </InfiniteScroll> */}
     </Layout>
   )
 }
 
-export default LinksList
+export default PostsList
 
 export const getServerSideProps: GetServerSideProps = async () => {
   let skip = 0
   let limit = 5
   
   try {
-    const res = await axios.get(`${API}/links`)
+    const res = await axios.get(`${API}/posts`)
     
     return {
       props: {
-        links: res.data,
-        numOfLinks: res.data.length,
-        linksLimit: limit,
-        linkSkip: skip,
+        posts: res.data,
+        numOfPosts: res.data.length,
+        postsLimit: limit,
+        postSkip: skip,
       }
     }
   } catch (error) {

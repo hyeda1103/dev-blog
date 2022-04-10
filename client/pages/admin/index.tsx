@@ -24,16 +24,9 @@ const Admin = ({ admin }: Props) => {
           </Link>
         </li>
         <li>
-          <Link href="user/post/create">
+          <Link href="admin/post/create">
             <a>
               새 글 포스팅하기
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="user/project/create">
-            <a>
-              새 프로젝트 등록하기
             </a>
           </Link>
         </li>

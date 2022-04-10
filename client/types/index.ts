@@ -63,44 +63,27 @@ export interface Category {
   content: string
 }
 
-export interface CreateLinkForm {
+export interface CreatePostForm {
   title: string
+  description: string
   url: string
   categories: Array<string>
-  type: string
-  medium: string
+  type: PostType
 }
 
-export enum Type {
-  FREE = 'free',
-  Paid = 'paid'
+export enum PostType {
+  ARTICLE = 'article',
+  PROJECT = 'project',
+  GOOGLED = 'googled'
 }
-
-export enum Medium {
-  Video = 'video',
-  Article = 'article'
-}
-
-export interface Link {
+export interface Post {
   _id: string
   title: string
+  description: string
   url: string
   slug: string
   categories: Array<Category>
-  type: Type
-  medium: Medium 
-  clicks: number
-  postedBy: Profile['_id']  
-}
-
-export interface Project {
-  _id: string
-  title: string
-  url: string
-  slug: string
-  categories: Array<Category>
-  type: Type
-  medium: Medium 
+  type: PostType
   clicks: number
   postedBy: Profile['_id']  
 }

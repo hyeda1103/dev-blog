@@ -3,8 +3,7 @@ import AWS from 'aws-sdk'
 import { v4 as uuidv4 } from 'uuid';
 
 import Category from '../models/category'
-import Link from '../models/link'
-import Project from '../models/project'
+import Post from '../models/post'
 import slugify from "../helpers/slugify";
 
 export const createCategory = (req: any, res: Response) => {
@@ -79,32 +78,19 @@ export const readCategory = (req: Request, res: Response) => {
           error: '카테고리를 로드할 수 없습니다'
         })
       }
-      Link.find({ categories: category })
+      Post.find({ categories: category })
         .populate('postedBy', '_id name username')
         .populate('categories', 'name slug')
         .sort({ createdAt: -1 })
         .limit(limits)
         .skip(skips)
-        .exec((err, links) => {
+        .exec((err, posts) => {
           if (err) {
             return res.status(400).json({
               error: '카테고리에 해당하는 링크를 로드할 수 없습니다'
             })
           }
-          Project.find({ categories: category })
-          .populate('postedBy', '_id name username')
-          .populate('categories', 'name slug')
-          .sort({ createdAt: -1 })
-          .limit(limits)
-          .skip(skips)
-          .exec((err, projects) => {
-            if (err) {
-              return res.status(400).json({
-                error: '카테고리에 해당하는 프로젝트를 로드할 수 없습니다'
-              })
-            }
-            res.json({ category, links, projects })
-          })
+          res.json({ category, posts })
         })
     })
 }

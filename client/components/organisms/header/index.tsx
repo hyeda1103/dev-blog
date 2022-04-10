@@ -21,14 +21,7 @@ export default function Navbar() {
                 블로그
               </a>
             </Link>
-          </Item>  
-          <Item>
-            <Link href="/projects">
-              <a>
-                프로젝트
-              </a>
-            </Link>
-          </Item>  
+          </Item> 
           {
             isAuth() && isAuth().role === 'subscriber' && (
               <Item>

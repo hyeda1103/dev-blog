@@ -1,5 +1,4 @@
 import { User, UserRegister } from './user'
-import { Link } from './link'
-import { Project } from './project'
+import { Post, PostType } from './post'
 
-export { User, UserRegister, Link, Project }
+export { User, UserRegister, Post, PostType }

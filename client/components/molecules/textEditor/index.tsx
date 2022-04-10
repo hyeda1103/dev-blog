@@ -2,8 +2,8 @@ import React from 'react';
 import dynamic from 'next/dynamic'
 import ErrorBox from '@/components/molecules/errorBox';
 import * as T from '@/types/index'
-import 'react-quill/dist/quill.bubble.css'
 import { StyledLabel, Text } from './styles';
+import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.bubble.css'
 
 const ReactQuill = dynamic(() => import('react-quill'), {

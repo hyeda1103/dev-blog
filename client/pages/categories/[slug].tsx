@@ -9,31 +9,30 @@ import { API } from '../../config'
 import Layout from '@/components/templates/layout';
 import TwoCol from '@/components/templates/twoCol';
 import * as T from '@/types/index'
-import LinkItem from '@/components/molecules/linkItem/index';
-import { CategoryInfo, Details, Header, Profile, LinkList, ImageWrapper } from './styles';
+import LinkItem from '@/components/molecules/postItem/index';
+import { CategoryInfo, Details, Header, Profile, PostList, ImageWrapper } from './styles';
 
 interface Props {
   slug: string
   category: T.Category
-  links: Array<T.Link>
-  projects: Array<T.Project>
-  numOfLinks: number
-  linksLimit: number
-  linkSkip: number
+  posts: Array<T.Post>
+  numOfPosts: number
+  postsLimit: number
+  postSkip: number
 }
 
-function SingleCategory({ slug, category, links, projects, numOfLinks, linksLimit, linkSkip }: Props) {
-  const [allLinks, setAllLinks] = useState<Array<T.Link>>(links)
-  const [limit, setLimit] = useState(linksLimit);
-  const [skip, setSkip] = useState(linkSkip)
-  const [size, setSize] = useState(numOfLinks)
+function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSkip }: Props) {
+  const [allPosts, setAllPosts] = useState<Array<T.Post>>(posts)
+  const [limit, setLimit] = useState(postsLimit);
+  const [skip, setSkip] = useState(postSkip)
+  const [size, setSize] = useState(numOfPosts)
 
   useEffect(() => {
-    setAllLinks([...links, ...projects])
-    setSkip(linkSkip)
-    setSize(numOfLinks)
-    setLimit(linksLimit)
-  }, [slug, links, projects, linkSkip, numOfLinks, linksLimit])
+    setAllPosts(posts)
+    setSkip(postSkip)
+    setSize(numOfPosts)
+    setLimit(postsLimit)
+  }, [slug, posts, postSkip, numOfPosts, postsLimit])
   
   const categoryInfo = (() => {
     return (
@@ -55,37 +54,37 @@ function SingleCategory({ slug, category, links, projects, numOfLinks, linksLimi
     let toSkip = skip + limit
     setSkip(toSkip)
     const res = await axios.post(`${API}/category/${slug}`, { skip: toSkip, limit })
-    setAllLinks([...allLinks, ...res.data.links])
-    setSize(res.data.links.length)
+    setAllPosts([...allPosts, ...res.data.posts])
+    setSize(res.data.posts.length)
   }
   
-  const linkList = (() => {
+  const postList = (() => {
     return (
       <InfiniteScroll
-        dataLength={allLinks.length}
+        dataLength={allPosts.length}
         next={loadMore}
         hasMore={size > 0 && size >= limit}
         loader={<></>}
         endMessage={<></>}
       >
-        <LinkList>
-          {allLinks.map((link) => (
+        <PostList>
+          {allPosts.map((post) => (
             <LinkItem
-              key={link._id}
+              key={post._id}
               slug={slug}
-              link={link}
-              allLinks={allLinks}
-              setAllLinks={setAllLinks}
+              post={post}
+              allPosts={allPosts}
+              setAllPosts={setAllPosts}
             />
           ))}
-        </LinkList>
+        </PostList>
       </InfiniteScroll>
     )
   })()
   return (
     <Layout>
       <TwoCol 
-        MainContent={linkList}
+        MainContent={postList}
         SubContent={categoryInfo}
       />
     </Layout>
@@ -106,11 +105,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
     props: {
       slug,
       category: res.data.category,
-      links: res.data.links,
-      projects: res.data.projects,
-      numOfLinks: all.data.links.length,
-      linksLimit: limit,
-      linkSkip: skip,
+      posts: res.data.posts,
+      numOfPosts: all.data.posts.length,
+      postsLimit: limit,
+      postSkip: skip,
     }
   }
 }

@@ -8,8 +8,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth'
 import userRoutes from './routes/user'
 import categoryRoutes from './routes/category'
-import linkRoutes from './routes/link'
-import projectRoutes from './routes/project'
+import postRoutes from './routes/post'
 
 // config
 import { connectDB } from '../config';
@@ -34,8 +33,7 @@ app.use(cors({
 app.use('/api', authRoutes)
 app.use('/api', userRoutes)
 app.use('/api', categoryRoutes)
-app.use('/api', linkRoutes);
-app.use('/api', projectRoutes);
+app.use('/api', postRoutes);
 
 const port = process.env.PORT || 8000
 

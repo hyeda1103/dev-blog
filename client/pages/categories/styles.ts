@@ -37,7 +37,7 @@ export const Profile = styled.img`
   object-position: center;
 `;
 
-export const LinkList = styled.div`
+export const PostList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 24px;
