@@ -10,16 +10,26 @@
 ## General Info
 
 - Dev blog for me🦝✨'
-- I started this project to learn `Next.js`, and to get used to `AWS services`
+- I started this project to learn 
+  - `Next.js`
+  - how to use `AWS services`
 
 ## Setup
 
 To run this project, install it locally using yarn:
 
+**To run server**
+
 ```
-$ cd ../visualize-chemicals-app
-$ yarn
-$ yarn start
+$ cd ../dev-blog-for-ten/server
+$ yarn serve
+```
+
+**To run client**
+
+```
+$ cd ../dev-blog-for-ten/client
+$ yarn dev
 ```
 
 ## Built with
