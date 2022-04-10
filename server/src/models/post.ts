@@ -10,16 +10,15 @@ const postSchema = new Schema({
     required: true,
     max: 256
   },
-  url: {
+  webLink: {
     type: String,
     trim: true,
-    max: 256
+    max: 256,
   },
-  slug: {
+  githubLink: {
     type: String,
-    lowercase: true,
-    unique: true,
-    index: true
+    trim: true,
+    max: 256,
   },
   description: {
     type: String,

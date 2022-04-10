@@ -10,7 +10,7 @@ export interface Post {
   clicks: string
   title: string
   description: string
-  url?: string
-  slug: string
+  webLink?: string
+  githubLink?: string
   postedBy: string
 }

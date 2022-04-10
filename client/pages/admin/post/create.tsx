@@ -24,7 +24,8 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
-    url: '',
+    webLink: '',
+    githubLink: '',
     categories: [],
     type: T.PostType.ARTICLE,
   })
@@ -33,7 +34,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
 
-  const { title, description, url, categories, type } = formValues
+  const { title, description, webLink, githubLink, categories, type } = formValues
 
   const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setIsSubmitting(false);
@@ -48,14 +49,15 @@ function CreateLink({ user, categoryList, token }: Props) {
     if (!values.title) {
       errorRegisters.title = '제목을 입력해야 합니다';
     } 
+
+    if (values.type === T.PostType.PROJECT && !values.githubLink) {
+      errorRegisters.githubLink = 'github 링크를 입력해야 합니다';
+    } 
     
     if (!values.description) {
       errorRegisters.description = '내용을 입력해야 합니다';
     } 
     
-    if (!values.url) {
-      errorRegisters.url = '링크를 입력해야 합니다';
-    } 
 
     if (values.categories.length === 0) {
       errorRegisters.categories = '적어도 하나 이상의 카테고리를 선택해야 합니다'
@@ -79,7 +81,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   }
   
   const create = async () => {
-    console.table({title, url, categories, type, token})
+    console.table({title, githubLink, webLink, categories, type, token})
     try {
       const res = await axios.post(`${API}/post`, formValues, {
         headers: {
@@ -89,7 +91,8 @@ function CreateLink({ user, categoryList, token }: Props) {
       setFormValues({
         title: '',
         description: '',
-        url: '',
+        githubLink: '',
+        webLink: '',
         categories: [],
         type: T.PostType.ARTICLE,
       })
@@ -122,11 +125,20 @@ function CreateLink({ user, categoryList, token }: Props) {
               formErrors={formErrors}
             />
             <InputWithLabel
-              id="url"
-              label="Link"
+              id="githubLink"
+              label="Github Link"
               type="text"
-              value={url}
-              placeholder="url를 입력하세요"
+              value={githubLink}
+              placeholder="소스코드가 저장된 github 링크를 입력하세요"
+              handleChange={handleChange}
+              formErrors={formErrors}
+            />
+            <InputWithLabel
+              id="webLink"
+              label="Website URL"
+              type="text"
+              value={webLink}
+              placeholder="배포한 웹사이트 주소를 입력하세요"
               handleChange={handleChange}
               formErrors={formErrors}
             />

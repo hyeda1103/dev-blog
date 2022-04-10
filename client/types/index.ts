@@ -66,7 +66,8 @@ export interface Category {
 export interface CreatePostForm {
   title: string
   description: string
-  url: string
+  webLink?: string
+  githubLink?: string
   categories: Array<string>
   type: PostType
 }
@@ -80,8 +81,8 @@ export interface Post {
   _id: string
   title: string
   description: string
-  url: string
-  slug: string
+  webLink?: string
+  githubLink?: string
   categories: Array<Category>
   type: PostType
   clicks: number

@@ -5,17 +5,17 @@ import Post from '../models/post'
 import * as T from '../types'
 
 export const createPost = (req: any, res: Response) => {
-  const { title, url, description, categories, type } = req.body;
-  const slug = slugify(url)
+  const { title, webLink, githubLink, description, categories, type } = req.body;
   let post = new Post({
-    title, url, description, slug, categories, type
+    title, webLink, githubLink, description, categories, type
   });
   post.postedBy = req.profile._id;
   
   post.save((err: string, data: T.Post) => {
     if (err) {
+      console.log(err)
       return res.status(400).json({
-        error: '이미 등록된 링크입니다'
+        error: '이미 등록된 포스트입니다'
       })
     }
     res.json(data)
@@ -29,7 +29,7 @@ export const listPost = (req: Request, res: Response) => {
     .exec((err, data) => {
     if (err) {
       return res.status(400).json({
-        error: '링크를 찾을 수 없습니다'
+        error: '포스트를 찾을 수 없습니다'
       })
     }
     res.json(data)

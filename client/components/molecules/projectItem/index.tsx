@@ -4,7 +4,7 @@ import axios from 'axios';
 import DOMPurify from 'dompurify';
 
 import * as T from '../../../types'
-import { Details, Header, LinkIcon, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
+import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
 import CategoryItem from '@/components/molecules/categoryItem/index';
 import { API } from '../../../config';
 
@@ -15,7 +15,7 @@ interface Props {
   setAllPosts: any
 }
 
-function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
+function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
   const loadUpdatedLinks = async () => {
     if (slug) {
       const res = await axios.post(`${API}/category/${slug}`, {
@@ -43,6 +43,9 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
           </TypeWrapper>                      
         </Header>
         <Details>
+          <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
+            <GitHubIcon />{post.githubLink}
+          </a>
           <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
         </Details>
         <Footer>
@@ -61,4 +64,4 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
   )
 }
 
-export default PostItem
+export default ProjectItem
