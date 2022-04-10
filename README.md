@@ -17,9 +17,15 @@
 To run this project, install it locally using yarn:
 
 ```
-$ cd ../visualize-chemicals-app
-$ yarn
-$ yarn start
+// to run server
+$ cd ../dev-blog-for-ten/server
+$ yarn serve
+```
+
+```
+// to run client
+$ cd ../dev-blog-for-ten/client
+$ yarn dev
 ```
 
 ## Built with
