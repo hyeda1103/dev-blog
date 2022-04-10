@@ -13,7 +13,7 @@ export const Container = styled.header`
 `
 
 export const Inner = styled.div`
-  width: 960px;
+  width: 720px;
   height: 100%;
   position: relative;
   box-sizing: border-box;
@@ -41,9 +41,9 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 6px;
+  margin-left: 10px;
   a {
-    font-size: 16px;
+    font-size: 13px;
   }
 `
 export const SwitchMode = styled.div<StyleProps>`

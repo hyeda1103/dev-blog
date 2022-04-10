@@ -27,26 +27,28 @@ export const listPost = (req: Request, res: Response) => {
     .populate('categories', 'name slug')
     .sort({ createdAt: -1 })
     .exec((err, data) => {
-    if (err) {
-      return res.status(400).json({
-        error: '포스트를 찾을 수 없습니다'
-      })
-    }
-    res.json(data)
-  })
+      if (err) {
+        return res.status(400).json({
+          error: '포스트를 찾을 수 없습니다'
+        })
+      }
+      res.json(data)
+    })
 }
 
 export const readPost = (req: Request, res: Response) => {
   const { id } = req.params;
-  Post.findById(id, function (err: string, result: T.Post) {
-    if (err) {
-      console.error(err);
-      return res.status(400).json({
-          error: '해당 포스트는 존재하지 않습니다'
-      });
-    }
-    res.json(result);
-  })
+  Post.findOne({ _id: id })
+    .populate('categories', 'name slug')
+    .exec((err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(400).json({
+            error: '해당 포스트는 존재하지 않습니다'
+        });
+      }
+      res.json(data);
+    })
 }
 
 export const deletePost= (req: Request, res: Response) => {

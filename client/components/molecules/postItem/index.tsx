@@ -2,9 +2,11 @@ import Link from 'next/link';
 import React from 'react'
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import * as T from '../../../types'
-import { Details, Header, LinkIcon, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
+import { Details, Header, Description, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
 import CategoryItem from '@/components/molecules/categoryItem/index';
 import { API } from '../../../config';
 
@@ -39,11 +41,11 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
         <Header>
           <Title>{post.title}</Title>
           <TypeWrapper>
-              {post.type}
+            {moment(post.createdAt).fromNow()}
           </TypeWrapper>                      
         </Header>
         <Details>
-          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+          <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
         </Details>
         <Footer>
           <TagBox>

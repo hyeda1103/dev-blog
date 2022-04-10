@@ -14,28 +14,12 @@ export default function Navbar() {
             <a>HYEDAKO</a>
           </Link>
         </Logo>
-        <Nav>     
-          <Item>
-            <Link href="/posts">
-              <a>
-                블로그
-              </a>
-            </Link>
-          </Item> 
-          {
-            isAuth() && isAuth().role === 'subscriber' && (
-              <Item>
-                <Link href="/user">
-                  <a>{isAuth().name}</a>
-                </Link>
-              </Item>
-            )
-          }
+        <Nav>
           {
             isAuth() && isAuth().role === 'admin' && (
               <Item>
                 <Link href="/admin">
-                  <a>{isAuth().name}</a>
+                  <a>ADMIN</a>
                 </Link>
               </Item>  
             )

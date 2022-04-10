@@ -4,23 +4,36 @@ import Link from 'next/link'
 import axios from 'axios'
 import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroll-component";
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import { API } from '../../config'
 import Layout from '@/components/templates/layout';
-import TwoCol from '@/components/templates/twoCol';
 import * as T from '../../types/index'
-import { CategoryInfo, Details, Header, Profile, PostList, ImageWrapper } from './styles';
-import PostItem from '@/components/molecules/postItem';
+import { Header, Title, TypeWrapper, TagBox, Container } from './styles';
+import CategoryItem from '@/components/molecules/categoryItem';
 
 interface Props {
   post: T.Post
 }
 
 function SinglePost({ post }: Props) {
-  console.log(post)
   return (
     <Layout>
-      {post.title}
+      <Container>
+        <Header>
+          <Title>{post.title}</Title>
+          <TypeWrapper>
+            {moment(post.createdAt).fromNow()}
+          </TypeWrapper>
+        </Header>
+        <TagBox>
+          {post.categories.map((category) => (
+            <CategoryItem key={category._id} category={category} />
+          ))}
+        </TagBox>
+        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+      </Container>
     </Layout>
   )
 }

@@ -15,10 +15,7 @@ interface Props {
 function HomePage({ categories, posts }: Props) {
   return (
     <Layout>
-      <TwoCol
-        MainContent={<PostList posts={posts} />}
-        SubContent={<CategoryList categories={categories} />}
-      />
+      <PostList posts={posts} />
     </Layout>
   )
 }

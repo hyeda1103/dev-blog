@@ -87,4 +87,5 @@ export interface Post {
   type: PostType
   clicks: number
   postedBy: Profile['_id']  
+  createdAt: string
 }

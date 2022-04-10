@@ -130,3 +130,13 @@ export const ClickIcon = styled(HiCursorClick)`
   vertical-align: middle;
   margin-left: 4px;
 `;
+
+export const Description = styled.div`
+  margin: 8px 0;
+  width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;

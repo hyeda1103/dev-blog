@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components'
 import { HiLink, HiCursorClick } from 'react-icons/hi'
-import { ImFire } from 'react-icons/im'
+
+export const Container = styled.div`
+  border: 1px solid ${({ theme }) => theme.text};
+  padding: 8px 24px;
+  cursor: pointer;
+`;
 
 export const Header = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
   border-bottom: 1px solid ${({ theme }) => theme.text};
   padding: 8px 0;
 `;
@@ -58,7 +62,7 @@ export const LinkIcon = styled(HiLink)`
 `;
 
 export const Title = styled.p`
-  font-size: 20px;
+  font-size: 32px;
 `;
 
 export const Details = styled.div`
@@ -106,7 +110,6 @@ const Tag = css`
 
 export const TagBox = styled.div`
   display: flex;
-  justify-content: flex-end;
   gap: 6px;
 `;
 

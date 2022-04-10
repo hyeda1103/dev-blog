@@ -13,4 +13,5 @@ export interface Post {
   webLink?: string
   githubLink?: string
   postedBy: string
+  createdAt: string
 }

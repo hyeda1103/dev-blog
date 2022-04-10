@@ -83,10 +83,8 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
   })()
   return (
     <Layout>
-      <TwoCol 
-        MainContent={postList}
-        SubContent={categoryInfo}
-      />
+      {/* {categoryInfo} */}
+      {postList}
     </Layout>
   )
 }

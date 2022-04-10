@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { HiLink, HiCursorClick } from 'react-icons/hi'
+import { HiCursorClick } from 'react-icons/hi'
 import { VscGithubInverted } from 'react-icons/vsc'
 
 export const Header = styled.div`
@@ -53,7 +53,7 @@ export const GitHubIcon = styled(VscGithubInverted)`
   color: ${({ theme }) => theme.hyperlink.default};
   vertical-align: middle;
   font-size: 18px;
-  margin-right: 4px;
+  margin-right: 8px;
 `;
 
 export const Title = styled.p`
@@ -129,4 +129,25 @@ export const ViewWrapper = styled.div`
 export const ClickIcon = styled(HiCursorClick)`
   vertical-align: middle;
   margin-left: 4px;
+`;
+
+export const LinkWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const Description = styled.div`
+  margin: 8px 0;
+  width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;

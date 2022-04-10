@@ -2,9 +2,11 @@ import Link from 'next/link';
 import React from 'react'
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import * as T from '../../../types'
-import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
+import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, Description, TypeWrapper, ClickIcon, ViewWrapper, LinkWrapper } from './styles';
 import CategoryItem from '@/components/molecules/categoryItem/index';
 import { API } from '../../../config';
 
@@ -39,14 +41,16 @@ function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
         <Header>
           <Title>{post.title}</Title>
           <TypeWrapper>
-              {post.type}
+            {moment(post.createdAt).fromNow()}
           </TypeWrapper>                      
         </Header>
         <Details>
-          <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon />{post.githubLink}
-          </a>
-          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+          <LinkWrapper>
+            <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
+              <GitHubIcon />{post.githubLink}
+            </a>
+          </LinkWrapper>
+          <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
         </Details>
         <Footer>
           <TagBox>
