@@ -19,7 +19,7 @@ export default function Navbar() {
             isAuth() && isAuth().role === 'admin' && (
               <Item>
                 <Link href="/admin">
-                  <a>ADMIN</a>
+                  <a>어드민</a>
                 </Link>
               </Item>  
             )
