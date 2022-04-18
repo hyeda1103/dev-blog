@@ -2,16 +2,18 @@ import styled, { css } from 'styled-components'
 import { HiLink, HiCursorClick } from 'react-icons/hi'
 
 export const Container = styled.div`
-  border: 1px solid ${({ theme }) => theme.text};
-  padding: 8px 24px;
-  cursor: pointer;
 `;
 
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid ${({ theme }) => theme.text};
-  padding: 8px 0;
+  padding: 16px 0;
+`;
+
+export const MainText = styled.div`
+  display: flex;
+  padding: 32px 0;
 `;
 
 export const CategoryInfo = styled.div`
@@ -61,8 +63,10 @@ export const LinkIcon = styled(HiLink)`
   margin-right: 8px;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: 32px;
+  font-weight: 700;
+  margin: 1rem 0;
 `;
 
 export const Details = styled.div`
@@ -110,6 +114,7 @@ const Tag = css`
 
 export const TagBox = styled.div`
   display: flex;
+  justify-content: flex-end;
   gap: 6px;
 `;
 

@@ -10,7 +10,7 @@ import 'moment/locale/ko';
 import { API } from '../../config'
 import Layout from '@/components/templates/layout';
 import * as T from '../../types/index'
-import { Header, Title, TypeWrapper, TagBox, Container } from './styles';
+import { Header, MainText, Title, TypeWrapper, TagBox, Container } from './styles';
 import CategoryItem from '@/components/molecules/categoryItem';
 
 interface Props {
@@ -22,17 +22,17 @@ function SinglePost({ post }: Props) {
     <Layout>
       <Container>
         <Header>
+          <TagBox>
+            {post.categories.map((category) => (
+              <CategoryItem key={category._id} category={category} />
+            ))}
+          </TagBox>
           <Title>{post.title}</Title>
           <TypeWrapper>
-            {moment(post.createdAt).fromNow()}
+            {moment(post.createdAt).format("YYYY년 MM월 DD일 HH시 mm분 ss초")}
           </TypeWrapper>
         </Header>
-        <TagBox>
-          {post.categories.map((category) => (
-            <CategoryItem key={category._id} category={category} />
-          ))}
-        </TagBox>
-        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+        <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
       </Container>
     </Layout>
   )
