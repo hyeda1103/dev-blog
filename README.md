@@ -36,6 +36,7 @@ $ yarn dev
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with TypeScript.
 - Used dependencies and versions can be found in `package.json` in the project root.
+  - `Next.js` for UI 
   - `styled-components` for styling
   - `Express` for `Node.js` server framework
   - `MongoDB` for database
