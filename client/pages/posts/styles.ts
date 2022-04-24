@@ -12,8 +12,8 @@ export const Header = styled.div`
 `;
 
 export const MainText = styled.div`
-  display: flex;
   padding: 32px 0;
+  line-height: 2;
 `;
 
 export const CategoryInfo = styled.div`

@@ -42,19 +42,19 @@ type Theme = {
 }
 
 export const GlobalStyles = createGlobalStyle`
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        background: ${({ theme }: Theme) => theme.body};
-        color: ${({ theme }: Theme) => theme.text};
-        transition: all 0.50s linear;
-        overflow-x: hidden;
-        font-family: 'KoPubWorld-Dotum-Light';
-    }
-    a {
-      text-decoration: none;
+  * {
+      margin: 0;
+      padding: 0;
+  }
+  body {
+      background: ${({ theme }: Theme) => theme.body};
       color: ${({ theme }: Theme) => theme.text};
-    }
-`
+      transition: all 0.50s linear;
+      overflow-x: hidden;
+      font-family: 'KoPubWorld-Dotum-Light';
+  }
+  a {
+    text-decoration: none;
+    color: ${({ theme }: Theme) => theme.text};
+  }
+`;
