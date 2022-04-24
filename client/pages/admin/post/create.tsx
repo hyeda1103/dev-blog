@@ -13,11 +13,17 @@ import { getCookie } from '@/helpers/auth';
 import * as T from '@/types/index';
 import { API } from '../../../config';
 import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer } from './styles';
+import Dropdown from '@/components/atoms/dropDown';
 
 interface Props {
   user: T.Profile
   categoryList: Array<T.Category>
   token: string
+}
+
+interface Option {
+  value: string
+  label: string
 }
 
 function CreateLink({ user, categoryList, token }: Props) {
@@ -33,6 +39,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
+  const [options, setOptions] = useState<Array<Option>>();
 
   const { title, description, webLink, githubLink, categories, type } = formValues
 
@@ -177,6 +184,14 @@ function CreateLink({ user, categoryList, token }: Props) {
       categories: '',
     })
   }
+  
+  useEffect(() => {
+    const selectOptions = categoryList.map((categoryItem: T.Category) => ({
+      value: categoryItem._id,
+      label: categoryItem.name,
+    }))
+    setOptions(selectOptions)
+  }, [categoryList])
 
   const MultipleChoice = () => {
     return (
@@ -273,7 +288,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 }
-
-
 
 export default CreateLink
