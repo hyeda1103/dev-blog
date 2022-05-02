@@ -89,3 +89,13 @@ export interface Post {
   postedBy: Profile['_id']  
   createdAt: string
 }
+
+export interface SelectOption {
+  value: string
+  label: string
+}
+
+export enum Step {
+  TYPE = 'type',
+  POST = 'post'
+}

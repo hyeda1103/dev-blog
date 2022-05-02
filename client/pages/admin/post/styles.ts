@@ -101,3 +101,28 @@ export const ChoiceWrapper = styled.div`
     margin-top: 16px;
   }
 `;
+
+export const TypeButton = styled.button`
+  padding: 1rem 2rem;
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  border: 1px solid ${({ theme }) => theme.text};
+  cursor: pointer;
+  border-radius: 0;
+
+  & + & {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.hover};
+    transform: 0.25s ease;
+  }
+`;
+
+export const TypeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+

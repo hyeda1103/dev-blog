@@ -1,8 +1,9 @@
 import type { AppProps } from 'next/app'
 import { useState, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { lightTheme, darkTheme, GlobalStyles } from '@/styles/theme'
 import useDarkMode from 'use-dark-mode'
+
+import { lightTheme, darkTheme, GlobalStyles } from '@/styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false)

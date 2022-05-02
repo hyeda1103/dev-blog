@@ -12,7 +12,9 @@ import Button from '@/components/atoms/button';
 import { getCookie } from '@/helpers/auth';
 import * as T from '@/types/index';
 import { API } from '../../../config';
-import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer } from './styles';
+import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer, TypeWrapper, TypeButton } from './styles';
+import ReactSelect from '@/components/atoms/select';
+import { ActionMeta } from 'react-select';
 
 interface Props {
   user: T.Profile
@@ -20,7 +22,15 @@ interface Props {
   token: string
 }
 
+interface Option {
+  value: string
+  label: string
+}
+
+const postTypes = ['ARTICLE', 'PROJECT', 'GOOGLED']
+
 function CreateLink({ user, categoryList, token }: Props) {
+  const [step, setStep] = useState(T.Step.TYPE)
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
@@ -33,6 +43,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
+  const [options, setOptions] = useState<Array<Option>>();
 
   const { title, description, webLink, githubLink, categories, type } = formValues
 
@@ -81,7 +92,6 @@ function CreateLink({ user, categoryList, token }: Props) {
   }
   
   const create = async () => {
-    console.table({title, githubLink, webLink, categories, type, token})
     try {
       const res = await axios.post(`${API}/post`, formValues, {
         headers: {
@@ -105,10 +115,31 @@ function CreateLink({ user, categoryList, token }: Props) {
     }
   }
   
-
   useEffect(() => {
     if (!Object.keys(formErrors).length && isSubmitting) create()
   }, [formErrors, isSubmitting]);
+  
+  const handleSelect: ((newValue: Array<T.SelectOption> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option: any) => {
+    if (!Array.isArray(option)) return;
+
+    const selectedCategories = option.map((item: T.SelectOption) => item.value)
+    setFormValues({
+      ...formValues,
+      categories: selectedCategories
+    })
+    setFormErrors({
+      ...formErrors,
+      categories: '',
+    })
+  }
+  
+  useEffect(() => {
+    const selectOptions = categoryList.map((categoryItem: T.Category) => ({
+      value: categoryItem._id,
+      label: categoryItem.name,
+    }))
+    setOptions(selectOptions)
+  }, [categoryList])
   
   const form = () => {
     return (
@@ -124,6 +155,12 @@ function CreateLink({ user, categoryList, token }: Props) {
               handleChange={handleChange}
               formErrors={formErrors}
             />
+            {options && (
+              <>
+                <ReactSelect options={options} handleChange={handleSelect} />
+                {formErrors?.categories && <ErrorBox error={formErrors?.categories} />}
+              </>
+            )}
             <InputWithLabel
               id="githubLink"
               label="Github Link"
@@ -163,27 +200,13 @@ function CreateLink({ user, categoryList, token }: Props) {
     );
   } 
 
-  const handleToggle = (categoryId: T.Category['_id']) => (e: ChangeEvent) => {
-    const clicked = categories.indexOf(categoryId)
-    const copyOfCategories = [...categories]
-
-    const newCategories = clicked === -1 ? copyOfCategories.concat([categoryId]) : copyOfCategories.filter((id) => id !== categoryId)
-    setFormValues({
-      ...formValues,
-      categories: newCategories
-    })
-    setFormErrors({
-      ...formErrors,
-      categories: '',
-    })
-  }
-
   const MultipleChoice = () => {
     return (
       <ChoiceContainer>
         <ChoiceWrapper>
           <CategoryLabel>Category</CategoryLabel>
-          <CategoryList>
+          
+          {/* <CategoryList>
             {categoryList && categoryList.map((category) => (
               <li key={category._id}>
                 <input
@@ -195,7 +218,7 @@ function CreateLink({ user, categoryList, token }: Props) {
                 <label htmlFor={category._id}>{category.name}</label>
               </li>
             ))}
-          </CategoryList>
+          </CategoryList> */}
           {formErrors?.categories && <ErrorBox error={formErrors?.categories} />}
         </ChoiceWrapper>
         <ChoiceWrapper>
@@ -240,12 +263,53 @@ function CreateLink({ user, categoryList, token }: Props) {
     )
   }
 
+  const Content = (() => {
+    switch (step) {
+      case T.Step.TYPE:
+        return (
+          <>
+            <TypeWrapper>
+              {postTypes.map((type) => (
+                <TypeButton key={type} onClick={() => handleChange("type")}>
+                  {type}
+                </TypeButton>
+              ))}
+            </TypeWrapper>
+            <button onClick={() => setStep(T.Step.POST)}>다음</button>
+          </>
+        )
+      case T.Step.POST:
+        return (
+          <>
+            <button onClick={() => setStep(T.Step.TYPE)}>이전</button>
+            {form()}            
+          </>
+        )
+      default:
+        return (
+          <>
+            <TypeWrapper>
+              {postTypes.map((type) => (
+                <TypeButton key={type} onClick={() => handleChange("type")}>
+                  {type}
+                </TypeButton>
+              ))}
+            </TypeWrapper>
+            <button onClick={() => setStep(T.Step.POST)}>다음</button>
+          </>
+        )
+    }
+  })()
+
   return (
     <Layout>
-      <TwoCol
+      {/* <TwoCol
         MainContent={form()}
         SubContent={MultipleChoice()}
-      />
+      /> */}
+      <>
+        {Content}
+      </>
     </Layout>
   )
 }
@@ -273,7 +337,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 }
-
-
 
 export default CreateLink
