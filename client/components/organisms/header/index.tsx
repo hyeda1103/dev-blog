@@ -11,7 +11,7 @@ export default function Navbar() {
       <Inner>
         <Logo>
           <Link href="/">
-            <a>HYEDAKO</a>
+            <a>해다고</a>
           </Link>
         </Logo>
         <Nav>
