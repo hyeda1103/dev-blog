@@ -69,7 +69,7 @@ export interface CreatePostForm {
   webLink?: string
   githubLink?: string
   categories: Array<string>
-  type: PostType
+  type: PostType | undefined
 }
 
 export enum PostType {

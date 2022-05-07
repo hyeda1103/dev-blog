@@ -7,7 +7,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { API } from '../../config'
 import Layout from '@/components/templates/layout';
-import TwoCol from '@/components/templates/twoCol';
 import * as T from '@/types/index'
 import LinkItem from '@/components/molecules/postItem/index';
 import { CategoryInfo, Details, Header, Profile, PostList, ImageWrapper } from './styles';

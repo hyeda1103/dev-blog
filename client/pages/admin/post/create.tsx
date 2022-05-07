@@ -2,19 +2,19 @@ import React, { useState, useEffect, ChangeEvent, FormEventHandler } from 'react
 import dynamic from 'next/dynamic';
 import axios from 'axios'
 import { GetServerSideProps } from 'next';
+import { ActionMeta } from 'react-select';
 
 import Layout from '@/components/templates/layout';
-import TwoCol from '@/components/templates/twoCol';
 import InputWithLabel from '@/components/molecules/inputWithLabel';
 import ErrorBox from '@/components/molecules/errorBox';
 import TextEditor from '@/components/molecules/textEditor';
 import Button from '@/components/atoms/button';
+import TypeList from '@/components/organisms/typeList';
 import { getCookie } from '@/helpers/auth';
 import * as T from '@/types/index';
 import { API } from '../../../config';
 import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer, TypeWrapper, TypeButton } from './styles';
 import ReactSelect from '@/components/atoms/select';
-import { ActionMeta } from 'react-select';
 
 interface Props {
   user: T.Profile
@@ -37,7 +37,7 @@ function CreateLink({ user, categoryList, token }: Props) {
     webLink: '',
     githubLink: '',
     categories: [],
-    type: T.PostType.ARTICLE,
+    type: undefined,
   })
   const [formErrors, setFormErrors] = useState<T.Object>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -200,83 +200,11 @@ function CreateLink({ user, categoryList, token }: Props) {
     );
   } 
 
-  const MultipleChoice = () => {
-    return (
-      <ChoiceContainer>
-        <ChoiceWrapper>
-          <CategoryLabel>Category</CategoryLabel>
-          
-          {/* <CategoryList>
-            {categoryList && categoryList.map((category) => (
-              <li key={category._id}>
-                <input
-                  id={category._id}
-                  name={category._id}
-                  type="checkbox"
-                  onChange={handleToggle(category._id)}
-                />
-                <label htmlFor={category._id}>{category.name}</label>
-              </li>
-            ))}
-          </CategoryList> */}
-          {formErrors?.categories && <ErrorBox error={formErrors?.categories} />}
-        </ChoiceWrapper>
-        <ChoiceWrapper>
-          <CategoryLabel>Post Type</CategoryLabel>
-          <CategoryList>
-            <li>
-              <input
-                id="article"
-                name="article"
-                value="article"
-                type="radio"
-                onChange={handleChange("type")}
-                checked={type === T.PostType.ARTICLE}
-              />
-              <label htmlFor="article">Article</label>
-            </li>
-            <li>
-              <input
-                id="project"
-                name="project"
-                value="project"
-                type="radio"
-                onChange={handleChange("type")}
-                checked={type === T.PostType.PROJECT}
-              />
-              <label htmlFor="project">Project</label>
-            </li>
-            <li>
-              <input
-                id="googled"
-                name="googled"
-                value="googled"
-                type="radio"
-                onChange={handleChange("type")}
-                checked={type === T.PostType.GOOGLED}
-              />
-              <label htmlFor="googled">Googled</label>
-            </li>
-          </CategoryList>
-        </ChoiceWrapper>
-      </ChoiceContainer>
-    )
-  }
-
   const Content = (() => {
     switch (step) {
       case T.Step.TYPE:
         return (
-          <>
-            <TypeWrapper>
-              {postTypes.map((type) => (
-                <TypeButton key={type} onClick={() => handleChange("type")}>
-                  {type}
-                </TypeButton>
-              ))}
-            </TypeWrapper>
-            <button onClick={() => setStep(T.Step.POST)}>다음</button>
-          </>
+          <TypeList postTypes={postTypes} handleChange={handleChange} setStep={setStep} formValues={formValues} />
         )
       case T.Step.POST:
         return (
@@ -287,29 +215,14 @@ function CreateLink({ user, categoryList, token }: Props) {
         )
       default:
         return (
-          <>
-            <TypeWrapper>
-              {postTypes.map((type) => (
-                <TypeButton key={type} onClick={() => handleChange("type")}>
-                  {type}
-                </TypeButton>
-              ))}
-            </TypeWrapper>
-            <button onClick={() => setStep(T.Step.POST)}>다음</button>
-          </>
+          <TypeList postTypes={postTypes} handleChange={handleChange} setStep={setStep} formValues={formValues} />
         )
     }
   })()
 
   return (
     <Layout>
-      {/* <TwoCol
-        MainContent={form()}
-        SubContent={MultipleChoice()}
-      /> */}
-      <>
-        {Content}
-      </>
+      {Content}
     </Layout>
   )
 }

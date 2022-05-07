@@ -102,9 +102,13 @@ export const ChoiceWrapper = styled.div`
   }
 `;
 
-export const TypeButton = styled.button`
+interface StyleProps {
+  isSelected: boolean
+}
+
+export const TypeButton = styled.button<StyleProps>`
   padding: 1rem 2rem;
-  background-color: ${({ theme }) => theme.body};
+  background-color: ${({ theme, isSelected }) => isSelected ? theme.highlight : theme.body};
   color: ${({ theme }) => theme.text};
   border: 1px solid ${({ theme }) => theme.text};
   cursor: pointer;
