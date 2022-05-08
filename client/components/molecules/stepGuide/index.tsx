@@ -1,18 +1,19 @@
 import React from 'react'
-import { GuideWrapper, StepWrapper } from './styles'
+import { GuideWrapper, TitleWrapper, Title } from './styles'
 
 interface Props {
   stepNumber: number
-  guide: string
+  title: string
+  guideText: string
 }
 
-function StepGuide({ stepNumber, guide }: Props) {
+function StepGuide({ stepNumber, title, guideText }: Props) {
   return (
     <GuideWrapper>
-      <StepWrapper>
-        {stepNumber}단계
-      </StepWrapper>
-      {guide}
+      <TitleWrapper>
+        <Title>{title}</Title>
+      </TitleWrapper>
+      {guideText}
     </GuideWrapper>
   )
 }

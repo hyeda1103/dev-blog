@@ -46,7 +46,13 @@ export const PostList = styled.div`
 export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.text};
   padding: 8px 24px;
+  margin: 2px;
   cursor: pointer;
+
+  &:hover {
+    -webkit-box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight };
+    box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight };
+  }
 `;
 
 export const LinkIcon = styled(HiLink)`

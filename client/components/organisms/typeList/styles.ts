@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaLongArrowAltRight } from "react-icons/fa";
 
 export const Container = styled.div`
   position: relative;
@@ -16,6 +16,19 @@ export const ArrowIcon = styled(FaArrowAltCircleRight)`
   margin-right: 8px;
 `;
 
+export const Button = styled.button`
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  display: inline-block;
+`;
+
+export const NextIcon = styled(FaLongArrowAltRight)`
+  font-size: 17px;
+  margin-left: 8px;
+`;
+
 interface StyleProps {
   isSelected: boolean
 }
@@ -25,11 +38,28 @@ export const SelectItem = styled.li<StyleProps>`
   padding: 0.5rem;
   border: 1px solid ${({ theme }) => theme.text};
   align-items: center;
+  cursor: pointer;
   display: flex;
+  -webkit-box-shadow: 0 0 2px 2px ${({ theme, isSelected }) => isSelected ? theme.highlight : theme.body };
+  box-shadow: 0 0 2px 2px ${({ theme, isSelected }) => isSelected ? theme.highlight : theme.body };
+
+  &:first-child {
+    margin-top: 0
+  }
+
+  &:last-child {
+    margin-bottom: 0
+  }
+
+  &:hover {
+    -webkit-box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
+    box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
+  }
 `;
 
 export const SelectList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
+  margin: 24px 0;
 `;

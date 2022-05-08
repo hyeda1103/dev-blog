@@ -27,7 +27,7 @@ interface Option {
   label: string
 }
 
-const postTypes = ['ARTICLE', 'PROJECT', 'GOOGLED']
+const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT, T.PostType.GOOGLED]
 
 function CreateLink({ user, categoryList, token }: Props) {
   const [step, setStep] = useState(T.Step.TYPE)
@@ -48,6 +48,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   const { title, description, webLink, githubLink, categories, type } = formValues
 
   const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(keyName, e.target.value)
     setIsSubmitting(false);
     setFormErrors({ ...formErrors, [keyName]: '' });
     setFormValues({ ...formValues, [keyName]: e.target.value });
@@ -204,7 +205,7 @@ function CreateLink({ user, categoryList, token }: Props) {
     switch (step) {
       case T.Step.TYPE:
         return (
-          <TypeList postTypes={postTypes} handleChange={handleChange} setStep={setStep} formValues={formValues} />
+          <TypeList postTypes={postTypes} setStep={setStep} formValues={formValues} setFormValues={setFormValues} />
         )
       case T.Step.POST:
         return (
@@ -214,9 +215,7 @@ function CreateLink({ user, categoryList, token }: Props) {
           </>
         )
       default:
-        return (
-          <TypeList postTypes={postTypes} handleChange={handleChange} setStep={setStep} formValues={formValues} />
-        )
+        break;
     }
   })()
 
