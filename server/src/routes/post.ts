@@ -6,6 +6,7 @@ import {
   readPost,
   deletePost,
   clickCount,
+  uploadImageFile,
 } from '../controllers/post'
 import { authMiddleware, adminMiddleware } from '../middlewares/auth';
 
@@ -16,6 +17,7 @@ router.post('/post', authMiddleware, createPost)
 router.get('/posts', listPost)
 router.put('/click-count', clickCount);
 router.get('/post/:id', readPost)
+router.post('/post/upload-image', uploadImageFile)
 router.put('/post/:slug', authMiddleware, createPost)
 router.delete('/post/:slug', authMiddleware, deletePost)
 

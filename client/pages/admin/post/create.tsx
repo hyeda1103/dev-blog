@@ -1,20 +1,14 @@
 import React, { useState, useEffect, ChangeEvent, FormEventHandler } from 'react'
-import dynamic from 'next/dynamic';
 import axios from 'axios'
 import { GetServerSideProps } from 'next';
 import { ActionMeta } from 'react-select';
 
 import Layout from '@/components/templates/layout';
-import InputWithLabel from '@/components/molecules/inputWithLabel';
-import ErrorBox from '@/components/molecules/errorBox';
-import TextEditor from '@/components/molecules/textEditor';
-import Button from '@/components/atoms/button';
 import TypeList from '@/components/organisms/typeList';
+import CreatePostForm from '@/components/organisms/createPostForm';
 import { getCookie } from '@/helpers/auth';
 import * as T from '@/types/index';
 import { API } from '../../../config';
-import { ChoiceWrapper, CategoryLabel, CategoryList, InputWrapper, StyledForm, ChoiceContainer, Title, InputContainer, TypeWrapper, TypeButton } from './styles';
-import ReactSelect from '@/components/atoms/select';
 
 interface Props {
   user: T.Profile
@@ -22,12 +16,7 @@ interface Props {
   token: string
 }
 
-interface Option {
-  value: string
-  label: string
-}
-
-const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT, T.PostType.GOOGLED]
+const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT]
 
 function CreateLink({ user, categoryList, token }: Props) {
   const [step, setStep] = useState(T.Step.TYPE)
@@ -43,12 +32,9 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
-  const [options, setOptions] = useState<Array<Option>>();
-
-  const { title, description, webLink, githubLink, categories, type } = formValues
+  const [options, setOptions] = useState<Array<T.SelectOption>>();
 
   const handleChange = (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(keyName, e.target.value)
     setIsSubmitting(false);
     setFormErrors({ ...formErrors, [keyName]: '' });
     setFormValues({ ...formValues, [keyName]: e.target.value });
@@ -64,6 +50,10 @@ function CreateLink({ user, categoryList, token }: Props) {
 
     if (values.type === T.PostType.PROJECT && !values.githubLink) {
       errorRegisters.githubLink = 'github 링크를 입력해야 합니다';
+    } 
+    
+    if (values.type === T.PostType.PROJECT && !values.webLink) {
+      errorRegisters.webLink = '배포 주소를 입력해야 합니다';
     } 
     
     if (!values.description) {
@@ -91,6 +81,19 @@ function CreateLink({ user, categoryList, token }: Props) {
     })
     setFormErrors({ ...formErrors, description: '' });
   }
+
+  const reset = () => {
+    setFormValues({
+      title: '',
+      description: '',
+      githubLink: '',
+      webLink: '',
+      categories: [],
+      type: undefined,
+    })
+    setFormErrors({});
+    setServerErrorMessage('');
+  }
   
   const create = async () => {
     try {
@@ -99,15 +102,7 @@ function CreateLink({ user, categoryList, token }: Props) {
           Authorization: `Bearer ${token}`
         }
       }) 
-      setFormValues({
-        title: '',
-        description: '',
-        githubLink: '',
-        webLink: '',
-        categories: [],
-        type: T.PostType.ARTICLE,
-      })
-      setServerErrorMessage('')
+      reset();
       setSuccessMessage(`${res.data.title}가(이) 성공적으로 생성되었습니다`)
       setIsSubmitting(false);
     } catch (err: any) {
@@ -141,65 +136,6 @@ function CreateLink({ user, categoryList, token }: Props) {
     }))
     setOptions(selectOptions)
   }, [categoryList])
-  
-  const form = () => {
-    return (
-      <InputContainer>
-        <StyledForm onSubmit={handleSubmit} noValidate>
-          <InputWrapper>
-            <InputWithLabel
-              id="title"
-              label="Title"
-              type="text"
-              value={title}
-              placeholder="링크 제목을 입력하세요"
-              handleChange={handleChange}
-              formErrors={formErrors}
-            />
-            {options && (
-              <>
-                <ReactSelect options={options} handleChange={handleSelect} />
-                {formErrors?.categories && <ErrorBox error={formErrors?.categories} />}
-              </>
-            )}
-            <InputWithLabel
-              id="githubLink"
-              label="Github Link"
-              type="text"
-              value={githubLink}
-              placeholder="소스코드가 저장된 github 링크를 입력하세요"
-              handleChange={handleChange}
-              formErrors={formErrors}
-            />
-            <InputWithLabel
-              id="webLink"
-              label="Website URL"
-              type="text"
-              value={webLink}
-              placeholder="배포한 웹사이트 주소를 입력하세요"
-              handleChange={handleChange}
-              formErrors={formErrors}
-            />
-            <TextEditor
-              id="description"
-              label="Post"
-              value={description}
-              theme="snow"
-              handleChange={handleContent}
-              formErrors={formErrors}
-            />
-            <ErrorBox
-              success={successMessage}
-              error={serverErrorMessage}
-            />
-          </InputWrapper>
-          <Button disabled={!token}>
-            POST
-          </Button>
-        </StyledForm>
-      </InputContainer>
-    );
-  } 
 
   const Content = (() => {
     switch (step) {
@@ -209,10 +145,20 @@ function CreateLink({ user, categoryList, token }: Props) {
         )
       case T.Step.POST:
         return (
-          <>
-            <button onClick={() => setStep(T.Step.TYPE)}>이전</button>
-            {form()}            
-          </>
+          <CreatePostForm
+            token={token}
+            options={options}
+            successMessage={successMessage}
+            serverErrorMessage={serverErrorMessage}
+            formValues={formValues}
+            formErrors={formErrors}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleSelect={handleSelect}
+            handleContent={handleContent}
+            reset={reset}
+            setStep={setStep}
+          />
         )
       default:
         break;

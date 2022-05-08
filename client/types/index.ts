@@ -75,8 +75,8 @@ export interface CreatePostForm {
 export enum PostType {
   ARTICLE = 'article',
   PROJECT = 'project',
-  GOOGLED = 'googled'
 }
+
 export interface Post {
   _id: string
   title: string

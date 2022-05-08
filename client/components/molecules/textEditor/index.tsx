@@ -1,15 +1,14 @@
-import React from 'react';
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
+import { useMemo, useRef } from 'react';
+import axios from "axios";
 
+import * as T from '@/types/index';
 import ErrorBox from '@/components/molecules/errorBox';
-import * as T from '@/types/index'
-import { StyledLabel, Text } from './styles';
+import { API } from '../../../config';
+
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 
-const ReactQuill = dynamic(() => import('react-quill'), {
-  ssr: false
-})
 interface Props {
   id: string
   label: string
@@ -20,62 +19,100 @@ interface Props {
   formErrors: T.Object
 }
 
+const ReactQuill = dynamic(async () => {
+  const { default: RQ } = await import('react-quill');
+  return function comp({ forwardedRef, ...props }: any) {
+    return <RQ ref={forwardedRef} {...props} />;
+  };
+}, { ssr: false });
+
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "video",
+];
+
 function TextEditor({
   id, label, value, theme, handleChange, formErrors
 }: Props) {
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'code-block', 'blockquote'],
-      [
-        { list: 'ordered' },
-        { list: 'bullet' },
-        { indent: '-1' },
-        { indent: '+1' },
-      ],
-      ['link', 'image', 'video'],
-      ['clean'],
-    ],
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false,
-    },
-  }
-  /*
-  * Quill editor formats
-  * See https://quilljs.com/docs/formats/
-  */
-  const formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'code-block',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'video',
-  ]
+  const quillRef = useRef(null);
+
+  const imageHandler = () => {
+    const input = document.createElement('input');
+
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    document.body.appendChild(input);
+    
+    input.click();
   
+    input.onchange = async () => {
+      console.log('삐약')
+      if (input.files === null) return;
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append('image', file);
+  
+      try {
+        const res = await axios.post(`${API}/post/upload-image`, { image: formData }, {
+          headers: { 'content-type': 'multipart/form-data' },
+        })
+        if (res.data) {
+          const quill = quillRef.current?.getEditor();
+          quill?.focus();
+
+          const range = quill?.getSelection();
+          const position = range ? range.index : 0;
+
+          quill?.insertEmbed(position, 'image', {
+            src: res.data,
+            alt: res.data,
+          });
+          quill?.setSelection(position + 1, 1);
+        }
+      } catch (error) {
+        
+      }
+    };
+  }
+
+  // useMemo를 사용한 이유는 modules가 렌더링마다 변하면 에디터에서 입력이 끊기는 버그가 발생
+  const modules = useMemo(() => ({
+    toolbar: {
+      container: [
+        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link', 'image', 'video'],
+        ['code-block']
+      ],
+      handlers: {
+        image: imageHandler
+      }
+    }
+  }), []);
+
   return (
-    <StyledLabel>
-      <Text>
-        {label}
-      </Text>
+    <>
       <ReactQuill
-        value={value}
-        onChange={handleChange}
-        placeholder="Write Something..."
-        theme={theme}
+        forwardedRef={quillRef}
+        placeholder="본문을 입력하세요..."
         modules={modules}
         formats={formats}
+        value={value}
+        onChange={handleChange}
+        theme={theme}
         style={{
           border: !!formErrors[id] ? '1px solid red' : '1px solid #666'
         }}
@@ -83,7 +120,7 @@ function TextEditor({
       {formErrors[id] && (
         <ErrorBox error={formErrors[id]} />
       )}
-    </StyledLabel>
+    </>
   );
 }
 

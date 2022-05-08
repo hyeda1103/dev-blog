@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const StyledLabel = styled.label`
+export const Container = styled.div`
   position: relative;
   width: 100%;
-  display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin: 30px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
 `;
 
 export const Text = styled.span`
@@ -25,19 +28,12 @@ export const StyledInput = styled.input<StyleProps>`
   font-size: 18px;
   background-color: ${({ theme }) => theme.body};
   border: ${({ theme, error }) => (error
-    ? `2px solid ${theme.active}`
+    ? `1px solid ${theme.fail}`
     : `1px solid ${theme.active}`)
 };
   outline: none;
   box-sizing: border-box;
   transition: all 0.15s ease;
-
-  &:focus {
-    border-bottom: ${({ theme, error }) => (error
-    ? `2px solid ${theme.active}`
-    : `1px solid ${theme.active}`)
-};
-  }
 `;
 
 export const GuideWrapper = styled.div`
