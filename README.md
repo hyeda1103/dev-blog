@@ -6,6 +6,7 @@
 - [Setup](#setup)
 - [Built with](#built-with)
 - [Status](#status)
+- [References](#references)
 
 ## General Info
 
@@ -63,3 +64,6 @@ The project is **currently in progress(Upadated on April, 2nd, 2022)** 🐫
 - [x] any user can view contents (tech articles & posts to useful medium) on the blog
 - [x] infinite scroll to load more contents
 - [ ] skeleton loading or spinner to visualize loading status
+
+## References
+- [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
