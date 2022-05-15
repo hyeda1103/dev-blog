@@ -6,9 +6,7 @@ export const StyledLabel = styled.label`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  & + & {
-    margin-top: 30px;
-  }
+  margin: 30px 0;
 `;
 
 export const Text = styled.span`

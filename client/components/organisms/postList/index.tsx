@@ -29,7 +29,7 @@ function PostList({ posts }: Props) {
         )
       case T.PostType.PROJECT:
         return (
-          <PostItem
+          <ProjectItem
             key={post._id}
             post={post}
             allPosts={allPosts}
@@ -45,30 +45,7 @@ function PostList({ posts }: Props) {
     <List>
       {allPosts?.length === 0 ? (
         <p>등록된 포스트가 없습니다</p>
-      ) : allPosts?.map((post) => {
-        switch (post.type) {
-          case T.PostType.ARTICLE:
-            return (
-              <PostItem
-                key={post._id}
-                post={post}
-                allPosts={allPosts}
-                setAllPosts={setAllPosts}
-              />
-            )
-          case T.PostType.PROJECT:
-            return (
-              <ProjectItem
-                key={post._id}
-                post={post}
-                allPosts={allPosts}
-                setAllPosts={setAllPosts}
-              />
-            )
-          default:
-            break;
-        }
-      })}
+      ) : allPosts?.map(Item)}
     </List>
   )
 }

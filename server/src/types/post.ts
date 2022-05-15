@@ -1,7 +1,6 @@
 export enum PostType {
   ARTICLE = 'article',
   PROJECT = 'project',
-  GOOGLED = 'googled'
 }
 
 export interface Post {

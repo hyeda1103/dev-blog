@@ -5,9 +5,10 @@ export const lightTheme = {
   text: '#121212',
   toggleBorder: '#fff',
   hover: '#EFEFEF',
+  disabled: '#c1c1c1',
   active: '#999',
   fail: '#ff3300',
-  highlight: '#ffff7f',
+  highlight: '#60fd1e',
   hyperlink: {
     default: '#0000ee',
     contrast: '#00ee00',
@@ -21,6 +22,7 @@ export const darkTheme = {
   toggleBorder: '#6B8096',
   hover: '#999',
   active: '#EFEFEF',
+  disabled: '#c1c1c1',
   fail: '#ff3300',
   highlight: '#7f7fff',
   hyperlink: {
@@ -56,5 +58,20 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }: Theme) => theme.text};
+  }
+
+  .ql-container {
+    min-height: 800px;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ql-editor {
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
   }
 `;

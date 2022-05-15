@@ -1,15 +1,14 @@
-import React from 'react';
-import dynamic from 'next/dynamic'
-
-import ErrorBox from '@/components/molecules/errorBox';
-import * as T from '@/types/index'
-import { StyledLabel, Text } from './styles';
+import { useMemo, useRef } from 'react';
+import axios from "axios";
+import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 
-const ReactQuill = dynamic(() => import('react-quill'), {
-  ssr: false
-})
+import * as T from '@/types/index';
+import ErrorBox from '@/components/molecules/errorBox';
+import { API } from '../../../config';
+import resizeImage from "@/helpers/resizeImage";
+
 interface Props {
   id: string
   label: string
@@ -20,70 +19,96 @@ interface Props {
   formErrors: T.Object
 }
 
+const QuillNoSSRWrapper = typeof window === 'object' ? require('react-quill') : () => false
+
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "video",
+];
+
 function TextEditor({
   id, label, value, theme, handleChange, formErrors
 }: Props) {
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'code-block', 'blockquote'],
-      [
-        { list: 'ordered' },
-        { list: 'bullet' },
-        { indent: '-1' },
-        { indent: '+1' },
-      ],
-      ['link', 'image', 'video'],
-      ['clean'],
-    ],
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false,
-    },
-  }
-  /*
-  * Quill editor formats
-  * See https://quilljs.com/docs/formats/
-  */
-  const formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'code-block',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'video',
-  ]
+  const QuillRef = useRef<ReactQuill>();
+
+  const imageHandler = () => {
+    const input = document.createElement('input');
+
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    
+    input.click();
   
+    input.onchange = async () => {
+      if (input.files === null) return;
+      const [file] = input.files;
+      console.log(QuillRef)
+  
+      try {
+        const image = await resizeImage(file);
+        // Get image url
+        const res = await axios.post(`${API}/post/upload-image`, { image })
+        const quill = QuillRef.current?.getEditor();
+        
+        if (quill === undefined) return;
+        // Save current cursor state
+        const range = quill.getSelection(true);
+        const position = range ? range.index : 0;
+
+        // Insert uploaded image
+        quill.insertEmbed(position, 'image', res.data);
+        quill.setSelection(position + 1, 1);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+  }
+
+  // useMemo를 사용한 이유는 modules가 렌더링마다 변하면 에디터에서 입력이 끊기는 버그가 발생
+  const modules = useMemo(() => ({
+    toolbar: {
+      container: [
+        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link', 'image', 'video']
+      ],
+      handlers: {
+        image: imageHandler
+      }
+    }
+  }), []);
+
   return (
-    <StyledLabel>
-      <Text>
-        {label}
-      </Text>
-      <ReactQuill
-        value={value}
-        onChange={handleChange}
-        placeholder="Write Something..."
-        theme={theme}
+    <>
+      <QuillNoSSRWrapper
+        ref={QuillRef}
+        placeholder="본문을 입력하세요..."
         modules={modules}
         formats={formats}
+        value={value}
+        onChange={handleChange}
+        theme={theme}
         style={{
-          border: !!formErrors[id] ? '1px solid red' : '1px solid #666'
+          border: !!formErrors[id] ? '1px solid red' : '1px solid #666',
         }}
       />
       {formErrors[id] && (
         <ErrorBox error={formErrors[id]} />
       )}
-    </StyledLabel>
+    </>
   );
 }
 

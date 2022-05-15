@@ -6,12 +6,14 @@ import {
   readPost,
   deletePost,
   clickCount,
+  uploadImageFile,
 } from '../controllers/post'
 import { authMiddleware, adminMiddleware } from '../middlewares/auth';
 
 
 const router = express.Router();
 
+router.post('/post/upload-image', uploadImageFile)
 router.post('/post', authMiddleware, createPost)
 router.get('/posts', listPost)
 router.put('/click-count', clickCount);

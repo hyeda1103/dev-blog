@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
+import AWS from 'aws-sdk'
+import { v4 as uuidv4 } from 'uuid';
 
-import slugify from '../helpers/slugify'
 import Post from '../models/post'
 import * as T from '../types'
 
@@ -69,4 +70,37 @@ export const clickCount = (req: Request, res: Response) => {
       }
       res.json(result);
     });
+};
+
+export const uploadImageFile = (req: any, res: Response) => {
+  const { image } = req.body;
+
+  // image data
+  const base64Data = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+  const type = image.split(';')[0].split('/')[1];
+  
+  // s3
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION
+  });
+  // Upload image to s3
+  const params = {
+    Bucket: 'dev-blog-for-ten',
+    Key: `post/${uuidv4()}.${type}`,
+    Body: base64Data,
+    ACL: 'public-read',
+    ContentEncoding: 'base64',
+    ContentType: `image/${type}`
+  }
+  s3.upload(params, (err: globalThis.Error, data: AWS.S3.ManagedUpload.SendData) => {
+    if (err) {
+      return res.status(400).json({
+        error: 'S3 업로드에 실패하였습니다'
+      })
+    }
+    console.log('AWS 업로드 RES DATA', data)
+    return res.json(data.Location);
+  })
 };

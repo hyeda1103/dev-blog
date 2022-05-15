@@ -1,16 +1,13 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { GetServerSideProps } from 'next';
-import Link from 'next/link'
 import axios from 'axios'
-import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { API } from '../../config'
 import Layout from '@/components/templates/layout';
-import TwoCol from '@/components/templates/twoCol';
 import * as T from '@/types/index'
 import LinkItem from '@/components/molecules/postItem/index';
-import { CategoryInfo, Details, Header, Profile, PostList, ImageWrapper } from './styles';
+import { CategoryInfoWrapper, Details, Header, Profile, PostList, ImageWrapper } from './styles';
 
 interface Props {
   slug: string
@@ -34,21 +31,9 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
     setLimit(postsLimit)
   }, [slug, posts, postSkip, numOfPosts, postsLimit])
   
-  const categoryInfo = (() => {
-    return (
-      <CategoryInfo>
-        <ImageWrapper>
-          <Profile src={category.image.url} alt={category.name} />
-        </ImageWrapper>
-        <Header>
-          <p>{category.name}</p>
-        </Header>
-        <Details>
-          {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(category.content) }} />}
-        </Details>
-      </CategoryInfo>
-    )
-  })()
+  const categoryInfo = useMemo(() => (
+    <CategoryInfoWrapper>{category.name}에 대한 {numOfPosts}개의 글이 있습니다</CategoryInfoWrapper> 
+  ), [category.name, numOfPosts])
   
   const loadMore = async () => {
     let toSkip = skip + limit
@@ -83,7 +68,7 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
   })()
   return (
     <Layout>
-      {/* {categoryInfo} */}
+      {categoryInfo}
       {postList}
     </Layout>
   )

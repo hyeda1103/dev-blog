@@ -69,14 +69,14 @@ export interface CreatePostForm {
   webLink?: string
   githubLink?: string
   categories: Array<string>
-  type: PostType
+  type: PostType | undefined
 }
 
 export enum PostType {
   ARTICLE = 'article',
   PROJECT = 'project',
-  GOOGLED = 'googled'
 }
+
 export interface Post {
   _id: string
   title: string

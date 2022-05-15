@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import { HiLink, HiCursorClick } from 'react-icons/hi'
-import { ImFire } from 'react-icons/im'
 
 export const Header = styled.div`
   display: flex;
@@ -10,14 +9,9 @@ export const Header = styled.div`
   padding: 8px 0;
 `;
 
-export const CategoryInfo = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  border: 1px solid ${({ theme }) => theme.text};
-  padding: 16px 24px;
-  p {
-    font-size: 32px;
-  }
+export const CategoryInfoWrapper = styled.h3`
+  display: flex;
+  margin-bottom: 38.5px;
 `;
 
 export const ImageWrapper = styled.div`

@@ -10,6 +10,7 @@ export const Container = styled.li`
   font-size: 14px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.highlight};
+    -webkit-box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
+    box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
   }
 `;
