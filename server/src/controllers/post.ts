@@ -72,7 +72,7 @@ export const clickCount = (req: Request, res: Response) => {
     });
 };
 
-export const uploadImageFile = async (req: Request, res: Response) => {
+export const uploadImageFile = (req: any, res: Response) => {
   const { image } = req.body;
 
   // image data
@@ -88,7 +88,7 @@ export const uploadImageFile = async (req: Request, res: Response) => {
   // Upload image to s3
   const params = {
     Bucket: 'dev-blog-for-ten',
-    Key: `category/${uuidv4()}.${type}`,
+    Key: `post/${uuidv4()}.${type}`,
     Body: base64Data,
     ACL: 'public-read',
     ContentEncoding: 'base64',
@@ -101,6 +101,6 @@ export const uploadImageFile = async (req: Request, res: Response) => {
       })
     }
     console.log('AWS 업로드 RES DATA', data)
-    return data.Location;
+    return res.json(data.Location);
   })
 };

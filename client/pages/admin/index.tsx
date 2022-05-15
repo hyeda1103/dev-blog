@@ -5,7 +5,7 @@ import Link from 'next/link';
 import * as T from '@/types/index';
 import { getCookie } from '@/helpers/auth';
 import Layout from '@/components/templates/layout'
-import { API } from './../../config';
+import { API } from '../../config';
 import { Container, SelectList, ArrowIcon } from './styles';
 
 

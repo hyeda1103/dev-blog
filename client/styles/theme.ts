@@ -59,4 +59,19 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: ${({ theme }: Theme) => theme.text};
   }
+
+  .ql-container {
+    min-height: 800px;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ql-editor {
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+  }
 `;

@@ -1,13 +1,13 @@
-import dynamic from "next/dynamic";
 import { useMemo, useRef } from 'react';
 import axios from "axios";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
 
 import * as T from '@/types/index';
 import ErrorBox from '@/components/molecules/errorBox';
 import { API } from '../../../config';
-
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
+import resizeImage from "@/helpers/resizeImage";
 
 interface Props {
   id: string
@@ -19,12 +19,7 @@ interface Props {
   formErrors: T.Object
 }
 
-const ReactQuill = dynamic(async () => {
-  const { default: RQ } = await import('react-quill');
-  return function comp({ forwardedRef, ...props }: any) {
-    return <RQ ref={forwardedRef} {...props} />;
-  };
-}, { ssr: false });
+const QuillNoSSRWrapper = typeof window === 'object' ? require('react-quill') : () => false
 
 const formats = [
   "header",
@@ -46,43 +41,37 @@ const formats = [
 function TextEditor({
   id, label, value, theme, handleChange, formErrors
 }: Props) {
-  const quillRef = useRef(null);
+  const QuillRef = useRef<ReactQuill>();
 
   const imageHandler = () => {
     const input = document.createElement('input');
 
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
-    document.body.appendChild(input);
     
     input.click();
   
     input.onchange = async () => {
-      console.log('삐약')
       if (input.files === null) return;
-      const file = input.files[0];
-      const formData = new FormData();
-      formData.append('image', file);
+      const [file] = input.files;
+      console.log(QuillRef)
   
       try {
-        const res = await axios.post(`${API}/post/upload-image`, { image: formData }, {
-          headers: { 'content-type': 'multipart/form-data' },
-        })
-        if (res.data) {
-          const quill = quillRef.current?.getEditor();
-          quill?.focus();
-
-          const range = quill?.getSelection();
-          const position = range ? range.index : 0;
-
-          quill?.insertEmbed(position, 'image', {
-            src: res.data,
-            alt: res.data,
-          });
-          quill?.setSelection(position + 1, 1);
-        }
-      } catch (error) {
+        const image = await resizeImage(file);
+        // Get image url
+        const res = await axios.post(`${API}/post/upload-image`, { image })
+        const quill = QuillRef.current?.getEditor();
         
+        if (quill === undefined) return;
+        // Save current cursor state
+        const range = quill.getSelection(true);
+        const position = range ? range.index : 0;
+
+        // Insert uploaded image
+        quill.insertEmbed(position, 'image', res.data);
+        quill.setSelection(position + 1, 1);
+      } catch (error) {
+        console.log(error)
       }
     };
   }
@@ -91,11 +80,10 @@ function TextEditor({
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
         [{ list: 'ordered' }, { list: 'bullet' }],
-        ['link', 'image', 'video'],
-        ['code-block']
+        ['link', 'image', 'video']
       ],
       handlers: {
         image: imageHandler
@@ -105,8 +93,8 @@ function TextEditor({
 
   return (
     <>
-      <ReactQuill
-        forwardedRef={quillRef}
+      <QuillNoSSRWrapper
+        ref={QuillRef}
         placeholder="본문을 입력하세요..."
         modules={modules}
         formats={formats}
@@ -114,7 +102,7 @@ function TextEditor({
         onChange={handleChange}
         theme={theme}
         style={{
-          border: !!formErrors[id] ? '1px solid red' : '1px solid #666'
+          border: !!formErrors[id] ? '1px solid red' : '1px solid #666',
         }}
       />
       {formErrors[id] && (

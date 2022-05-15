@@ -155,10 +155,10 @@ function CreatePostForm({
 
   return (
     <>
-      {RequiredContent(type)}
       <button onClick={handleClick}>이전</button>
+      {RequiredContent(type)}
     </>
   );
 }
 
-export default CreatePostForm
+export default CreatePostForm;
