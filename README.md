@@ -51,7 +51,7 @@ $ yarn dev
 
 ## Status
 
-The project is **currently in progress(Upadated on April, 2nd, 2022)** 🐫
+The project is **currently in progress(Upadated on May, 15th, 2022)** 🐫
 
 - [x] Auth
   - register
