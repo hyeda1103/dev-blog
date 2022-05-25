@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import Header from '@/components/organisms/header'
-import Footer from '@/components/organisms/footer'
-import { Main } from './styles'
 import 'nprogress/nprogress.css'
+
+import Header from '@root/components/organisms/header'
+import Footer from '@root/components/organisms/footer'
+import { Main } from './styles'
 
 interface Props {
   title?: string
@@ -25,9 +26,6 @@ export default function Layout({ title, keywords, description, children }: Props
         <meta name="keywords" content={keywords} />
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
-        /* Create a simple CodeMirror instance */
-        <link rel="stylesheet" href="lib/codemirror.css" />
-        <script src="lib/codemirror.js"></script>
       </Head>
       <Header />
       <Main>{children}</Main>

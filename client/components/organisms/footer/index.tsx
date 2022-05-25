@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { Container, Inner, Copyright } from './styles'
 
 export default function Footer() {

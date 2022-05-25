@@ -3,17 +3,17 @@ import { ChangeEvent, ChangeEventHandler, FormEventHandler, useEffect, useState 
 import axios from 'axios'
 import Resizer from 'react-image-file-resizer';
 
-import * as T from '@/types/index';
-import { getCookie } from '@/helpers/auth';
-import Layout from '@/components/templates/layout'
-import { API } from '../../../config';
-import ErrorBox from '@/components/molecules/errorBox';
-import AuthForm from '@/components/templates/authForm';
-import Button from '@/components/atoms/button';
-import InputWithLabel from '@/components/molecules/inputWithLabel';
+import * as T from '@root/types';
+import { API } from '@root/config';
+import { getCookie } from '@root/helpers/auth';
+import Button from '@root/components/atoms/button';
+import ErrorBox from '@root/components/molecules/errorBox';
+import InputWithLabel from '@root/components/molecules/inputWithLabel';
+import FileWithLabel from '@root/components/molecules/fileWithLabel';
+import TextEditor from '@root/components/molecules/textEditor';
+import AuthForm from '@root/components/templates/authForm';
+import Layout from '@root/components/templates/layout'
 import { InputWrapper, StyledForm, Title } from './styles';
-import FileWithLabel from '@/components/molecules/fileWithLabel';
-import TextEditor from '@/components/molecules/textEditor';
 
 interface Props {
   admin: T.Profile

@@ -2,7 +2,8 @@ import React, {
   MouseEventHandler,
   useRef, useState,
 } from 'react';
-import useOutsideClick from '../../../hooks/useOutsideClick';
+
+import useOutsideClick from '@root/hooks/useOutsideClick';
 import {
   DropDownContainer,
   DropDownHeader,

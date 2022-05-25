@@ -2,13 +2,13 @@ import React, { useEffect, useState, ChangeEvent, FormEventHandler } from 'react
 import Link from 'next/link';
 import Router from 'next/router';
 
-import Button from '@/components/atoms/button';
-import InputWithLabel from '@/components/molecules/inputWithLabel';
-import ErrorBox from '@/components/molecules/errorBox';
-import AuthForm from '@/components/templates/authForm';
-import Layout from '@/components/templates/layout'
-import * as T from '@/types/index'
-import { isAuth } from '@/helpers/auth';
+import Button from '@root/components/atoms/button';
+import InputWithLabel from '@root/components/molecules/inputWithLabel';
+import ErrorBox from '@root/components/molecules/errorBox';
+import AuthForm from '@root/components/templates/authForm';
+import Layout from '@root/components/templates/layout'
+import * as T from '@root/types'
+import { isAuth } from '@root/helpers/auth';
 import {
   StyledForm,
   Title,
@@ -16,7 +16,7 @@ import {
   InputWrapper,
 } from './styles';
 import axios from 'axios';
-import { API } from '../../config'
+import { API } from '@root/config'
 
 const Register = () => {
   const [formValues, setFormValues] = useState({

@@ -3,12 +3,12 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next';
 import { ActionMeta } from 'react-select';
 
-import Layout from '@/components/templates/layout';
-import TypeList from '@/components/organisms/typeList';
-import CreatePostForm from '@/components/organisms/createPostForm';
-import { getCookie } from '@/helpers/auth';
-import * as T from '@/types/index';
-import { API } from '../../../config';
+import Layout from '@root/components/templates/layout';
+import TypeList from '@root/components/organisms/typeList';
+import CreatePostForm from '@root/components/organisms/createPostForm';
+import { getCookie } from '@root/helpers/auth';
+import * as T from '@root/types';
+import { API } from '@root/config';
 
 interface Props {
   user: T.Profile

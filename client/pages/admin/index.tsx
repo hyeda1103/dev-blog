@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import Link from 'next/link';
 
-import * as T from '@/types/index';
-import { getCookie } from '@/helpers/auth';
-import Layout from '@/components/templates/layout'
-import { API } from '../../config';
+import * as T from '@root/types';
+import { getCookie } from '@root/helpers/auth';
+import Layout from '@root/components/templates/layout'
+import { API } from '@root/config';
 import { Container, SelectList, ArrowIcon } from './styles';
 
 

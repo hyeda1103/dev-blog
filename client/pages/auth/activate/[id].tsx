@@ -4,13 +4,13 @@ import { WithRouterProps } from 'next/dist/client/with-router'
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
 
-import Layout from '@/components/templates/layout';
-import ErrorBox from '@/components/molecules/errorBox';
-import Button from '@/components/atoms/button';
-import * as T from '@/types/index'
-import AuthForm from '@/components/templates/authForm'
+import Layout from '@root/components/templates/layout';
+import ErrorBox from '@root/components/molecules/errorBox';
+import Button from '@root/components/atoms/button';
+import * as T from '@root/types'
+import AuthForm from '@root/components/templates/authForm'
 import { InputWrapper, StyledForm, SubTitle, Title } from './styles'
-import { API } from '../../../config'
+import { API } from '@root/config'
 
 const ActivateAccount = ({ router }: WithRouterProps) => {
   const [formValues, setFormValues] = useState({
@@ -21,7 +21,7 @@ const ActivateAccount = ({ router }: WithRouterProps) => {
   const [serverErrorMessage, setServerErrorMessage] = useState('');
   const [buttonText, setButtonText] = useState('계정 활성화')
 
-  const { name, token } = formValues
+  const { token } = formValues
 
   useEffect(() => {
     const token = router.query.id;

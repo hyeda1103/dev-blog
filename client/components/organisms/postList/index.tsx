@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import * as T from '@/types/index'
+import * as T from '@root/types'
+import PostItem from '@root/components/molecules/postItem';
+import ProjectItem from '@root/components/molecules/projectItem';
 import { PostList as List } from './styles';
-import PostItem from '@/components/molecules/postItem';
-import ProjectItem from '@/components/molecules/projectItem';
 
 interface Props {
   posts: Array<T.Post>

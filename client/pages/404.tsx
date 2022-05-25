@@ -1,4 +1,4 @@
-import Layout from '@/components/templates/layout'
+import Layout from '@root/components/templates/layout'
 
 export default function NotFoundPage() {
   return (

@@ -4,20 +4,20 @@ import { WithRouterProps } from 'next/dist/client/with-router';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
-import { isAuth } from '@/helpers/auth';
-import Button from '@/components/atoms/button';
-import InputWithLabel from '@/components/molecules/inputWithLabel';
-import AuthForm from '@/components/templates/authForm';
-import Layout from '@/components/templates/layout'
-import * as T from '@/types/index'
+import { isAuth } from '@root/helpers/auth';
+import Button from '@root/components/atoms/button';
+import InputWithLabel from '@root/components/molecules/inputWithLabel';
+import AuthForm from '@root/components/templates/authForm';
+import Layout from '@root/components/templates/layout'
+import * as T from '@root/types'
 import {
   StyledForm,
   Title,
   InputWrapper,
   SubTitle,
 } from './styles';
-import ErrorBox from '@/components/molecules/errorBox';
-import { API } from '../../../../config';
+import ErrorBox from '@root/components/molecules/errorBox';
+import { API } from '@root/config';
 
 const ResetPassword = ({ router }: WithRouterProps) => {
   const [formValues, setFormValues] = useState({

@@ -1,8 +1,8 @@
 import useDarkMode from 'use-dark-mode'
 import Link from 'next/link'
 
-import { isAuth, logout } from '@/helpers/auth'
-import { Container, Inner, SunIcon, MoonIcon, Logo, Nav, Item, SwitchMode, LinkIcon } from './styles'
+import { isAuth, logout } from '@root/helpers/auth'
+import { Container, Inner, SunIcon, MoonIcon, Logo, Nav, Item, SwitchMode } from './styles'
 
 export default function Navbar() {
   const darkmode = useDarkMode(true)

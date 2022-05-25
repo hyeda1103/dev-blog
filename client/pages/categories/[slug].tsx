@@ -3,11 +3,11 @@ import { GetServerSideProps } from 'next';
 import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { API } from '../../config'
-import Layout from '@/components/templates/layout';
-import * as T from '@/types/index'
-import LinkItem from '@/components/molecules/postItem/index';
-import { CategoryInfoWrapper, Details, Header, Profile, PostList, ImageWrapper } from './styles';
+import { API } from '@root/config'
+import Layout from '@root/components/templates/layout';
+import * as T from '@root/types'
+import LinkItem from '@root/components/molecules/postItem/index';
+import { CategoryInfoWrapper, PostList } from './styles';
 
 interface Props {
   slug: string

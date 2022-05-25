@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react'
 
-import { Container, SelectList, SelectItem, ArrowIcon, NextIcon } from './styles';
-import * as T from '@/types/index'
-import StepGuide from '@/components/molecules/stepGuide';
-import Button from '@/components/atoms/button';
+import * as T from '@root/types'
+import StepGuide from '@root/components/molecules/stepGuide';
+import Button from '@root/components/atoms/button';
+import { Container, SelectList, SelectItem, ArrowIcon } from './styles';
 
 interface Props {
   postTypes: Array<T.PostType>

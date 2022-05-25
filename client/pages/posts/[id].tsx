@@ -1,17 +1,15 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React from 'react'
 import { GetServerSideProps } from 'next';
-import Link from 'next/link'
 import axios from 'axios'
 import DOMPurify from "dompurify";
-import InfiniteScroll from "react-infinite-scroll-component";
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { API } from '../../config'
-import Layout from '@/components/templates/layout';
-import * as T from '../../types/index'
+import { API } from '@root/config'
+import Layout from '@root/components/templates/layout';
+import * as T from '@root/types'
 import { Header, MainText, Title, TypeWrapper, TagBox, Container } from './styles';
-import CategoryItem from '@/components/molecules/categoryItem';
+import CategoryItem from '@root/components/molecules/categoryItem';
 
 interface Props {
   post: T.Post

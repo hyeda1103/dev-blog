@@ -5,10 +5,10 @@ import DOMPurify from 'dompurify';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import * as T from '../../../types'
+import * as T from '@root/types'
 import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, Description, TypeWrapper, ClickIcon, ViewWrapper, LinkWrapper } from './styles';
-import CategoryItem from '@/components/molecules/categoryItem/index';
-import { API } from '../../../config';
+import CategoryItem from '@root/components/molecules/categoryItem/index';
+import { API } from '@root/config';
 
 interface Props {
   slug?: string

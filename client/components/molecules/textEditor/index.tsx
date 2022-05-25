@@ -4,10 +4,10 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 
-import * as T from '@/types/index';
-import ErrorBox from '@/components/molecules/errorBox';
-import { API } from '../../../config';
-import resizeImage from "@/helpers/resizeImage";
+import * as T from '@root/types';
+import { API } from '@root/config';
+import resizeImage from "@root/helpers/resizeImage";
+import ErrorBox from '@root/components/molecules/errorBox';
 
 interface Props {
   id: string

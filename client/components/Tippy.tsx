@@ -2,7 +2,7 @@ import 'react-tippy/dist/tippy.css'
 import {
   Tooltip,
 } from 'react-tippy';
-import { Title, Content } from '@/styles/tippy'
+import { Title, Content } from '@root/styles/tippy'
 
 export default function Tippy({ tooltipContent, children }: any) {
   return (

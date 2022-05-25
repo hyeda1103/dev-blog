@@ -1,11 +1,10 @@
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
 
-import Layout from '@/components/templates/layout'
-import { API } from '../config';
-import * as T from '@/types/index';
-import CategoryList from '@/components/organisms/categoryList';
-import PostList from '@/components/organisms/postList';
+import Layout from '@root/components/templates/layout'
+import { API } from '@root/config';
+import * as T from '@root/types';
+import PostList from '@root/components/organisms/postList';
 
 interface Props {
   categories: Array<T.Category>

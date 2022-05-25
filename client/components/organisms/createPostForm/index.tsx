@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FormEventHandler, SetStateAction } from 'react'
 import { ActionMeta } from 'react-select';
 
-import InputWithLabel from '@/components/molecules/inputWithLabel';
-import TextEditor from '@/components/molecules/textEditor';
-import ErrorBox from '@/components/molecules/errorBox';
-import SelectWithLabel from '@/components/molecules/selectWithLabel';
-import Button from '@/components/atoms/button';
+import InputWithLabel from '@root/components/molecules/inputWithLabel';
+import TextEditor from '@root/components/molecules/textEditor';
+import ErrorBox from '@root/components/molecules/errorBox';
+import SelectWithLabel from '@root/components/molecules/selectWithLabel';
+import Button from '@root/components/atoms/button';
+import * as T from '@root/types';
 import { InputContainer, InputWrapper, StyledForm } from './styles';
-import * as T from '@/types/index';
 
 interface Props {
   token: string

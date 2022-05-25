@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import useDarkMode from 'use-dark-mode'
 
-import { lightTheme, darkTheme, GlobalStyles } from '@/styles/theme'
+import { lightTheme, darkTheme, GlobalStyles } from '@root/styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false)

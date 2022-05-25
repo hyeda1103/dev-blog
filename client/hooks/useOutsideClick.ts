@@ -1,6 +1,4 @@
-import {
-  useEffect, MouseEvent, TouchEvent,
-} from 'react';
+import { useEffect } from 'react';
 
 function useOutsideClick(
   ref: any,
