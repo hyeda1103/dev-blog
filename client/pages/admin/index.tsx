@@ -20,15 +20,19 @@ const Admin = ({ admin }: Props) => {
       <Container>
         <SelectList>
           <li>
-            <Link href="admin/category/create" passHref>
-              <ArrowIcon />
-              새로운 카테고리 만들기
+            <Link href="admin/category/create">
+              <a>
+                <ArrowIcon />
+                새로운 카테고리 만들기
+              </a>
             </Link>
           </li>
           <li>
-            <Link href="admin/post/create" passHref>
-              <ArrowIcon />
-              새로운 포스팅하기
+            <Link href="admin/post/create">
+              <a>
+                <ArrowIcon />
+                새로운 포스팅하기
+              </a>
             </Link>
           </li>
         </SelectList>
