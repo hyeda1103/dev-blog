@@ -10,16 +10,16 @@ export default function Navbar() {
     <Container>
       <Inner>
         <Logo>
-          <Link href="/">
-            <a>HYEDAKO</a>
+          <Link href="/" passHref>
+            HYEDAKO
           </Link>
         </Logo>
         <Nav>
           {
             isAuth() && isAuth().role === 'admin' && (
               <Item>
-                <Link href="/admin">
-                  <a>어드민</a>
+                <Link href="/admin" passHref>
+                  어드민
                 </Link>
               </Item>  
             )
@@ -31,8 +31,8 @@ export default function Navbar() {
               </Item>
             ) : (
               <Item>
-                <Link href="/login">
-                  <a>로그인</a>
+                <Link href="/login" passHref>
+                  로그인
                 </Link>
               </Item>
             )

@@ -36,7 +36,7 @@ function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
     loadUpdatedLinks()
   }
   return (
-    <Link href={`/posts/${post._id}`}>
+    <Link href={`/posts/${post._id}`} passHref>
       <Container onClick={(e) => handleClick(post._id)}>
         <Header>
           <Title>{post.title}</Title>

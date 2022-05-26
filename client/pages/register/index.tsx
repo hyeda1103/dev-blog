@@ -165,8 +165,8 @@ const Register = () => {
     <DirectToWrapper>
       이미 가입하셨나요?
       {' '}
-      <Link href="/login">
-        <a>로그인하기</a>
+      <Link href="/login" passHref>
+        로그인하기
       </Link>
     </DirectToWrapper>
   );
