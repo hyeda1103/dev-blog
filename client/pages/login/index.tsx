@@ -143,13 +143,11 @@ const Login = () => {
   );
 
   const findPassword = (
-    <Link href='/auth/password/forgot'>
-      <a>
-        <span>
-          비밀번호 찾기
-        </span>
-        <ArrowForward />
-      </a>
+    <Link href='/auth/password/forgot' passHref>
+      <span>
+        비밀번호 찾기
+      </span>
+      <ArrowForward />
     </Link>
   )
 
@@ -157,8 +155,8 @@ const Login = () => {
     <DirectToWrapper>
       새로 오셨나요?
       {' '}
-      <Link href="/register">
-        <a>가입하기</a>
+      <Link href="/register" passHref>
+        가입하기
       </Link>
     </DirectToWrapper>
   );
