@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-export const Root = styled.header`
-  position: fixed;
+export const Container = styled.div`
+  position: relative;
   width: 100%;
-  z-index: 9;
+  height: 64px;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.body};
   display: flex;
-  flex-direction: column;
   align-items: center;
 `
 
@@ -22,7 +22,7 @@ export const Inner = styled.div`
 
 export const Logo = styled.h3`
   a {
-    font-size: 32px;
+    font-size: 28px;
   }
 `
 

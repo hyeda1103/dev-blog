@@ -8,7 +8,7 @@ export default function Footer() {
       <Inner>
         <Copyright>
           &copy;
-          {new Date().getFullYear()} HYEDAKO, Powered by{" "}
+          {new Date().getFullYear()} 해다코, Powered by{" "}
           <Link href='https://nextjs.org/'>
             <a>
               Next.js

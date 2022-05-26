@@ -3,7 +3,6 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next';
 import { ActionMeta } from 'react-select';
 
-import Layout from '@root/components/templates/layout';
 import TypeList from '@root/components/organisms/typeList';
 import CreatePostForm from '@root/components/organisms/createPostForm';
 import { getCookie } from '@root/helpers/auth';
@@ -165,11 +164,7 @@ function CreateLink({ user, categoryList, token }: Props) {
     }
   })()
 
-  return (
-    <Layout>
-      {Content}
-    </Layout>
-  )
+  return Content
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {

@@ -171,13 +171,11 @@ const CreateCategory = ({ admin, token }: Props) => {
   );
 
   return (
-    <Layout>
-      <AuthForm
-        title={title}
-        subTitle={subTitle}
-        form={form}
-      />
-    </Layout>
+    <AuthForm
+      title={title}
+      subTitle={subTitle}
+      form={form}
+    />
   )
 }
 

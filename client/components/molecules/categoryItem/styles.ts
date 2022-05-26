@@ -8,9 +8,9 @@ export const Container = styled.li`
   border: 1px solid ${({ theme }) => theme.text};
   margin: 2px;
   font-size: 14px;
+  transition: 0.25s ease;
 
   &:hover {
-    -webkit-box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
-    box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
+    background: ${({ theme }) => theme.hover};
   }
 `;

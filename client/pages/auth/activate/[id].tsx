@@ -4,7 +4,6 @@ import { WithRouterProps } from 'next/dist/client/with-router'
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
 
-import Layout from '@root/components/templates/layout';
 import ErrorBox from '@root/components/molecules/errorBox';
 import Button from '@root/components/atoms/button';
 import * as T from '@root/types'
@@ -77,13 +76,11 @@ const ActivateAccount = ({ router }: WithRouterProps) => {
   );
 
   return (
-    <Layout>
-      <AuthForm
-        title={title}
-        subTitle={subTitle}
-        form={form}
-      />
-    </Layout>
+    <AuthForm
+      title={title}
+      subTitle={subTitle}
+      form={form}
+    />
   )
 }
 

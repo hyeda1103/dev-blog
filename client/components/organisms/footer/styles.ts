@@ -6,10 +6,11 @@ export const Container = styled.footer`
   width: 100%;
   padding: 0.5rem 0;
   bottom: 0;
+  border-top: 1px solid ${({ theme }) => theme.text};
 `
 
 export const Inner = styled.div`
-  width: 960px;
+  width: 840px;
   margin: 0 auto;
   display: flex;
   align-items: center;

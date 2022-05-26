@@ -6,7 +6,6 @@ import Button from '@root/components/atoms/button';
 import InputWithLabel from '@root/components/molecules/inputWithLabel';
 import ErrorBox from '@root/components/molecules/errorBox';
 import AuthForm from '@root/components/templates/authForm';
-import Layout from '@root/components/templates/layout'
 import * as T from '@root/types'
 import { isAuth } from '@root/helpers/auth';
 import {
@@ -172,14 +171,12 @@ const Register = () => {
   );
 
   return (
-    <Layout>
-      <AuthForm
-        title={title}
-        subTitle={subTitle}
-        form={form}
-        directTo={directTo}
-      />
-    </Layout>
+    <AuthForm
+      title={title}
+      subTitle={subTitle}
+      form={form}
+      directTo={directTo}
+    />
   );
 }
 

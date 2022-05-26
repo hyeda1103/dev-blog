@@ -7,7 +7,6 @@ import { authenticate, isAuth } from '@root/helpers/auth';
 import Button from '@root/components/atoms/button';
 import InputWithLabel from '@root/components/molecules/inputWithLabel';
 import AuthForm from '@root/components/templates/authForm';
-import Layout from '@root/components/templates/layout'
 import * as T from '@root/types'
 import {
   StyledForm,
@@ -164,14 +163,12 @@ const Login = () => {
   );
 
   return (
-    <Layout>
-      <AuthForm
-        title={title}
-        form={form}
-        findPassword={findPassword}
-        directTo={directTo}
-      />
-    </Layout>
+    <AuthForm
+      title={title}
+      form={form}
+      findPassword={findPassword}
+      directTo={directTo}
+    />
   );
 }
 

@@ -4,7 +4,6 @@ import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { API } from '@root/config'
-import Layout from '@root/components/templates/layout';
 import * as T from '@root/types'
 import LinkItem from '@root/components/molecules/postItem/index';
 import { CategoryInfoWrapper, PostList } from './styles';
@@ -67,10 +66,10 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
     )
   })()
   return (
-    <Layout>
+    <>
       {categoryInfo}
       {postList}
-    </Layout>
+    </>
   )
 }
 

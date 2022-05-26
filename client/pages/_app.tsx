@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import useDarkMode from 'use-dark-mode'
 
 import { lightTheme, darkTheme, GlobalStyles } from '@root/styles/theme'
+import Layout from '@root/components/templates/layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false)
@@ -16,7 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      {isMounted && <Component {...pageProps} />}
+      {isMounted &&
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      }
     </ThemeProvider>
   )
 }

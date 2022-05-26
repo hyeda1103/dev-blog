@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import * as T from '@root/types';
 import { getCookie } from '@root/helpers/auth';
-import Layout from '@root/components/templates/layout'
 import { API } from '@root/config';
 import { Container, SelectList, ArrowIcon } from './styles';
 
@@ -16,28 +15,26 @@ interface Props {
 
 const Admin = ({ admin }: Props) => {
   return (
-    <Layout>
-      <Container>
-        <SelectList>
-          <li>
-            <Link href="admin/category/create">
-              <a>
-                <ArrowIcon />
-                새로운 카테고리 만들기
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="admin/post/create">
-              <a>
-                <ArrowIcon />
-                새로운 포스팅하기
-              </a>
-            </Link>
-          </li>
-        </SelectList>
-      </Container>
-    </Layout>
+    <Container>
+      <SelectList>
+        <li>
+          <Link href="admin/category/create">
+            <a>
+              <ArrowIcon />
+              새로운 카테고리 만들기
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="admin/post/create">
+            <a>
+              <ArrowIcon />
+              새로운 포스팅하기
+            </a>
+          </Link>
+        </li>
+      </SelectList>
+    </Container>
   )
 }
 

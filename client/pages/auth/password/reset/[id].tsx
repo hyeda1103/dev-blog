@@ -8,7 +8,6 @@ import { isAuth } from '@root/helpers/auth';
 import Button from '@root/components/atoms/button';
 import InputWithLabel from '@root/components/molecules/inputWithLabel';
 import AuthForm from '@root/components/templates/authForm';
-import Layout from '@root/components/templates/layout'
 import * as T from '@root/types'
 import {
   StyledForm,
@@ -130,13 +129,11 @@ const ResetPassword = ({ router }: WithRouterProps) => {
   );
 
   return (
-    <Layout>
-      <AuthForm
-        title={title}
-        subTitle={subTitle}
-        form={form}
-      />
-    </Layout>
+    <AuthForm
+      title={title}
+      subTitle={subTitle}
+      form={form}
+    />
   );
 }
 

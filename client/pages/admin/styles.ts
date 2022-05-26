@@ -32,8 +32,8 @@ export const SelectList = styled.ul`
     }
 
     &:hover {
-      -webkit-box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
-      box-shadow: 0 0 2px 2px ${({ theme }) => theme.highlight};
+      -webkit-box-shadow: 0 0 5px 5px ${({ theme }) => theme.hover};
+      box-shadow: 0 0 5px 5px ${({ theme }) => theme.hover};
     }
   }
 `;

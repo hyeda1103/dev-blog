@@ -47,6 +47,12 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.text};
   padding: 8px 24px;
   cursor: pointer;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    -webkit-box-shadow: 2px 2px ${({ theme }) => theme.text };
+    box-shadow: 2px 2px ${({ theme }) => theme.text };
+  }
 `;
 
 export const GitHubIcon = styled(VscGithubInverted)`

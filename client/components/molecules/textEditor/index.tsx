@@ -54,7 +54,6 @@ function TextEditor({
     input.onchange = async () => {
       if (input.files === null) return;
       const [file] = input.files;
-      console.log(QuillRef)
   
       try {
         const image = await resizeImage(file);
@@ -71,7 +70,7 @@ function TextEditor({
         quill.insertEmbed(position, 'image', res.data);
         quill.setSelection(position + 1, 1);
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     };
   }
