@@ -8,4 +8,4 @@ export const Main = styled.main`
   min-height: calc(100vh - 41px);
   box-sizing: border-box;
   line-height: 1.5;
-`
+`;

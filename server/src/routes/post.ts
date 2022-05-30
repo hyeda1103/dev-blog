@@ -2,7 +2,7 @@ import express from 'express'
 // controllers
 import {
   createPost,
-  listPost,
+  listPosts,
   readPost,
   deletePost,
   clickCount,
@@ -15,7 +15,7 @@ const router = express.Router();
 
 router.post('/post/upload-image', uploadImageFile)
 router.post('/post', authMiddleware, createPost)
-router.get('/posts', listPost)
+router.get('/posts', listPosts)
 router.put('/click-count', clickCount);
 router.get('/post/:id', readPost);
 router.put('/post/:slug', authMiddleware, createPost)

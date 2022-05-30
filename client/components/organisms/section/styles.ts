@@ -6,11 +6,27 @@ export const Container = styled.section`
   width: 100%;
 `;
 
-export const TitleWrapper = styled.div`
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 18px;
+export const Header = styled.div`
+  margin-bottom: 28px;
   padding: 0 24px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
+export const Title = styled.h1`
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+`;
+
+export const Logline = styled.p`
+  color: ${({ theme }) => theme.subText};
+  font-size: 14px;
 `;

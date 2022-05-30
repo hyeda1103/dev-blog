@@ -9,6 +9,7 @@ import * as T from '@root/types'
 import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, Description, TypeWrapper, ClickIcon, ViewWrapper, LinkWrapper } from './styles';
 import CategoryItem from '@root/components/molecules/categoryItem/index';
 import { API } from '@root/config';
+import getFirstSentence from '@root/helpers/getFirstSentence';
 
 interface Props {
   slug?: string
@@ -35,6 +36,7 @@ function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
     const res = await axios.put(`${API}/click-count`, { postId })
     loadUpdatedLinks()
   }
+  const text = getFirstSentence(post.description)
   return (
     <Link href={`/posts/${post._id}`}>
       <Container onClick={(e) => handleClick(post._id)}>
@@ -50,7 +52,7 @@ function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
               <GitHubIcon />{post.githubLink}
             </a>
           </LinkWrapper>
-          <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+          <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }} />
         </Details>
         <Footer>
           <TagBox>

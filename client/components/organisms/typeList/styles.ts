@@ -40,8 +40,8 @@ export const SelectItem = styled.li<StyleProps>`
   align-items: center;
   cursor: pointer;
   display: flex;
-  -webkit-box-shadow: 0 0 5px 5px ${({ theme, isSelected }) => isSelected ? theme.hover : theme.body };
-  box-shadow: 0 0 5px 5px ${({ theme, isSelected }) => isSelected ? theme.hover : theme.body };
+  -webkit-box-shadow: 0 0 5px 5px ${({ theme, isSelected }) => isSelected ? theme.primary : theme.body };
+  box-shadow: 0 0 5px 5px ${({ theme, isSelected }) => isSelected ? theme.primary : theme.body };
 
   &:first-child {
     margin-top: 0
@@ -52,10 +52,10 @@ export const SelectItem = styled.li<StyleProps>`
   }
 
   &:hover {
-    -webkit-box-shadow: 0 0 5px 5px ${({ theme }) => theme.hover};
-    box-shadow: 0 0 5px 5px ${({ theme }) => theme.hover};
+    -webkit-box-shadow: 0 0 5px 5px ${({ theme }) => theme.primary};
+    box-shadow: 0 0 5px 5px ${({ theme }) => theme.primary};
   }
-`;5
+`;
 
 export const SelectList = styled.ul`
   display: flex;

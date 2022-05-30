@@ -113,14 +113,16 @@ export const TypeButton = styled.button<StyleProps>`
   border: 1px solid ${({ theme }) => theme.text};
   cursor: pointer;
   border-radius: 0;
+  transition: 0.25s ease;
 
   & + & {
     margin-left: 1rem;
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.hover};
-    transform: 0.25s ease;
+    transform: translate(-2px, -2px);
+    -webkit-box-shadow: 2px 2px ${({ theme }) => theme.text };
+    box-shadow: 2px 2px ${({ theme }) => theme.text };
   }
 `;
 

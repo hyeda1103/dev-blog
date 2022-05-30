@@ -1,12 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
-  body: '#fff',
-  text: '#121212',
-  toggleBorder: '#fff',
-  hover: '#EFEFEF',
+  body: '#f4f4f4',
+  text: '#161E2E',
+  subText: '#333333',
+  primary: '#B6DBB7',
+  paper: '#FFFFFF',
+  border: '#d2d6dc',
   disabled: '#c1c1c1',
-  active: '#999',
+  active: '#D7E5F0',
   fail: '#ff3300',
   highlight: '#60fd1e',
   hyperlink: {
@@ -17,11 +19,13 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  body: '#121212',
-  text: '#fff',
-  toggleBorder: '#6B8096',
-  hover: '#999',
-  active: '#EFEFEF',
+  body: '#161E2E',
+  text: '#f4f4f4',
+  subText: '#f4f4f4',
+  primary: '#B6DBB7',
+  paper: '#161E2E',
+  border: '#6B8096',
+  active: '#D7E5F0',
   disabled: '#c1c1c1',
   fail: '#ff3300',
   highlight: '#7f7fff',
@@ -36,7 +40,11 @@ type Theme = {
   theme: {
     body: string
     text: string
-    toggleBorder: string
+    subText: string
+    guide: string
+    primary: string
+    paper: string
+    border: string
     hover: string
     active: string
     fail: string

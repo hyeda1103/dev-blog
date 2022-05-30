@@ -20,6 +20,5 @@ export const BasicButton = styled.button`
   &:disabled {
     cursor: not-allowed;
     color: ${({ theme }) => theme.disabled};
-    background-color: ${({ theme }) => theme.hover};
   }
 `

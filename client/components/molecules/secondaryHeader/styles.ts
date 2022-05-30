@@ -9,11 +9,11 @@ interface StyleProps {
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 32px;
-  border-bottom: 1px solid ${({ theme }) => theme.text};
-  background-color: ${({ theme }) => theme.body};
+  height: 40px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.body};
 `
 
 export const Inner = styled.div`
@@ -25,6 +25,7 @@ export const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding: 8px 0;
 `
 
 export const Nav = styled.div`
@@ -40,16 +41,19 @@ export const Item = styled.div`
   margin-left: 16px;
   padding: 2px 6px;
   border: 1px solid ${({ theme }) => theme.text};
-  transition: 0.25s ease;
+  transition: 0.05s ease;
 
   a {
     font-size: 11px;
   }
 
   &:hover {
-    background: ${({ theme }) => theme.hover};
+    transform: translate(-1px, -1px);
+    -webkit-box-shadow: 1px 1px ${({ theme }) => theme.text };
+    box-shadow: 1px 1px ${({ theme }) => theme.text };
   }
 `
+
 export const SwitchMode = styled.div<StyleProps>`
   background-color: ${({ theme }) => theme.text};
   display: flex;

@@ -23,18 +23,37 @@ export const createPost = (req: any, res: Response) => {
   })
 }
 
-export const listPost = (req: Request, res: Response) => {
-  Post.find({})
+export const listPosts = async (req: Request, res: Response) => {
+  const keyword = req.query.keyword
+    ? {
+      $or: [
+        {
+          title: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+        {
+          description: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+      ],
+    }
+    : {};
+
+  const posts = await Post.find({ ...keyword })
     .populate('categories', 'name slug')
     .sort({ createdAt: -1 })
-    .exec((err, data) => {
-      if (err) {
-        return res.status(400).json({
-          error: '포스트를 찾을 수 없습니다'
-        })
-      }
-      res.json(data)
-    })
+  
+  if (posts.length) {
+    res.json(posts)
+  } else {
+    res.status(400).json({
+      error: `${req.query.keyword}에 대한 포스트가 존재하지 않습니다`
+    });
+  }
 }
 
 export const readPost = (req: Request, res: Response) => {

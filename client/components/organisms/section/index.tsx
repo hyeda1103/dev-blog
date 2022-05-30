@@ -1,16 +1,28 @@
 import React, { ReactNode } from 'react'
 
-import { Container, TitleWrapper } from './styles';
+import { Container, Header, TitleWrapper, Title, Logline } from './styles';
 
 interface Props {
-  title: string
+  title?: string
+  link?: ReactNode
+  logline?: string
   contents: ReactNode
 }
 
-function Section({ title, contents }: Props) {
+function Section({ title, link, logline, contents }: Props) {
   return (
     <Container>
-      <TitleWrapper>{title}</TitleWrapper>
+      <Header>
+        <TitleWrapper>
+          <Title>
+            {title}
+          </Title>
+          {link}
+        </TitleWrapper>
+        <Logline>
+          {logline}
+        </Logline>
+      </Header>
       {contents}
     </Container>
   )

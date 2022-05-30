@@ -7,8 +7,7 @@ export default function Footer() {
     <Container>
       <Inner>
         <Copyright>
-          &copy;
-          {new Date().getFullYear()} 해다코, Powered by{" "}
+          Copyright &copy; 해다코 {new Date().getFullYear()}, Made with{" "}
           <Link href='https://nextjs.org/'>
             <a>
               Next.js
