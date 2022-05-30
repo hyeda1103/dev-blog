@@ -99,3 +99,14 @@ export enum Step {
   TYPE = 'type',
   POST = 'post'
 }
+
+export enum Social {
+  LINKEDIN = 'linkedin',
+  GITHUB = 'github',
+  EMAIL = 'email',
+}
+
+export enum Size {
+  SMALL = 'small',
+  BIG = 'big'
+}

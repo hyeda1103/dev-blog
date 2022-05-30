@@ -2,14 +2,28 @@ import React from 'react'
 import Link from 'next/link'
 import useDarkMode from 'use-dark-mode';
 
+import * as T from '@root/types';
 import { isAuth, logout } from '@root/helpers/auth'
-import { Container, Inner, Nav, Item, SwitchMode, SunIcon, MoonIcon } from './styles'
+import SNSIcon from '@root/components/atoms/snsIcon';
+import { Container, Inner, SocialIconWrapper, Nav, Item, SwitchMode, SunIcon, MoonIcon } from './styles'
+import Tippy from '@root/components/atoms/tippy';
 
 function Secondary() {
   const darkmode = useDarkMode(true)
   return (
     <Container>
       <Inner>
+        <SocialIconWrapper>
+          <Tippy tooltipContent={`해다의 ${T.Social.GITHUB}으로!`}>
+            <SNSIcon snsType={T.Social.GITHUB} />
+          </Tippy>
+          <Tippy tooltipContent={`해다의 ${T.Social.LINKEDIN} 프로필`}>
+            <SNSIcon snsType={T.Social.LINKEDIN} />
+          </Tippy>
+          {/* <Tippy tooltipContent='dalgona92@gmail.com'>
+            <SNSIcon snsType={T.Social.EMAIL} />
+          </Tippy> */}
+        </SocialIconWrapper>
         <Nav>
           {
             isAuth() && isAuth().role === 'admin' && (

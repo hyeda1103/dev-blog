@@ -19,7 +19,7 @@ function SearchResultPage() {
       const postList = await axios.get(`${API}/posts?keyword=${keyword}`)
       setSearchResult(postList.data)
     } catch (error) {
-      setErrorMessage(`${error}`)
+      setErrorMessage(`${keyword}에 대한 글이 존재하지 않습니다`)
     }
   } 
   
@@ -34,9 +34,7 @@ function SearchResultPage() {
   return (
     <>
       {errorMessage && errorMessage}
-      {searchResult?.map((post) => (
-        <PostList posts={searchResult} />
-      ))}
+      {searchResult.length > 0 && <PostList posts={searchResult} />}
     </>
   )
 }

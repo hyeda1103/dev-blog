@@ -24,9 +24,15 @@ export const Inner = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 8px 0;
 `
+
+export const SocialIconWrapper = styled.div`
+  display: flex;
+  gap: 3px;
+  vertical-align: middle;
+`;
 
 export const Nav = styled.div`
   display: flex;
@@ -63,10 +69,6 @@ export const SwitchMode = styled.div<StyleProps>`
   cursor: pointer;
   transition: 0.25s ease;
   margin-left: 6px;
-
-  &:hover {
-    color: ${({ theme }) => theme.highlight};
-  }
 `
 
 const Icon = css`
