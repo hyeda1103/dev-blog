@@ -51,19 +51,9 @@ $ yarn dev
 
 ## Status
 
-The project is **currently in progress(Upadated on May, 15th, 2022)** 🐫
+The project is **currently in progress(Upadated on May, 30th, 2022)** 🐫
 
-- [x] Auth
-  - register
-  - email authentication
-  - login & logout
-  - Find Password
-- [x] the user with 'subscriber' role can register posts of useful articles & videos on the blog
-  - [x] Each posts are categorized by related tech stacks(ex) React, Next.js, etc) and the user can see filtered results by selecting specifc tag
-- [ ] the user with 'admin' role can CRUD own articles on the blog
-- [x] any user can view contents (tech articles & posts to useful medium) on the blog
-- [x] infinite scroll to load more contents
-- [ ] skeleton loading or spinner to visualize loading status
+![dev-blog-for-ten_220530](https://user-images.githubusercontent.com/61447729/170980621-1ccaeb37-05e5-4da9-ba91-f2c34e6325c5.gif)
 
 ## References
 - [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
