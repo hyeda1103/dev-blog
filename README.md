@@ -35,7 +35,7 @@ $ yarn dev
 
 ## Built with
 
-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with TypeScript.
+- This project was bootstrapped with [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) with TypeScript.
 - Used dependencies and versions can be found in `package.json` in the project root.
   - `Next.js` for `React` framework
   - `styled-components` for styling
