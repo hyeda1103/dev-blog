@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { Container, Header, TitleWrapper, Title, Logline } from './styles';
+import { Container, Header, TitleWrapper, Title, Logline, ContentsWrapper } from './styles';
 
 interface Props {
   title?: string
@@ -23,7 +23,9 @@ function Section({ title, link, logline, contents }: Props) {
           {logline}
         </Logline>
       </Header>
-      {contents}
+      <ContentsWrapper>
+        {contents}
+      </ContentsWrapper>
     </Container>
   )
 }

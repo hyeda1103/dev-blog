@@ -54,9 +54,8 @@ export const Item = styled.div`
   }
 
   &:hover {
-    transform: translate(-1px, -1px);
-    -webkit-box-shadow: 1px 1px ${({ theme }) => theme.text };
-    box-shadow: 1px 1px ${({ theme }) => theme.text };
+    -webkit-box-shadow: 0 1px ${({ theme }) => theme.text };
+    box-shadow: 0 1px ${({ theme }) => theme.text };
   }
 `
 

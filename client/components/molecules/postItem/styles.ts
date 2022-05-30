@@ -49,9 +49,8 @@ export const Container = styled.div`
   cursor: pointer;
 
   &:hover {
-    transform: translate(-2px, -2px);
-    -webkit-box-shadow: 2px 2px ${({ theme }) => theme.text };
-    box-shadow: 2px 2px ${({ theme }) => theme.text };
+    -webkit-box-shadow: 0 2px ${({ theme }) => theme.text };
+    box-shadow: 0 2px ${({ theme }) => theme.text };
   }
 `;
 

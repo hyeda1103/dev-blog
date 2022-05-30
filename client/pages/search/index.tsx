@@ -6,6 +6,8 @@ import axios from 'axios'
 import { API } from '@root/config'
 import * as T from '@root/types'
 import PostList from '@root/components/organisms/postList'
+import { Message, NoResultBox, SadFaceIcon } from './styles'
+import Section from '@root/components/organisms/section'
 
 function SearchResultPage() {
   const router = useRouter()
@@ -19,7 +21,7 @@ function SearchResultPage() {
       const postList = await axios.get(`${API}/posts?keyword=${keyword}`)
       setSearchResult(postList.data)
     } catch (error) {
-      setErrorMessage(`${keyword}에 대한 글이 존재하지 않습니다`)
+      setErrorMessage('검색 결과가 존재하지 않습니다')
     }
   } 
   
@@ -33,8 +35,20 @@ function SearchResultPage() {
   
   return (
     <>
-      {errorMessage && errorMessage}
-      {searchResult.length > 0 && <PostList posts={searchResult} />}
+      {errorMessage && (
+        <NoResultBox>
+          <SadFaceIcon />
+          <Message>
+            {errorMessage}
+          </Message>
+        </NoResultBox>
+      )}
+      {searchResult.length > 0 && (
+        <Section
+          logline={`${keyword}에 대해 총 ${searchResult.length}개의 글이 작성되었습니다`}
+          contents={<PostList posts={searchResult} />}
+        />
+      )}
     </>
   )
 }

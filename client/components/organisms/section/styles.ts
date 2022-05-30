@@ -4,6 +4,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 `;
 
 export const Header = styled.div`
@@ -29,4 +31,11 @@ export const Title = styled.h1`
 export const Logline = styled.p`
   color: ${({ theme }) => theme.subText};
   font-size: 14px;
+`;
+
+export const ContentsWrapper = styled.div`
+  .infinite-scroll-component {
+    overflow: hidden;
+    background: 'red';
+  }
 `;

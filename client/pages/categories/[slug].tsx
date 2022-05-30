@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next';
 import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { API } from '@root/config'
 import * as T from '@root/types'
-import LinkItem from '@root/components/molecules/postItem/index';
-import { CategoryInfoWrapper, PostList } from './styles';
+import Section from '@root/components/organisms/section';
+import PostList from '@root/components/organisms/postList';
+import OneColumn from '@root/components/templates/oneColumn';
 
 interface Props {
   slug: string
@@ -30,10 +31,6 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
     setLimit(postsLimit)
   }, [slug, posts, postSkip, numOfPosts, postsLimit])
   
-  const categoryInfo = useMemo(() => (
-    <CategoryInfoWrapper>{category.name}에 대한 {numOfPosts}개의 글이 있습니다</CategoryInfoWrapper> 
-  ), [category.name, numOfPosts])
-  
   const loadMore = async () => {
     let toSkip = skip + limit
     setSkip(toSkip)
@@ -51,25 +48,17 @@ function SingleCategory({ slug, category, posts, numOfPosts, postsLimit, postSki
         loader={<></>}
         endMessage={<></>}
       >
-        <PostList>
-          {allPosts.map((post) => (
-            <LinkItem
-              key={post._id}
-              slug={slug}
-              post={post}
-              allPosts={allPosts}
-              setAllPosts={setAllPosts}
-            />
-          ))}
-        </PostList>
-      </InfiniteScroll>
+        <PostList posts={allPosts} />
+      </ InfiniteScroll>
     )
   })()
   return (
-    <>
-      {categoryInfo}
-      {postList}
-    </>
+    <OneColumn>
+      <Section
+        logline={`${category.name}에 대해 총 ${allPosts.length}개의 글이 작성되었습니다`}
+        contents={postList}
+      />
+    </OneColumn>
   )
 }
 
@@ -77,7 +66,7 @@ export default SingleCategory
 
 export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   let skip = 0
-  let limit = 5
+  let limit = 3
   const { slug } = query
   
   const all = await axios.post(`${API}/category/${slug}`)

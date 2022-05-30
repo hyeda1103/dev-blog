@@ -18,10 +18,10 @@ export const Loader = styled.div`
 
   margin: 0 auto;
   text-indent: -9999em;
-  border-top: ${({ theme }) => `0.2rem solid ${theme.palette.common.border}`};
-  border-right: ${({ theme }) => `0.2rem solid ${theme.palette.common.border}`};
-  border-bottom: ${({ theme }) => `0.2rem solid ${theme.palette.common.border}`};
-  border-left: ${({ theme }) => `0.2rem solid ${theme.palette.common.main}`};
+  border-top: ${({ theme }) => `0.2rem solid ${theme.border}`};
+  border-right: ${({ theme }) => `0.2rem solid ${theme.border}`};
+  border-bottom: ${({ theme }) => `0.2rem solid ${theme.border}`};
+  border-left: ${({ theme }) => `0.2rem solid ${theme.text}`};
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
