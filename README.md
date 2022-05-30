@@ -53,7 +53,7 @@ $ yarn dev
 
 The project is **currently in progress(Upadated on May, 30th, 2022)** 🐫
 
-![dev-blog-for-ten_220530](https://user-images.githubusercontent.com/61447729/170980621-1ccaeb37-05e5-4da9-ba91-f2c34e6325c5.gif)
+![dev-blog-for-ten_220530](https://user-images.githubusercontent.com/61447729/170981700-753f9f7c-bdfd-4c2c-85c1-32b97a53391f.gif)
 
 ## References
 - [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
