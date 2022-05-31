@@ -46,5 +46,5 @@ export const FindPasswordWrapper = styled.div`
 
 export const DirectToWrapper = styled.div`
   padding: 7px auto;
-  margin-top: 75px;
+  /* margin-top: 75px; */
 `;

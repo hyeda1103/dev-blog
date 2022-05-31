@@ -14,6 +14,7 @@ import {
   DirectToWrapper,
   InputWrapper,
   ArrowForward,
+  Logline,
 } from './styles';
 import ErrorBox from '@root/components/molecules/errorBox';
 import { API } from '@root/config';
@@ -67,7 +68,6 @@ const Login = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmitting(true);
-    setButtonText('로그인 중...')
   };
 
   const login = async () => {
@@ -108,6 +108,12 @@ const Login = () => {
       로그인하기
     </Title>
   );
+  
+  const subTitle = (
+    <Logline>
+      관리자를 위한 로그인 페이지입니다
+    </Logline>
+  )
 
   const form = (
     <StyledForm onSubmit={handleSubmit} noValidate>
@@ -165,9 +171,10 @@ const Login = () => {
   return (
     <AuthForm
       title={title}
+      subTitle={subTitle}
       form={form}
       findPassword={findPassword}
-      directTo={directTo}
+      // directTo={directTo}
     />
   );
 }

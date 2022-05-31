@@ -29,7 +29,7 @@ function Secondary() {
             isAuth() && isAuth().role === 'admin' && (
               <Item>
                 <Link href="/admin">
-                  <a>어드민</a>
+                  <a>관리자 페이지</a>
                 </Link>
               </Item>  
             )
@@ -42,7 +42,7 @@ function Secondary() {
             ) : (
               <Item>
                 <Link href="/login">
-                  <a>로그인</a>
+                  <a>관리자 로그인</a>
                 </Link>
               </Item>
             )

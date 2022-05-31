@@ -24,14 +24,17 @@ export const StyledInput = styled.input<StyleProps>`
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background-color: ${({ theme }) => theme.body};
   border: ${({ theme, error }) => (error
     ? `1px solid ${theme.fail}`
-    : `1px solid ${theme.active}`)
-};
+  : `1px solid ${theme.text}`
+  )};
   outline: none;
   box-sizing: border-box;
   transition: all 0.15s ease;
+
+  &:focus {
+    background: ${({ theme }) => theme.active};
+  }
 `;
 
 export const GuideWrapper = styled.div`

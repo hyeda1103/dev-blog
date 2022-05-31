@@ -11,7 +11,7 @@ import {
   StyledForm,
   Title,
   InputWrapper,
-  SubTitle,
+  Logline,
 } from './styles';
 import ErrorBox from '@root/components/molecules/errorBox';
 import { API } from '@root/config';
@@ -84,12 +84,14 @@ const ForgotPassword = () => {
 
   const title = (
     <Title>
-      비밀번호 재설정 링크 받기
+      비밀번호 재설정하기
     </Title>
   );
 
   const subTitle = (
-    <SubTitle>비밀번호 재설정 링크를 위한 이메일 주소를 입력하세요</SubTitle>
+    <Logline>
+      아래 입력한 이메일 주소로 비밀번호 재설정을 위한 링크가 발신됩니다. 10분 내로 확인하고 비밀번호 재설정을 완료해주세요.
+    </Logline>
   )
 
   const form = (

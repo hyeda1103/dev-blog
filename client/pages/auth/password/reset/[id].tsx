@@ -71,7 +71,6 @@ const ResetPassword = ({ router }: WithRouterProps) => {
   };
 
   const sendPasswordRestLink = async () => {
-    setButtonText('비밀번호 재설정 중...')
     try {
       const res = await axios.put(`${API}/reset-password`, {
         resetPasswordLink: token,

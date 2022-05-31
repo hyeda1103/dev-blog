@@ -5,18 +5,18 @@ export const StyledForm = styled.form`
 `;
 
 export const Title = styled.h1`
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 38.4px;
+  margin-bottom: 12px;
 `;
 
-export const SubTitle = styled.p`
-  margin-top: 20px;
-  font-size: 16px;
+export const Logline = styled.p`
+  color: ${({ theme }) => theme.subText};
+  font-size: 14px;
 `;
 
 export const InputWrapper = styled.div`
-  margin-bottom: 50.71px;
+  margin-bottom: 50px;
 `;
 
 export const DirectToWrapper = styled.div`

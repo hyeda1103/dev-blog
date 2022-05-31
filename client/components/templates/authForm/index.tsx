@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 interface Props {
-  title: React.ReactChild | JSX.Element[] | JSX.Element | null
+  title?: React.ReactChild | JSX.Element[] | JSX.Element | null
   subTitle?: React.ReactChild | JSX.Element[] | JSX.Element | null
   guide?: React.ReactChild | JSX.Element[] | JSX.Element | null
   form?: React.ReactChild | JSX.Element[] | JSX.Element | null
@@ -43,9 +43,11 @@ function AuthForm({
         {findPassword}
       </FindPasswordWrapper>
       )}
-      <DirectToWrapper>
-        {directTo}
-      </DirectToWrapper>
+      {directTo && (
+        <DirectToWrapper>
+          {directTo}
+        </DirectToWrapper>
+      )}
     </Container>
   );
 }
