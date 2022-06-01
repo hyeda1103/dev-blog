@@ -10,6 +10,12 @@ const postSchema = new Schema({
     required: true,
     max: 256
   },
+  slug: {
+    type: String,
+    lowercase: true,
+    unique: true,
+    index: true
+  },
   webLink: {
     type: String,
     trim: true,

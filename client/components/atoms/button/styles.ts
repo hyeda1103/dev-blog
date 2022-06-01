@@ -6,7 +6,7 @@ export const BasicButton = styled.button`
   height: 52px;
   cursor: pointer;
   font-size: 1.25rem;
-  transition: background-color .3s ease;
+  transition: background-color .25s ease;
   border: 1px solid ${({ theme }) => theme.text};
   color: ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.body};
@@ -19,6 +19,8 @@ export const BasicButton = styled.button`
 
   &:disabled {
     cursor: not-allowed;
+    background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.disabled};
+    border: 1px solid ${({ theme }) => theme.disabled};
   }
 `

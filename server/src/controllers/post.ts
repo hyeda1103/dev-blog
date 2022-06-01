@@ -4,11 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 import Post from '../models/post'
 import * as T from '../types'
+import slugify from '../helpers/slugify';
 
 export const createPost = (req: any, res: Response) => {
   const { title, webLink, githubLink, description, categories, type } = req.body;
+  const slug = slugify(title as string)
   let post = new Post({
-    title, webLink, githubLink, description, categories, type
+    title, slug, webLink, githubLink, description, categories, type
   });
   post.postedBy = req.profile._id;
   

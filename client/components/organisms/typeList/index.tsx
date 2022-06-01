@@ -16,7 +16,10 @@ function TypeList({ postTypes, setStep, formValues, setFormValues }: Props) {
   const handleClick = (type: T.PostType) => setFormValues({ ...formValues, type });
   return (
     <Container>
-      <StepGuide stepNumber={1} title='포스트 타입 정하기' guideText='작성하고자 하는 포스트 유형을 선택해주세요' />
+      <StepGuide
+        stepNumber={1}
+        title='포스트 타입 정하기'
+        guideText='개발과 일상 (article), 프로젝트 (project) 중 무엇에 관한 포스트를 작성하고 싶나요?' />
       <SelectList>
         {postTypes.map((type) => (
           <SelectItem key={type} value={type} onClick={() => handleClick(type)} isSelected={formValues.type === type}>

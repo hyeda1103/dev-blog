@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { GuideWrapper, TitleWrapper, Title } from './styles'
+import { GuideWrapper, TitleWrapper, Title, Logline } from './styles'
 
 interface Props {
   stepNumber: number
@@ -13,8 +13,8 @@ function StepGuide({ stepNumber, title, guideText }: Props) {
     <GuideWrapper>
       <TitleWrapper>
         <Title>{title}</Title>
+        <Logline>{guideText}</Logline>
       </TitleWrapper>
-      {guideText}
     </GuideWrapper>
   )
 }
