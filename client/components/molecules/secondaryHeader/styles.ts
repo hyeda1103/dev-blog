@@ -44,7 +44,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 16px;
+  margin-left: 6px;
   padding: 2px 6px;
   border: 1px solid ${({ theme }) => theme.text};
   transition: 0.05s ease;
