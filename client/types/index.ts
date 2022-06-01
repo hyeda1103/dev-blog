@@ -46,8 +46,6 @@ export interface ResetPasswordForm {
 
 export interface CreateCategoryForm {
   name: string
-  content: any
-  image: string | File | Blob | ProgressEvent<FileReader>
 }
 
 export interface Image {

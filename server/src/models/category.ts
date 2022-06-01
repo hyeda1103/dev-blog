@@ -15,15 +15,6 @@ const categorySchema = new Schema({
     unique: true,
     index: true
   },
-  image: {
-    url: String,
-    key: String,
-  },
-  content: {
-    type: {},
-    min: 20,
-    max: 2000000
-  }, 
   postedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
