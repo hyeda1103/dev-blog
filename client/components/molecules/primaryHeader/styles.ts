@@ -43,14 +43,14 @@ export const Highlight = styled.span<StyleProps>`
   position: relative;
 
   &::after {
-    content:"";
+    content: "";
     width: ${({ isActive }) => isActive ? '100%' : 0};
     height: 8px;
     display: inline-block;
     background: ${({ theme }) => theme.active};
     position: absolute;
-    bottom:0;
-    left:0;
+    bottom: 0;
+    left: 0;
     z-index: -1;
     transition: 0.25s all;
   }

@@ -19,6 +19,7 @@ interface Props {
   handleSubmit: FormEventHandler<HTMLFormElement>;
   handleChange: (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => void;
   handleSelect: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
+  handleStatus: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
   handleContent: (e: string) => void;
   reset: () => void;
   setStep: (value: SetStateAction<T.Step>) => void;
@@ -34,6 +35,7 @@ function CreatePostForm({
   handleSubmit,
   handleChange,
   handleSelect,
+  handleStatus,
   handleContent,
   reset,
   setStep,
@@ -43,6 +45,16 @@ function CreatePostForm({
     reset();
     setStep(T.Step.TYPE);
   }
+
+  const statusOptions = [
+    {
+      value: '완성',
+      label: '완성'
+    }, {
+      value: '진행중',
+      label: '진행중'
+    }
+  ]
 
   const RequiredContent = (type: T.CreatePostForm['type']) => {
     switch (type) {
@@ -67,6 +79,7 @@ function CreatePostForm({
                     handleChange={handleSelect}
                     formErrors={formErrors}
                     options={options}
+                    isMulti={true}
                   />
                 )}
                 <TextEditor
@@ -102,6 +115,14 @@ function CreatePostForm({
                   handleChange={handleChange}
                   formErrors={formErrors}
                 />
+                <SelectWithLabel
+                  id="status"
+                  label="진행상황"
+                  handleChange={handleStatus}
+                  formErrors={formErrors}
+                  options={statusOptions}
+                  isMulti={false}
+                />
                 {options && (
                   <SelectWithLabel
                     id="categories"
@@ -109,6 +130,7 @@ function CreatePostForm({
                     handleChange={handleSelect}
                     formErrors={formErrors}
                     options={options}
+                    isMulti={true}
                   />
                 )}
                 <InputWithLabel
