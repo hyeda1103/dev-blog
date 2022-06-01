@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import { HiLink, HiCursorClick } from 'react-icons/hi'
-import { ImFire } from 'react-icons/im'
 
 export const Header = styled.div`
   display: flex;
@@ -81,7 +80,7 @@ export const Details = styled.span`
 
 export const TypeWrapper = styled.div`
   display: flex;
-  font-size: 14px;
+  font-size: 11px;
 `;
 
 export const Footer = styled.div`

@@ -12,16 +12,25 @@ function StatusTag({ status }: Props) {
   const tagColor = ((status: T.Status) => {
     switch (status) {
       case T.Status.In_Progress:
-        return '#fbf3da';
+        return {
+          background: '#fbf3da80',
+          color: '#dfab00',
+        };
       case T.Status.Completed:
-        return '#ddedea';
+        return {
+          background: '#ddedea80',
+          color: '#0e7b6c'
+        };
       default:
-        return '#ffffff'
+        return {
+          background: '#ddebf180',
+          color: '#0c6e99'
+        };
     }
   })(status)
   
   return (
-    <Tag color={tagColor}>{status}</Tag>
+    <Tag tagColor={tagColor}>{status}</Tag>
   )
 }
 
