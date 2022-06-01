@@ -69,9 +69,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
   let limit = 3
   const { slug } = query
   
-  const all = await axios.post(`${API}/category/${slug}`)
+  const all = await axios.post(encodeURI(`${API}/category/${slug}`))
 
-  const res = await axios.post(`${API}/category/${slug}`, { skip, limit })
+  const res = await axios.post(encodeURI(`${API}/category/${slug}`), { skip, limit })
   return {
     props: {
       slug,

@@ -18,7 +18,7 @@ function SearchResultPage() {
   
   const fetchPostsByKeyword: (keyword: string) => void = async (keyword) => {
     try {
-      const postList = await axios.get(`${API}/posts?keyword=${keyword}`)
+      const postList = await axios.get(encodeURI(`${API}/posts?keyword=${keyword}`))
       setSearchResult(postList.data)
     } catch (error) {
       setErrorMessage('검색 결과가 존재하지 않습니다')
