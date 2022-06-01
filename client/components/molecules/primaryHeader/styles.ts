@@ -34,22 +34,42 @@ export const Nav = styled.ul`
   position: relative;
 `
 
+interface StyleProps {
+  isActive: boolean
+}
+
+export const Highlight = styled.span<StyleProps>`
+  display: inline-block; 
+  position: relative;
+
+  &::after {
+    content:"";
+    width: ${({ isActive }) => isActive ? '100%' : 0};
+    height: 8px;
+    display: inline-block;
+    background: ${({ theme }) => theme.active};
+    position: absolute;
+    bottom:0;
+    left:0;
+    z-index: -1;
+    transition: 0.25s all;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+`;
+
 export const Item = styled.li`
-  display: flex;
-  align-items: center;
   cursor: pointer;
   margin-right: 14px;
   padding: 0 2px;
-  transition: 0.05s ease;
+  display: inline-block; 
+  position: relative;
+  z-index: 1;
 
   a {
     font-size: 14px;
     text-decoration: none;
-    display: inline-block;
-
-    :hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
   }
 `

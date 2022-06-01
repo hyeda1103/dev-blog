@@ -108,3 +108,9 @@ export enum Size {
   SMALL = 'small',
   BIG = 'big'
 }
+
+export enum Page {
+  DAILY_DEV = '/daily-dev',
+  SIDE_PROJECT = '/side-project',
+  ABOUT = '/about'
+}
