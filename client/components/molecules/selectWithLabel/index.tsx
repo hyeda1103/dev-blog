@@ -15,10 +15,11 @@ interface Props {
   handleChange: ((newValue: Array<T.Category> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined
   formErrors: T.Object
   options: Array<T.SelectOption>
+  isMulti: boolean
 }
 
 function SelectWithLabel({
-  id, label, handleChange, formErrors, options
+  id, label, handleChange, formErrors, options, isMulti
 }: Props) {
   return (
     <Container>
@@ -28,6 +29,7 @@ function SelectWithLabel({
       <ReactSelect
         options={options}
         handleChange={handleChange}
+        isMulti={isMulti}
       />
       {formErrors[id] && (
         <ErrorBox error={formErrors[id]} />

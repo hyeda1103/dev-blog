@@ -10,6 +10,7 @@ import { Details, Header, GitHubIcon, Container, TagBox, Title, Footer, Descript
 import CategoryItem from '@root/components/molecules/categoryItem/index';
 import { API } from '@root/config';
 import getFirstSentence from '@root/helpers/getFirstSentence';
+import StatusTag from '@root/components/atoms/statusTag';
 
 interface Props {
   slug?: string
@@ -20,15 +21,6 @@ interface Props {
 
 function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
   const router = useRouter()
-  const loadUpdatedLinks = async () => {
-    if (slug) {
-      const res = await axios.post(`${API}/category/${slug}`, {
-        skip: 0,
-        limit: allPosts.length,
-      })
-      setAllPosts(res.data.posts)
-    }
-  }
 
   const handleClick = async (postId: T.Post['_id']) => {
     const res = await axios.put(`${API}/click-count`, { postId })
@@ -40,7 +32,7 @@ function ProjectItem({ slug, post, allPosts, setAllPosts }: Props) {
       <Header>
         <Title>{post.title}</Title>
         <TypeWrapper>
-          {moment(post.createdAt).fromNow()}
+          <StatusTag status={post.status} />
         </TypeWrapper>                      
       </Header>
       <Details>
