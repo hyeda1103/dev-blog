@@ -79,10 +79,10 @@ const CreateCategory = ({ admin, token }: Props) => {
     <Container>
       <Header>
         <TitleWrapper>
-          <Title>즐거운 블로깅</Title>
+          <Title>카테고리 만들기</Title>
         </TitleWrapper>
         <Logline>{admin.name}님, 반가워요.
-          아래 목록에서 원하는 작업을 선택해주세요.
+          포스팅하고 싶은 글의 새로운 카테고리를 등록해보세요.
         </Logline>
       </Header>
       <StyledForm onSubmit={handleSubmit} noValidate>
