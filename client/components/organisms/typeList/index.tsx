@@ -1,19 +1,25 @@
 import React, { Dispatch, SetStateAction } from 'react'
+import { observer } from 'mobx-react'
 
 import * as T from '@root/types'
 import StepGuide from '@root/components/molecules/stepGuide';
 import Button from '@root/components/atoms/button';
 import { Container, SelectList, SelectItem, ArrowIcon } from './styles';
+import contentStore from '@root/stores/contentStore';
 
 interface Props {
   postTypes: Array<T.PostType>
-  setStep: Dispatch<SetStateAction<T.Step>>
   formValues: T.CreatePostForm
   setFormValues: Dispatch<SetStateAction<T.CreatePostForm>>
 }
 
-function TypeList({ postTypes, setStep, formValues, setFormValues }: Props) {
-  const handleClick = (type: T.PostType) => setFormValues({ ...formValues, type });
+function TypeList({ postTypes, formValues, setFormValues }: Props) {
+  const setPostType = (type: T.PostType | undefined) => contentStore.setPostType(type)
+  const handleClick = (type: T.PostType) => {
+    setFormValues({ ...formValues, type })
+    setPostType(type)
+  };
+  const setStep = (step: T.Step | undefined) => contentStore.setStep(step)
   return (
     <Container>
       <StepGuide
@@ -34,4 +40,4 @@ function TypeList({ postTypes, setStep, formValues, setFormValues }: Props) {
   )
 }
 
-export default TypeList
+export default observer(TypeList)

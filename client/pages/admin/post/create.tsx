@@ -2,12 +2,14 @@ import React, { useState, useEffect, ChangeEvent, FormEventHandler } from 'react
 import axios from 'axios'
 import { GetServerSideProps } from 'next';
 import { ActionMeta } from 'react-select';
+import { observer } from 'mobx-react'
 
 import TypeList from '@root/components/organisms/typeList';
 import CreatePostForm from '@root/components/organisms/createPostForm';
 import { getCookie } from '@root/helpers/auth';
 import * as T from '@root/types';
 import { API } from '@root/config';
+import contentStore from '@root/stores/contentStore';
 
 interface Props {
   user: T.Profile
@@ -18,7 +20,6 @@ interface Props {
 const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT]
 
 function CreateLink({ user, categoryList, token }: Props) {
-  const [step, setStep] = useState(T.Step.TYPE)
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
@@ -58,7 +59,6 @@ function CreateLink({ user, categoryList, token }: Props) {
     if (!values.description) {
       errorRegisters.description = '내용을 입력해야 합니다';
     } 
-    
 
     if (values.categories.length === 0) {
       errorRegisters.categories = '적어도 하나 이상의 카테고리를 선택해야 합니다'
@@ -137,10 +137,10 @@ function CreateLink({ user, categoryList, token }: Props) {
   }, [categoryList])
 
   const Content = (() => {
-    switch (step) {
+    switch (contentStore.step) {
       case T.Step.TYPE:
         return (
-          <TypeList postTypes={postTypes} setStep={setStep} formValues={formValues} setFormValues={setFormValues} />
+          <TypeList postTypes={postTypes} formValues={formValues} setFormValues={setFormValues} />
         )
       case T.Step.POST:
         return (
@@ -155,8 +155,6 @@ function CreateLink({ user, categoryList, token }: Props) {
             handleChange={handleChange}
             handleSelect={handleSelect}
             handleContent={handleContent}
-            reset={reset}
-            setStep={setStep}
           />
         )
       default:
@@ -164,7 +162,11 @@ function CreateLink({ user, categoryList, token }: Props) {
     }
   })()
 
-  return Content
+  return (
+    <>
+      {Content}
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
@@ -191,4 +193,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
 }
 
-export default CreateLink
+export default observer(CreateLink)

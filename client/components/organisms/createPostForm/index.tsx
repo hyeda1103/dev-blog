@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEventHandler, SetStateAction } from 'react'
 import { ActionMeta } from 'react-select';
+import { observer } from 'mobx-react';
 
 import InputWithLabel from '@root/components/molecules/inputWithLabel';
 import TextEditor from '@root/components/molecules/textEditor';
@@ -7,6 +8,7 @@ import ErrorBox from '@root/components/molecules/errorBox';
 import SelectWithLabel from '@root/components/molecules/selectWithLabel';
 import Button from '@root/components/atoms/button';
 import * as T from '@root/types';
+import contentStore from '@root/stores/contentStore';
 import { InputContainer, InputWrapper, StyledForm } from './styles';
 
 interface Props {
@@ -20,8 +22,6 @@ interface Props {
   handleChange: (keyName: string) => (e: ChangeEvent<HTMLInputElement>) => void;
   handleSelect: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
   handleContent: (e: string) => void;
-  reset: () => void;
-  setStep: (value: SetStateAction<T.Step>) => void;
 }
 
 function CreatePostForm({
@@ -35,17 +35,11 @@ function CreatePostForm({
   handleChange,
   handleSelect,
   handleContent,
-  reset,
-  setStep,
 }: Props) {
-  const { type, title, description, webLink, githubLink } = formValues;
-  const handleClick = () => {
-    reset();
-    setStep(T.Step.TYPE);
-  }
-
-  const RequiredContent = (type: T.CreatePostForm['type']) => {
-    switch (type) {
+  const { title, description, webLink, githubLink } = formValues;
+  
+  const RequiredContent = (() => {
+    switch (contentStore.postType) {
       case T.PostType.ARTICLE:
         return (
           <InputContainer>
@@ -151,14 +145,13 @@ function CreatePostForm({
       default:
         break;
     }
-  }
+  })()
 
   return (
     <>
-      <button onClick={handleClick}>이전</button>
-      {RequiredContent(type)}
+      {RequiredContent}
     </>
   );
 }
 
-export default CreatePostForm;
+export default observer(CreatePostForm);

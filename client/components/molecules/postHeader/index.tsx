@@ -1,0 +1,30 @@
+import React from 'react'
+import { observer } from 'mobx-react';
+
+import contentStore from '@root/stores/contentStore';
+import * as T from '@root/types'
+import { Container, Highlight, Inner, Item, Nav } from './styles'
+
+function PostHeader() {
+  const setStep = (step: T.Step | undefined) => contentStore.setStep(step)
+  return (
+    <Container>
+      <Inner>
+        <Nav>
+          <Item onClick={() => setStep(T.Step.TYPE)}>
+            <Highlight isActive={contentStore.step === T.Step.TYPE}>
+              STEP 1. 포스트 타입 정하기
+            </Highlight>
+          </Item>
+          <Item onClick={() => setStep(T.Step.POST)}>
+            <Highlight isActive={contentStore.step === T.Step.POST}>
+              STEP 2. 포스트 작성하기
+            </Highlight>
+          </Item>
+        </Nav>
+      </Inner>
+    </Container>
+  )
+}
+
+export default observer(PostHeader)
