@@ -7,10 +7,10 @@ import * as T from '../types'
 import slugify from '../helpers/slugify';
 
 export const createPost = (req: any, res: Response) => {
-  const { title, webLink, githubLink, description, categories, type } = req.body;
+  const { title, webLink, githubLink, description, categories, type, status } = req.body;
   const slug = slugify(title as string)
   let post = new Post({
-    title, slug, webLink, githubLink, description, categories, type
+    title, slug, webLink, githubLink, description, categories, type, status
   });
   post.postedBy = req.profile._id;
   

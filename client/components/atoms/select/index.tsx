@@ -9,15 +9,16 @@ const animatedComponents = makeAnimated();
 interface Props {
   options: Array<T.SelectOption>
   handleChange: ((newValue: Array<T.Category> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined
+  isMulti: boolean
 }
 
-function ReactSelect({ options, handleChange }: Props) {
+function ReactSelect({ options, handleChange, isMulti }: Props) {
   return (
     <Select
       closeMenuOnSelect={false}
       components={animatedComponents}
       defaultValue={[options[0]]}
-      isMulti
+      isMulti={isMulti}
       options={options}
       onChange={handleChange}
     />

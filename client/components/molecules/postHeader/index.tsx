@@ -7,6 +7,11 @@ import { Container, Highlight, Inner, Item, Nav } from './styles'
 
 function PostHeader() {
   const setStep = (step: T.Step | undefined) => contentStore.setStep(step)
+  
+  const handleClick = () => {
+    if (contentStore.postType === undefined) return;
+    setStep(T.Step.POST)
+  }
   return (
     <Container>
       <Inner>
@@ -16,8 +21,8 @@ function PostHeader() {
               STEP 1. 포스트 타입 정하기
             </Highlight>
           </Item>
-          <Item onClick={() => setStep(T.Step.POST)}>
-            <Highlight isActive={contentStore.step === T.Step.POST}>
+          <Item onClick={handleClick}>
+            <Highlight isActive={contentStore.step === T.Step.POST && contentStore.postType !== undefined}>
               STEP 2. 포스트 작성하기
             </Highlight>
           </Item>

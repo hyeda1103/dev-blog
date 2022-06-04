@@ -23,6 +23,7 @@ function CreateLink({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
+    status: T.Status.In_Progress,
     webLink: '',
     githubLink: '',
     categories: [],
@@ -60,6 +61,10 @@ function CreateLink({ user, categoryList, token }: Props) {
       errorRegisters.description = '내용을 입력해야 합니다';
     } 
 
+    if (!values.status) {
+      errorRegisters.status = '프로젝트 진행 상태를 설정해야 합니다';
+    }    
+
     if (values.categories.length === 0) {
       errorRegisters.categories = '적어도 하나 이상의 카테고리를 선택해야 합니다'
     }    
@@ -85,6 +90,7 @@ function CreateLink({ user, categoryList, token }: Props) {
     setFormValues({
       title: '',
       description: '',
+      status: T.Status.In_Progress,
       githubLink: '',
       webLink: '',
       categories: [],
@@ -113,6 +119,24 @@ function CreateLink({ user, categoryList, token }: Props) {
   useEffect(() => {
     if (!Object.keys(formErrors).length && isSubmitting) create()
   }, [formErrors, isSubmitting]);
+
+  const handleStatus: ((newValue: Array<{
+    value: T.Status, label: T.Status
+  }> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option: any) => {
+    if (!Array.isArray(option)) return;
+
+    const selectedStatus = option.map((item: {
+    value: T.Status, label: T.Status
+  }) => item.value)
+    setFormValues({
+      ...formValues,
+      status: selectedStatus[0]
+    })
+    setFormErrors({
+      ...formErrors,
+      status: '',
+    })
+  }
   
   const handleSelect: ((newValue: Array<T.SelectOption> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option: any) => {
     if (!Array.isArray(option)) return;
@@ -154,6 +178,7 @@ function CreateLink({ user, categoryList, token }: Props) {
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             handleSelect={handleSelect}
+            handleStatus={handleStatus}
             handleContent={handleContent}
           />
         )

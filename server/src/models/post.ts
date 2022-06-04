@@ -16,6 +16,10 @@ const postSchema = new Schema({
     unique: true,
     index: true
   },
+  status: {
+    type: String,
+    required: true,
+  },
   webLink: {
     type: String,
     trim: true,

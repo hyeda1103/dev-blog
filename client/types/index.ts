@@ -61,9 +61,15 @@ export interface Category {
   content: string
 }
 
+export enum Status {
+  Completed = '완성',
+  In_Progress = '진행중',
+}
+
 export interface CreatePostForm {
   title: string
   description: string
+  status: Status
   webLink?: string
   githubLink?: string
   categories: Array<string>
@@ -79,6 +85,7 @@ export interface Post {
   _id: string
   title: string
   description: string
+  status: Status
   webLink?: string
   githubLink?: string
   categories: Array<Category>
