@@ -12,7 +12,7 @@ router.post('/post/upload-image', post_1.uploadImageFile);
 router.post('/post', auth_1.authMiddleware, post_1.createPost);
 router.get('/posts', post_1.listPosts);
 router.put('/click-count', post_1.clickCount);
-router.get('/post/:id', post_1.readPost);
+router.get('/post/:slug', post_1.readPost);
 router.put('/post/:slug', auth_1.authMiddleware, post_1.createPost);
 router.delete('/post/:slug', auth_1.authMiddleware, post_1.deletePost);
 exports.default = router;

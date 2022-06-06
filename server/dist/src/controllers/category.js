@@ -37,7 +37,6 @@ exports.listCategory = listCategory;
 var readCategory = function (req, res) {
     var slug = req.params.slug;
     var _a = req.body, limit = _a.limit, skip = _a.skip;
-    console.log(slug);
     var limits = limit ? parseInt(limit) : 10;
     var skips = skip ? parseInt(skip) : 0;
     category_1.default.findOne({ slug: slug })

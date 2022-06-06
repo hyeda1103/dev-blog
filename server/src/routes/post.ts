@@ -17,7 +17,7 @@ router.post('/post/upload-image', uploadImageFile)
 router.post('/post', authMiddleware, createPost)
 router.get('/posts', listPosts)
 router.put('/click-count', clickCount);
-router.get('/post/:id', readPost);
+router.get('/post/:slug', readPost);
 router.put('/post/:slug', authMiddleware, createPost)
 router.delete('/post/:slug', authMiddleware, deletePost)
 

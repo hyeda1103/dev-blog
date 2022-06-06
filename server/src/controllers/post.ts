@@ -59,8 +59,9 @@ export const listPosts = async (req: Request, res: Response) => {
 }
 
 export const readPost = (req: Request, res: Response) => {
-  const { id } = req.params;
-  Post.findOne({ _id: id })
+  const { slug } = req.params;
+  
+  Post.findOne({ slug })
     .populate('categories', 'name slug')
     .exec((err, data) => {
       if (err) {

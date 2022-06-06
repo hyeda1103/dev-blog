@@ -122,8 +122,8 @@ var listPosts = function (req, res) { return __awaiter(void 0, void 0, void 0, f
 }); };
 exports.listPosts = listPosts;
 var readPost = function (req, res) {
-    var id = req.params.id;
-    post_1.default.findOne({ _id: id })
+    var slug = req.params.slug;
+    post_1.default.findOne({ slug: slug })
         .populate('categories', 'name slug')
         .exec(function (err, data) {
         if (err) {

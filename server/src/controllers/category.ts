@@ -37,8 +37,6 @@ export const readCategory = (req: Request, res: Response) => {
   const { slug } = req.params;
   const { limit, skip } = req.body
   
-  console.log(slug)
-  
   let limits = limit ? parseInt(limit) : 10
   let skips = skip ? parseInt(skip) : 0
   
