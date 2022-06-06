@@ -3,22 +3,36 @@ import Router, {withRouter} from 'next/router';
 import { WithRouterProps } from 'next/dist/client/with-router';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+import styled from 'styled-components';
 
 import { isAuth } from '@root/helpers/auth';
 import Button from '@root/components/atoms/button';
 import InputWithLabel from '@root/components/molecules/inputWithLabel';
 import AuthForm from '@root/components/templates/authForm';
 import * as T from '@root/types'
-import {
-  StyledForm,
-  Title,
-  InputWrapper,
-  SubTitle,
-} from './styles';
 import ErrorBox from '@root/components/molecules/errorBox';
 import { API } from '@root/config';
 
-const ResetPassword = ({ router }: WithRouterProps) => {
+const StyledForm = styled.form`
+  width: 100%;
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38.4px;
+`;
+
+const SubTitle = styled.p`
+  margin-top: 20px;
+  font-size: 16px;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 50.71px;
+`;
+
+function ResetPassword({ router }: WithRouterProps) {
   const [formValues, setFormValues] = useState({
     password: '',
   });
@@ -70,29 +84,28 @@ const ResetPassword = ({ router }: WithRouterProps) => {
     setIsSubmitting(true);
   };
 
-  const sendPasswordRestLink = async () => {
-    try {
-      const res = await axios.put(`${API}/reset-password`, {
-        resetPasswordLink: token,
-        newPassword: password
-      })      
-      setFormValues({
-        password: '',
-      })
-      setButtonText('비밀번호 재설정 완료')
-      setServerErrorMessage('')
-      setSuccessMessage(res.data.message)
-      setIsSubmitting(false);
-    } catch (err: any) {
-      setButtonText('비밀번호 재설정하기')
-      setServerErrorMessage(err.response.data.error)
-      setIsSubmitting(false);
-    }
-  }
-
   useEffect(() => {
+    const sendPasswordRestLink = async () => {
+      try {
+        const res = await axios.put(`${API}/reset-password`, {
+          resetPasswordLink: token,
+          newPassword: password
+        })      
+        setFormValues({
+          password: '',
+        })
+        setButtonText('비밀번호 재설정 완료')
+        setServerErrorMessage('')
+        setSuccessMessage(res.data.message)
+        setIsSubmitting(false);
+      } catch (err: any) {
+        setButtonText('비밀번호 재설정하기')
+        setServerErrorMessage(err.response.data.error)
+        setIsSubmitting(false);
+      }
+    }
     if (!Object.keys(formErrors).length && isSubmitting) sendPasswordRestLink()
-  }, [formErrors, isSubmitting]);
+  }, [formErrors, isSubmitting, password, token]);
 
   const title = (
     <Title>

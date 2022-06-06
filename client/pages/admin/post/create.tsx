@@ -19,7 +19,7 @@ interface Props {
 
 const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT]
 
-function CreateLink({ user, categoryList, token }: Props) {
+function CreateLinkPage({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
@@ -100,25 +100,24 @@ function CreateLink({ user, categoryList, token }: Props) {
     setServerErrorMessage('');
   }
   
-  const create = async () => {
-    try {
-      const res = await axios.post(`${API}/post`, formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }) 
-      reset();
-      setSuccessMessage(`${res.data.title}가(이) 성공적으로 생성되었습니다`)
-      setIsSubmitting(false);
-    } catch (err: any) {
-      setServerErrorMessage(err.response.data.error)
-      setIsSubmitting(false);
-    }
-  }
-  
   useEffect(() => {
+    const create = async () => {
+      try {
+        const res = await axios.post(`${API}/post`, formValues, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }) 
+        reset();
+        setSuccessMessage(`${res.data.title}가(이) 성공적으로 생성되었습니다`)
+        setIsSubmitting(false);
+      } catch (err: any) {
+        setServerErrorMessage(err.response.data.error)
+        setIsSubmitting(false);
+      }
+    }
     if (!Object.keys(formErrors).length && isSubmitting) create()
-  }, [formErrors, isSubmitting]);
+  }, [formErrors, isSubmitting, formValues, token]);
 
   const handleStatus: ((newValue: Array<{
     value: T.Status, label: T.Status
@@ -218,4 +217,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
 }
 
-export default observer(CreateLink)
+export default observer(CreateLinkPage)
