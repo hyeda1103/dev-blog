@@ -17,7 +17,7 @@
 
 ## Setup
 
-To run this project, install it locally using yarn:
+To run this project, install it locally using `yarn`:
 
 **To run server**
 
@@ -51,9 +51,9 @@ $ yarn dev
 
 ## Status
 
-The project is **currently in progress(Upadated on May, 30th, 2022)** 🐫
-
-![dev-blog-for-ten_220530](https://user-images.githubusercontent.com/61447729/170981700-753f9f7c-bdfd-4c2c-85c1-32b97a53391f.gif)
+- The project is **currently in progress(Upadated on June, 7th, 2022)** 🐫
+  - 👉 Deployed with dummy data: [Visit my dev blog](https://hyedako.com)
+- Checkout project status on [Project kanban board](https://github.com/hyeda1103/dev-blog/projects/1)
 
 ## References
 - [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
