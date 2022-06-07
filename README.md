@@ -51,9 +51,9 @@ $ yarn dev
 
 ## Status
 
-- The project is **currently in progress(Upadated on June, 7th, 2022)** 🐫
-  - 👉 Deployed with dummy data: [Visit my dev blog](https://hyedako.com)
+- The project is now deployed with dummy data: [Visit my dev blog](https://hyedako.com) 
 - Checkout project status on [Project kanban board](https://github.com/hyeda1103/dev-blog/projects/1)
 
 ## References
-- [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
+- `Quill`
+  - [React Quill WYSIWYG Rich Text Editor Image Upload to Server](https://kaloraat.com/index.php/articles/react-quill-wysiwyg-rich-text-editor-image-upload-to-server)
