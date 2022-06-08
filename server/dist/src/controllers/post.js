@@ -124,7 +124,7 @@ exports.listPosts = listPosts;
 var readPost = function (req, res) {
     var slug = req.params.slug;
     post_1.default.findOne({ slug: slug })
-        .populate('categories', 'name slug')
+        .populate('categories', 'name')
         .exec(function (err, data) {
         if (err) {
             console.error(err);

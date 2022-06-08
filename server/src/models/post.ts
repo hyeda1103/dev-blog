@@ -18,7 +18,6 @@ const postSchema = new Schema({
   },
   status: {
     type: String,
-    required: true,
   },
   webLink: {
     type: String,

@@ -40,7 +40,6 @@ var postSchema = new mongoose_1.Schema({
     },
     status: {
         type: String,
-        required: true,
     },
     webLink: {
         type: String,

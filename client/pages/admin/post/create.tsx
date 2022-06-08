@@ -3,6 +3,7 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next';
 import { ActionMeta } from 'react-select';
 import { observer } from 'mobx-react'
+import styled from 'styled-components';
 
 import TypeList from '@root/components/organisms/typeList';
 import CreatePostForm from '@root/components/organisms/createPostForm';
@@ -10,6 +11,15 @@ import { getCookie } from '@root/helpers/auth';
 import * as T from '@root/types';
 import { API } from '@root/config';
 import contentStore from '@root/stores/contentStore';
+
+const Layout = styled.main`
+  margin: 0 auto;
+  padding: 180px 0;
+  height: 100%;
+  min-height: calc(100vh - 41px);
+  box-sizing: border-box;
+  line-height: 1.5;
+`;
 
 interface Props {
   user: T.Profile
@@ -23,7 +33,7 @@ function CreateLinkPage({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreatePostForm>({
     title: '',
     description: '',
-    status: T.Status.In_Progress,
+    status: undefined,
     webLink: '',
     githubLink: '',
     categories: [],
@@ -61,7 +71,7 @@ function CreateLinkPage({ user, categoryList, token }: Props) {
       errorRegisters.description = '내용을 입력해야 합니다';
     } 
 
-    if (!values.status) {
+    if (values.type === T.PostType.PROJECT && values.status === undefined) {
       errorRegisters.status = '프로젝트 진행 상태를 설정해야 합니다';
     }    
 
@@ -119,25 +129,20 @@ function CreateLinkPage({ user, categoryList, token }: Props) {
     if (!Object.keys(formErrors).length && isSubmitting) create()
   }, [formErrors, isSubmitting, formValues, token]);
 
-  const handleStatus: ((newValue: Array<{
-    value: T.Status, label: T.Status
-  }> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option: any) => {
-    if (!Array.isArray(option)) return;
+  const handleSelectSingle: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void = (option) => {
+    const selectedStatus = (option as T.SelectOption).value
 
-    const selectedStatus = option.map((item: {
-    value: T.Status, label: T.Status
-  }) => item.value)
     setFormValues({
       ...formValues,
-      status: selectedStatus[0]
+      status: selectedStatus as T.Status
     })
     setFormErrors({
       ...formErrors,
-      status: '',
+      status: ''
     })
   }
   
-  const handleSelect: ((newValue: Array<T.SelectOption> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option: any) => {
+  const handleSelectMulti: ((newValue: Array<T.SelectOption> | unknown, actionMeta: ActionMeta<unknown>) => void) | undefined = (option) => {
     if (!Array.isArray(option)) return;
 
     const selectedCategories = option.map((item: T.SelectOption) => item.value)
@@ -176,8 +181,8 @@ function CreateLinkPage({ user, categoryList, token }: Props) {
             formErrors={formErrors}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
-            handleSelect={handleSelect}
-            handleStatus={handleStatus}
+            handleSelectSingle={handleSelectSingle}
+            handleSelectMulti={handleSelectMulti}
             handleContent={handleContent}
           />
         )
@@ -187,9 +192,9 @@ function CreateLinkPage({ user, categoryList, token }: Props) {
   })()
 
   return (
-    <>
+    <Layout>
       {Content}
-    </>
+    </Layout>
   )
 }
 
