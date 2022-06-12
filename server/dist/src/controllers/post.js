@@ -56,7 +56,7 @@ var uuid_1 = require("uuid");
 var post_1 = __importDefault(require("../models/post"));
 var slugify_1 = __importDefault(require("../helpers/slugify"));
 var createPost = function (req, res) {
-    var _a = req.body, title = _a.title, webLink = _a.webLink, githubLink = _a.githubLink, description = _a.description, categories = _a.categories, type = _a.type, status = _a.status;
+    var _a = req.body, title = _a.title, webLink = _a.webLink, githubLink = _a.githubLink, description = _a.description, categories = _a.categories, type = _a.type, status = _a.status, startDate = _a.startDate, endDate = _a.endDate;
     var slug = (0, slugify_1.default)(title);
     var post = new post_1.default({
         title: title,
@@ -66,7 +66,9 @@ var createPost = function (req, res) {
         description: description,
         categories: categories,
         type: type,
-        status: status
+        status: status,
+        startDate: startDate,
+        endDate: endDate
     });
     post.postedBy = req.profile._id;
     post.save(function (err, data) {

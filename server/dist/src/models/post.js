@@ -38,6 +38,12 @@ var postSchema = new mongoose_1.Schema({
         unique: true,
         index: true
     },
+    startDate: {
+        type: String,
+    },
+    endDate: {
+        type: String,
+    },
     status: {
         type: String,
     },
