@@ -1,5 +1,6 @@
 export enum PostType {
-  ARTICLE = 'article',
+  DEV = 'dev',
+  DAILY = 'daily',
   PROJECT = 'project',
 }
 

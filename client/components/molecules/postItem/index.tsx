@@ -1,12 +1,13 @@
 import React, { MouseEventHandler } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import DOMPurify from 'dompurify';
 
 import DateTag from '@root/components/atoms/dateTag';
 import CategoryItem from '@root/components/molecules/categoryItem/index';
 import * as T from '@root/types'
 import { API } from '@root/config';
-import { Header, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
+import { Header, Description, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
 
 interface Props {
   slug?: string
@@ -19,7 +20,11 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
   const router = useRouter()
   const handleClick: MouseEventHandler = async (e) => {
     e.preventDefault()
-    router.push(`/daily-dev/${post.slug}`)
+    if (post.type === T.PostType.DAILY) {
+      router.push(`/daily/${post.slug}`)
+    } else if (post.type === T.PostType.DEV) {
+      router.push(`/dev/${post.slug}`)
+    }
     await axios.put(`${API}/click-count`, { postId: post._id });
   }
 
@@ -31,6 +36,7 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
           <DateTag endDate={post.createdAt} />
         </TypeWrapper>                      
       </Header>
+      <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
       <Footer>
         <TagBox>
           {post.categories.map((category) => (

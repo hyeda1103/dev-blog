@@ -9,7 +9,7 @@ export const Container = styled.section`
 `;
 
 export const Header = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: 12px;
   padding: 0 24px;
   display: flex;
   flex-direction: column;

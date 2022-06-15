@@ -27,7 +27,7 @@ interface Props {
   token: string
 }
 
-const postTypes: Array<T.PostType> = [T.PostType.ARTICLE, T.PostType.PROJECT]
+const postTypes: Array<T.PostType> = [T.PostType.DEV, T.PostType.PROJECT, T.PostType.DAILY]
 
 function PostPage({ user, categoryList, token }: Props) {
   const [formValues, setFormValues] = useState<T.CreatePostForm>({

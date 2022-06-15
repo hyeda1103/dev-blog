@@ -18,9 +18,16 @@ function PrimaryHeader() {
         </Logo>
         <Nav>
           <Item>
-            <Link href={T.Page.DAILY_DEV}>
+            <Link href={T.Page.DEV}>
               <a>
-                <Highlight isActive={router.asPath === T.Page.DAILY_DEV}>개발과 일상</Highlight>
+                <Highlight isActive={router.asPath === T.Page.DEV}>개발</Highlight>
+              </a>
+            </Link>
+          </Item>
+          <Item>
+            <Link href={T.Page.DAILY}>
+              <a>
+                <Highlight isActive={router.asPath === T.Page.DAILY}>일상</Highlight>
               </a>
             </Link>
           </Item>

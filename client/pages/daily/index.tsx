@@ -7,13 +7,13 @@ import PostList from '@root/components/organisms/postList';
 import OneColumn from '@root/components/templates/oneColumn';
 
 interface Props {
-  devPosts: Array<T.Post>
+  dailyPosts: Array<T.Post>
 }
 
-function DailyDevPage({ devPosts }: Props) {
+function DailyPage({ dailyPosts }: Props) {
   return (
     <OneColumn>
-      <PostList posts={devPosts} />
+      <PostList posts={dailyPosts} />
     </OneColumn>
   )
 }
@@ -21,11 +21,11 @@ function DailyDevPage({ devPosts }: Props) {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const postList = await axios.get(`${API}/posts`)
-    const devPostList = postList.data.filter((post: T.Post) => post.type === T.PostType.ARTICLE)
+    const dailyPostList = postList.data.filter((post: T.Post) => post.type === T.PostType.DAILY)
 
     return {
       props: {
-        devPosts: devPostList,
+        devPosts: dailyPostList,
       }
     }
   } catch (error) {
@@ -35,4 +35,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-export default DailyDevPage
+export default DailyPage

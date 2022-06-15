@@ -57,7 +57,8 @@ function CreatePostForm({
 
   const RequiredContent = (() => {
     switch (contentStore.postType) {
-      case T.PostType.ARTICLE:
+      case T.PostType.DEV:
+      case T.PostType.DAILY:
         return (
           <InputContainer>
             <StyledForm onSubmit={handleSubmit} noValidate>

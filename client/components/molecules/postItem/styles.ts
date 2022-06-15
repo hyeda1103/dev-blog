@@ -138,7 +138,8 @@ export const ClickIcon = styled(HiCursorClick)`
 
 export const Description = styled.div`
   margin: 8px 0;
-  width: 600px;
+  width: 100%;
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

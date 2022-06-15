@@ -79,7 +79,8 @@ export interface CreatePostForm {
 }
 
 export enum PostType {
-  ARTICLE = 'article',
+  DEV = 'dev',
+  DAILY = 'daily',
   PROJECT = 'project',
 }
 
@@ -122,7 +123,8 @@ export enum Size {
 }
 
 export enum Page {
-  DAILY_DEV = '/daily-dev',
+  DEV = '/dev',
+  DAILY = '/daily',
   SIDE_PROJECT = '/side-project',
   ABOUT = '/about',
   ADMIN = '/admin',

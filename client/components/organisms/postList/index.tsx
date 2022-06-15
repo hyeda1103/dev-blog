@@ -18,7 +18,8 @@ function PostList({ posts }: Props) {
 
   const Item = (post: T.Post) => {
     switch (post.type) {
-      case T.PostType.ARTICLE:
+      case T.PostType.DEV:
+      case T.PostType.DAILY:
         return (
           <PostItem
             key={post._id}

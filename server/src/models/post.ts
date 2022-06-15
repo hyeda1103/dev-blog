@@ -51,7 +51,6 @@ const postSchema = new Schema({
   }],
   type: {
     type: String,
-    default: T.PostType.ARTICLE
   },
   clicks: {
     type: Number,
