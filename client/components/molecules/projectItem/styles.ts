@@ -8,6 +8,13 @@ export const Header = styled.div`
   align-items: flex-end;
   border-bottom: 1px solid ${({ theme }) => theme.typePrimary};
   padding: 8px 0;
+  width: 100%;
+
+  @media only screen and (max-width: 840px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 `;
 
 export const CategoryInfo = styled.div`
@@ -15,26 +22,10 @@ export const CategoryInfo = styled.div`
   grid-template-columns: 1fr;
   border: 1px solid ${({ theme }) => theme.typePrimary};
   padding: 16px 24px;
+
   p {
     font-size: 32px;
   }
-`;
-
-export const ImageWrapper = styled.div`
-  border: 1px solid ${({ theme }) => theme.typePrimary};
-  border-radius: 50%;
-  overflow: hidden;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Profile = styled.img`
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
 `;
 
 export const PostList = styled.div`
@@ -44,14 +35,49 @@ export const PostList = styled.div`
 `;
 
 export const Container = styled.div`
+  position: relative;
   border: 1px solid ${({ theme }) => theme.typePrimary};
   padding: 8px 24px;
+  margin: 0 10px 10px 0;
   cursor: pointer;
-  background: ${({ theme }) => theme.themeWhite};
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -10px;
+    border-top: 10px solid transparent;
+	  border-left: 10px solid ${({ theme }) => theme.typePrimary };
+	  height: 100%;
+	  width: 0;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    bottom: -10px;
+    border-top: 10px solid ${({ theme }) => theme.typePrimary };
+	  border-left: 10px solid transparent;
+	  height: 0;
+	  width: calc(100% + 1px);
+  }
 
   &:hover {
-    -webkit-box-shadow: 0 2px ${({ theme }) => theme.typePrimary };
-    box-shadow: 0 2px ${({ theme }) => theme.typePrimary };
+    border: 1px solid ${({ theme }) => theme.themePrimary};
+
+    &:before {
+      border-left: 10px solid ${({ theme }) => theme.themePrimary };
+    }
+
+    &:after {
+      content: "";
+      border-top: 10px solid ${({ theme }) => theme.themePrimary };
+    }
   }
 `;
 
@@ -76,12 +102,19 @@ export const ToolIcon = styled(VscTools)`
 
 export const Title = styled.p`
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 
 export const Details = styled.span`
   vertical-align: middle;
   display: inline-block;
   margin: 8px 0;
+
   a {
     color: ${({ theme }) => theme.hyperlink.default};
 
@@ -94,8 +127,11 @@ export const Details = styled.span`
 
 export const TypeWrapper = styled.div`
   display: flex;
-  font-size: 14px;
   gap: 6px;
+
+  @media only screen and (max-width: 840px) {
+    align-self: flex-end;
+  }
 `;
 
 export const Footer = styled.div`
@@ -103,6 +139,12 @@ export const Footer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 8px;
+
+  @media only screen and (max-width: 840px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 `;
 
 export const PostedAt = styled.div`
@@ -117,8 +159,7 @@ const Tag = css`
 `
 
 export const TagBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  box-sizing: border-box;
 `;
 
 export const CategoryTag = styled.span`
@@ -141,6 +182,10 @@ export const ViewWrapper = styled.div`
   display: flex;
   align-items: center;
   font-size: 14px;
+
+  @media only screen and (max-width: 840px) {
+    display: none;
+  }
 `
 
 export const ClickIcon = styled(HiCursorClick)`
@@ -154,18 +199,14 @@ export const LinkWrapper = styled.div`
   gap: 6px;
 
   a {
-    display: flex;
     align-items: center;
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
-`;
-
-export const Description = styled.div`
-  margin: 8px 0;
-  width: 600px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
 `;

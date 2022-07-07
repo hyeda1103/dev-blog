@@ -1,13 +1,21 @@
 import React, { MouseEventHandler } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import DOMPurify from 'dompurify';
 
 import DateTag from '@root/components/atoms/dateTag';
 import CategoryItem from '@root/components/molecules/categoryItem/index';
 import * as T from '@root/types'
 import { API } from '@root/config';
-import { Header, Description, Container, TagBox, Title, Footer, TypeWrapper, ClickIcon, ViewWrapper } from './styles';
+import {
+  Header,
+  Container,
+  TagBox,
+  Title,
+  Footer,
+  TypeWrapper,
+  ClickIcon,
+  ViewWrapper,
+} from './styles';
 
 interface Props {
   slug?: string
@@ -27,7 +35,7 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
     }
     await axios.put(`${API}/click-count`, { postId: post._id });
   }
-
+  
   return (
     <Container onClick={handleClick}>
       <Header>
@@ -36,7 +44,6 @@ function PostItem({ slug, post, allPosts, setAllPosts }: Props) {
           <DateTag endDate={post.createdAt} />
         </TypeWrapper>                      
       </Header>
-      <Description dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
       <Footer>
         <TagBox>
           {post.categories.map((category) => (

@@ -4,7 +4,7 @@ export const lightTheme = {
   bodyBackground: '#f4f4f4',
   typePrimary: '#161E2E',
   themeWhite: '#FFFFFF',
-
+  themePrimary: '#ff5339',
   border: '#d2d6dc',
   disabled: '#c1c1c1',
   active: '#D7E5F0',
@@ -20,15 +20,15 @@ export const lightTheme = {
 export const darkTheme = {
   bodyBackground: '#161E2E',
   typePrimary: '#f4f4f4',
-  themeWhite: '#161E2E',
-
+  themeWhite: '#FFFFFF',
+  themePrimary: '#0000ee',
   border: '#6B8096',
   active: '#D7E5F0',
   disabled: '#c1c1c1',
   fail: '#ff3300',
   highlight: '#7f7fff',
   hyperlink: {
-    default: '#0000ee',
+    default: '#00ee00',
     contrast: '#00ee00',
     broken: '#ee0000'
   },
@@ -39,6 +39,7 @@ interface Theme {
     bodyBackground: string,
     typePrimary: string,
     themeWhite: string,
+    themePrimary: string,
 
     border: string,
     disabled: string,
@@ -65,13 +66,22 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: inherit;
+    box-sizing: border-box;
   }
 
   body {
     background: ${({ theme }: Theme) => theme.bodyBackground};
     color: ${({ theme }: Theme) => theme.typePrimary};
-    overflow-x: hidden;
     line-height: 1.5;
+  }
+
+  html, body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   table {

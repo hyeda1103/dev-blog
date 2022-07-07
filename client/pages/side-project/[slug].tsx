@@ -10,9 +10,9 @@ import 'moment/locale/ko';
 import { API } from '@root/config'
 import * as T from '@root/types'
 import CategoryItem from '@root/components/molecules/categoryItem';
+import Meta from '@root/helpers/meta';
 
 const Paper = styled.article`
-  background: ${({ theme }) => theme.themeWhite};
   padding: 16px 24px;
 `;
 
@@ -66,7 +66,7 @@ const MainText = styled.div`
 const Title = styled.h1`
   font-size: 32px;
   font-weight: 700;
-  margin: 32px 0 16px;
+  margin: 16px 0 16px;
 `;
 
 const TypeWrapper = styled.div`
@@ -75,8 +75,8 @@ const TypeWrapper = styled.div`
 `;
 
 const TagBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  box-sizing: border-box;
+  padding-top: 16px; 
 `;
 
 const LinkWrapper = styled.div`
@@ -119,29 +119,36 @@ interface Props {
 
 function SinglePostPage({ post }: Props) {
   return (
-    <Paper>
-      <Header>
+    <>
+      <Meta
+        title={post.title}
+        description={post.description}
+        keywords={(post.categories).join(' ')}
+        ogTitle={post.title}
+      />
+      <Paper>
+        <Header>
+          <Title>{post.title}</Title>
+          <TypeWrapper>
+            <CalendarIcon />{moment(post.startDate).format("YYYY년 MM월")} → {moment(post.endDate).format("YYYY년 MM월")}
+          </TypeWrapper>
+          <LinkWrapper>
+            <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
+              <GitHubIcon />{post.githubLink}
+            </a>
+            <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
+              <WebIcon />{post.webLink}
+            </a>
+          </LinkWrapper>
+        </Header>
         <TagBox>
           {post.categories?.map((category) => (
             <CategoryItem key={category._id} category={category} />
           ))}
         </TagBox>
-        <Title>{post.title}</Title>
-        <TypeWrapper>
-          <CalendarIcon />{moment(post.startDate).format("YYYY년 MM월")} → {moment(post.endDate).format("YYYY년 MM월")}
-        </TypeWrapper>
-        <LinkWrapper>
-          <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon />{post.githubLink}
-          </a>
-          <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
-            <WebIcon />{post.webLink}
-          </a>
-        </LinkWrapper>
-
-      </Header>
-      <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
-    </Paper>
+        <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+      </Paper>
+    </>
   )
 }
 

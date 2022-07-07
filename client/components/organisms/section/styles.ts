@@ -3,14 +3,11 @@ import styled from "styled-components";
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
-  width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 `;
 
 export const Header = styled.div`
   margin-bottom: 12px;
-  padding: 0 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,13 +16,20 @@ export const Header = styled.div`
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  margin-bottom: 12px;
 `;
 
 export const Title = styled.h1`
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 12px;
+
+  @media only screen and (max-width: 840px) {
+    align-self: flex-start;
+    margin-bottom: 0;
+    font-size: 28px;
+  }
 `;
 
 export const Logline = styled.p`
@@ -34,8 +38,6 @@ export const Logline = styled.p`
 `;
 
 export const ContentsWrapper = styled.div`
-  .infinite-scroll-component {
-    overflow: hidden;
-    background: 'red';
-  }
+  /* padding-right: 10px;
+  padding-bottom: 10px; */
 `;

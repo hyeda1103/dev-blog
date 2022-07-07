@@ -9,9 +9,9 @@ export const Container = styled.li`
   margin: 2px;
   font-size: 14px;
   transition: 0.05s ease;
+  position: relative;
 
   &:hover {
-    -webkit-box-shadow: 0 1px ${({ theme }) => theme.typePrimary };
-    box-shadow: 0 1px ${({ theme }) => theme.typePrimary };
+    border: 1px solid ${({ theme }) => theme.themePrimary};
   }
 `;

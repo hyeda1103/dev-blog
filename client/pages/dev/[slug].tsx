@@ -9,9 +9,9 @@ import 'moment/locale/ko';
 import { API } from '@root/config'
 import * as T from '@root/types'
 import CategoryItem from '@root/components/molecules/categoryItem';
+import Meta from '@root/helpers/meta';
 
 const Paper = styled.article`
-  background: ${({ theme }) => theme.themeWhite};
   padding: 16px 24px;
 `;
 
@@ -23,7 +23,7 @@ const Header = styled.div`
 `;
 
 const MainText = styled.div`
-  padding: 32px 0 16px;
+  padding: 16px 0 16px;
   line-height: 2;
 
   h1 {
@@ -61,6 +61,12 @@ const MainText = styled.div`
     font-family: consolas;
     overflow-x: scroll;
   }
+
+  img {
+    @media only screen and (max-width: 840px) {
+      width: 100%;
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -75,9 +81,8 @@ const TypeWrapper = styled.div`
 `;
 
 const TagBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
+  box-sizing: border-box;
+  padding-top: 16px; 
 `;
 
 interface Props {
@@ -86,20 +91,28 @@ interface Props {
 
 function SinglePostPage({ post }: Props) {
   return (
-    <Paper>
-      <Header>
+    <>
+      <Meta
+        title={post.title}
+        description={post.description}
+        keywords={(post.categories).join(' ')}
+        ogTitle={post.title}
+      />
+      <Paper>
+        <Header>
+          <Title>{post.title}</Title>
+          <TypeWrapper>
+            {moment(post.createdAt).format("YYYY년 MM월 DD일 HH시 mm분 ss초")}
+          </TypeWrapper>
+        </Header>
         <TagBox>
           {post.categories?.map((category) => (
             <CategoryItem key={category._id} category={category} />
           ))}
         </TagBox>
-        <Title>{post.title}</Title>
-        <TypeWrapper>
-          {moment(post.createdAt).format("YYYY년 MM월 DD일 HH시 mm분 ss초")}
-        </TypeWrapper>
-      </Header>
-      <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
-    </Paper>
+        <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
+      </Paper>
+    </>
   )
 }
 

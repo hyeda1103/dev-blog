@@ -62,7 +62,7 @@ export const readPost = (req: Request, res: Response) => {
   const { slug } = req.params;
   
   Post.findOne({ slug })
-    .populate('categories', 'name')
+    .populate('categories', 'name slug')
     .exec((err, data) => {
       if (err) {
         console.error(err);
