@@ -14,18 +14,21 @@ import Meta from '@root/helpers/meta';
 
 const Paper = styled.article`
   padding: 16px 24px;
+  background: ${({ theme }) => theme.themeWhite};
 `;
 
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid ${({ theme }) => theme.typePrimary};
+  border-bottom: 1px solid ${({ theme }) => theme.themeBlack};
   padding: 16px 0;
+  color: ${({ theme }) => theme.themeBlack};
 `;
 
 const MainText = styled.div`
   padding: 32px 0;
   line-height: 1.8;
+  color: ${({ theme }) => theme.themeBlack};
 
   h1 {
     font-size: 24px;
@@ -136,14 +139,14 @@ function SinglePostPage({ post }: Props) {
             <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
               <GitHubIcon />{post.githubLink}
             </a>
-            <a href={post.githubLink} target="_blank" rel="noopener noreferrer">
+            <a href={post.webLink} target="_blank" rel="noopener noreferrer">
               <WebIcon />{post.webLink}
             </a>
           </LinkWrapper>
         </Header>
         <TagBox>
           {post.categories?.map((category) => (
-            <CategoryItem key={category._id} category={category} />
+            <CategoryItem key={category._id} category={category} onPost={true} />
           ))}
         </TagBox>
         <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />

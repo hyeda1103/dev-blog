@@ -2,9 +2,9 @@
 module.exports = {
   publicRuntimeConfig: {
     APP_NAME: "dev-blog",
-    API: "http://localhost:8000/api",
+    API: "/api",
     PRODUCTION: true,
-    DOMAIN: "http://localhost:3000/",
+    DOMAIN: "http://43.200.72.175",
     FB_APP_ID: "JADLKMJKMCAIDK",
   },
   webpack: (config) => {
