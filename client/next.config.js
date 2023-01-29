@@ -2,6 +2,7 @@
 module.exports = {
   publicRuntimeConfig: {
     APP_NAME: "dev-blog",
+    // API: "http://localhost:8000/api",
     API: "/api",
     PRODUCTION: true,
     DOMAIN: "http://43.200.72.175",
