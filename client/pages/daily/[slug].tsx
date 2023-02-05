@@ -1,33 +1,31 @@
-import React from 'react'
-import { GetServerSideProps } from 'next';
-import axios from 'axios'
+import { GetServerSideProps } from "next";
+import axios from "axios";
 import DOMPurify from "dompurify";
-import styled from 'styled-components'
-import moment from 'moment';
-import 'moment/locale/ko';
+import moment from "moment";
+import styled from "styled-components";
 
-import { API } from '@/config'
-import * as T from '@/types'
-import CategoryItem from '@/components/molecules/categoryItem';
-import Meta from '@/helpers/meta';
+import CategoryItem from "@/components/molecules/categoryItem";
+import { API } from "@/config";
+import Meta from "@/helpers/meta";
+import * as T from "@/types";
+
+import "moment/locale/ko";
 
 const Paper = styled.article`
   padding: 16px 24px;
-  background: ${({ theme }) => theme.themeWhite};
+  border: 1px solid ${({ theme }) => theme.typePrimary};
 `;
 
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid ${({ theme }) => theme.themeBlack};
+  border-bottom: 1px solid ${({ theme }) => theme.typePrimary};
   padding: 16px 0;
-  color: ${({ theme }) => theme.themeBlack};
 `;
 
 const MainText = styled.div`
   padding: 16px 0 16px;
-  line-height: 2;
-  color: ${({ theme }) => theme.themeBlack};
+  line-height: 1.5;
 
   h1 {
     font-size: 24px;
@@ -58,7 +56,6 @@ const MainText = styled.div`
   }
 
   pre.ql-syntax {
-    background: ${({ theme }) => theme.bodyBackground};
     border-radius: 8px;
     padding: 12px 20px;
     font-family: consolas;
@@ -79,11 +76,11 @@ const TypeWrapper = styled.div`
 
 const TagBox = styled.div`
   box-sizing: border-box;
-  padding-top: 16px;  
+  padding-top: 16px;
 `;
 
 interface Props {
-  post: T.Post
+  post: T.Post;
 }
 
 function SinglePostPage({ post }: Props) {
@@ -92,7 +89,7 @@ function SinglePostPage({ post }: Props) {
       <Meta
         title={post.title}
         description={post.description}
-        keywords={(post.categories).join(' ')}
+        keywords={post.categories.join(" ")}
         ogTitle={post.title}
       />
       <Paper>
@@ -104,30 +101,30 @@ function SinglePostPage({ post }: Props) {
         </Header>
         <TagBox>
           {post.categories?.map((category) => (
-            <CategoryItem key={category._id} category={category} isPost={true} />
+            <CategoryItem key={category._id} category={category} />
           ))}
         </TagBox>
         <MainText dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }} />
       </Paper>
     </>
-  )
+  );
 }
 
-export default SinglePostPage
+export default SinglePostPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
-  const { slug } = query
+  const { slug } = query;
 
   try {
-    const res = await axios.get(encodeURI(`${API}/post/${slug}`))
+    const res = await axios.get(encodeURI(`${API}/post/${slug}`));
     return {
       props: {
         post: res.data,
-      }
-    }
+      },
+    };
   } catch (error) {
     return {
-      props: {}
-    }
+      props: {},
+    };
   }
-}
+};
