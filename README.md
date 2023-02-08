@@ -11,9 +11,6 @@
 ## General Info
 
 - Dev blog for me🦝✨'
-- I started this project to learn 
-  - `Next.js`
-  - how to use `AWS services`
 
 ## Setup
 
