@@ -39,7 +39,7 @@ $ yarn dev
   - `Express` for `Node.js` server framework
   - `MongoDB` for database
   - `react-quill` for WYSIWYG (rich-text-editor)
-- This project currently uses / will use the following `AWS services`:
+- This project uses `AWS services` as follows:
   - `S3` for files storage
   - `SES` for sending emails
   - `EC2` for cloud hosting
@@ -48,7 +48,7 @@ $ yarn dev
 
 ## Status
 
-- The project is now deployed with dummy data: [Visit my dev blog](https://hyedako.com) 
+- The project is now deployed with dummy data: [Visit my dev blog](https://hyedako.com) ** Temporarily closed 😂 **
 - Checkout project status on [Project kanban board](https://github.com/hyeda1103/dev-blog/projects/1)
 
 ## References
