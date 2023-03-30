@@ -1,4 +1,4 @@
-## Dev Blog
+## Dev Blog (Service Unavailable)
 
 ## Table of contents
 
@@ -48,7 +48,7 @@ $ yarn dev
 
 ## Status
 
-- The project is now deployed with dummy data: [Visit my dev blog](https://hyedako.com) ** Temporarily closed 😂 **
+- The project is now closed: [Visit my dev blog](https://hyedako.com)
 - Checkout project status on [Project kanban board](https://github.com/hyeda1103/dev-blog/projects/1)
 
 ## References
